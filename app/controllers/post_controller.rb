@@ -1,6 +1,7 @@
 class PostController < ApplicationController
   def index
     @posts = Post.all
+    authoize @posts
     @professionals_posts = []
     @favorites = current_user.favorites
     @favorites.each do |fav|
