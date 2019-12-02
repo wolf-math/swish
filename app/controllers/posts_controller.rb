@@ -1,7 +1,12 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
-    @post = Post.new
+    @posts = policy_scope(Post).order(created_at: :desc)
+    @professionals_posts = []
+    @favorites = current_user.favorites
+    @favorites.each do |fav|
+      @professionals_posts << fav.professional.posts
+    end
+    @professional_posts.flatten! unless @professional_posts == nil
   end
 
   def new
@@ -20,6 +25,7 @@ class PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:title, :category, :image_url, :user_generated, :content)
   end
