@@ -29,3 +29,9 @@ end
 
 # https://www.googleapis.com/youtube/v3/search/?key=AIzaSyBAynJxXy0JHJpZtXVJpktLAcXalMpWmcY&part=snippet&channelId=UCT83YP07yVuaH9J19YABhlw&maxResults=30
 
+
+
+# TWITER KEYS
+# BbB0O6uWg2JPX9c7uxFnJ8YMK (API key)
+
+# WGiyK4syghoo8qM0tfVhNJ92QPSwfU3mXmoB5do2sDRktuqKR2 (API secret key)
