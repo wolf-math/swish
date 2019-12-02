@@ -4,6 +4,10 @@ class PostPolicy < ApplicationPolicy
       scope.all
     end
 
+    def index?
+      true
+    end
+
     def show?
       true
     end
