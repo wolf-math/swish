@@ -1,35 +1,34 @@
-class TwitterApi
+class TwitterApi < ApplicationRecord
   TWITTER_BASE = "https://api.twitter.com/1.1/search/tweets.json\?q=bryant"
   # PLAYERS + TEAMS
 
-
-  def perform
-    time = Time.now
+  def self.perform
      # current_user.favorite_players
-    res = ['kobe', 'jordan', 'tiger woods', 'Lebron James','kobe', 'jordan', 'tiger woods', 'Lebron James'].map do |player|
-       format_tweets(all_tweets(player))
+    res = ['lakers', 'kawhi leonard', 'luka doncic', 'Lebron James'].map do |player|
+      format_tweets(all_tweets(player))
     end
-      puts "#{Time.now - time }"
     return res
   end
 
   private
 
-  def format_tweets(tweets)
+  def self.format_tweets(tweets)
     results = []
       tweets['statuses'].each do |tweet|
         break if results.length >= 5
+        next if tweet['user']['followers_count'].to_i < 500
 
         result = {}
         result[:text] = tweet['text']
-        result[:url] = tweet['entities']['urls'][0]['url'] rescue nil
-        result[:image] = tweet['entities']['media'][0]['media_url_https'] rescue nil
         result[:name] = tweet['user']['name']
-        result[:handle ] = tweet['user']['screen_name']
-        next if tweet['user']['followers_count'].to_i < 2000
+        result[:handle] = tweet['user']['screen_name']
+        result[:followers] = tweet['user']['followers_count']
+        result[:avatar] = tweet['user']['profile_image_url_https']
 
-        result[:followers ] = tweet['user']['followers_count']
-        result[:created_at ] = tweet['created_at']
+        result[:created_at] = tweet['created_at']
+        result[:url] = tweet['entities']['urls'][0]['expanded_url'] rescue nil
+        result[:image] = tweet['entities']['media'][0]['media_url_https'] rescue nil
+
 
         results << result
       end
@@ -37,8 +36,7 @@ class TwitterApi
       return results
   end
 
-
-  def all_tweets(person)
+  def self.all_tweets(person)
     HTTParty.get("https://api.twitter.com/1.1/search/tweets.json?q=#{person}",
         headers: { Authorization: "Bearer #{ENV['T_BEARER']}" })
   end
