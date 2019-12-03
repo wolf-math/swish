@@ -1,35 +1,21 @@
 .card img {
-  object-fit: cover;
-  max-height: 163px;
 }
 .card {
-  position: relative;
   border: none;
   box-shadow: 0 10px 30px rgba(0,0,0,.1);
-}
-.card .card-title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.card .fa-edit {
-  position: absolute;
-  right: 10px
-}
-.card .fa-trash-alt {
-  position: absolute;
-  right: 30px;
 }
 .index-container {
   padding-top: 30px;
 }
 .index-card .home-card .dashboard-card{
-  height: 380px;
+  height: 420px;
   border-radius: 10px;
 }
-.index-card-price {
-  position: absolute;
-  right: 50px;
-  bottom: 20px;
-  font-size: 40px;
+
+.nba-logo img {
+  max-height: 300px;
+}
+.team-index-card {
+  padding: 10px;
+  height: 600px;
 }

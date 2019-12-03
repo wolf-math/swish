@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
   def index
     @posts = policy_scope(Post).order(created_at: :desc)
-    @professionals_posts = []
+    @people_posts = []
     @favorites = current_user.favorites
     @favorites.each do |fav|
-      @professionals_posts << fav.professional.posts
+      @people_posts << fav.people.posts
     end
-    @professional_posts.flatten! unless @professional_posts == nil
+    @people_posts.flatten! unless @people_posts == nil
   end
 
   def new
