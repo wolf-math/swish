@@ -1,0 +1,16 @@
+.new-post {
+  width: 100vw;
+  background-image: url("https://res.cloudinary.com/dg6wajgky/image/upload/v1575376748/undraw_basketball_agx4_i0broz.png");
+  padding: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+#btn-post, input#post_title, input#post_image_url, textarea#post_content {
+  background-color: #f3f5f773;
+}
+
+.new-post-btn {
+  display: block;
+}
