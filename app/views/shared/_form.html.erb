@@ -1,0 +1,9 @@
+<%= simple_form_for (@post) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :category %>
+  <%= f.input :content %>
+  <%= f.input :image_url %>
+  <%= f.input :user_generated %>
+  <%= f.input :likes %>
+  <%= f.button :submit %>
+<% end %>
