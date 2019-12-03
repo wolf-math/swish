@@ -35,6 +35,8 @@ team_endpoint = 'https://data.nba.net/'
 uri = URI(team_endpoint)
 response = Net::HTTP.get(uri)
 res = JSON.parse(response)
+# res['b_path'].each { |h| h.delete('id') }
+
 
 all_teams = {}
 
@@ -45,10 +47,11 @@ res['sports_content']['teams']['team'].each do |team|
   team_city = team['city']
   team_state = team['state']
   team_id = team['team_id']
+  is_nba = team['is_nba_team']
 
   puts "creating teams..."
 
-  team = Team.create!(name: team_name, nickname: team_nickname, city: team_city, state: team_state, abbrevation: team_abbreviation)
+  team = Team.create!(name: team_name, nickname: team_nickname, city: team_city, state: team_state, abbrevation: team_abbreviation) if is_nba
   all_teams[team_id.to_s] = team
 end
 

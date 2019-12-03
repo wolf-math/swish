@@ -15,8 +15,8 @@
       <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
         <div class="container index-container">
           <div class="row">
-            <% if @professionals_posts.size > 1 %>
-              <% @professionals_posts.each do |favorite| %>
+            <% if @people_posts.size > 1 %>
+              <% @people_posts.each do |favorite| %>
                 <div class="col-10">
                   <%= link_to post_path(favorite) do %>
                     <div class="dashboard-card stretched-link">
@@ -24,6 +24,7 @@
                         <div class="card-body">
                           <h5 class="card-title"><%= favorite.title %></h5>
                           <p class="card-text"><%= favorite.content[0...150] %></p>
+                          <p> <%= link_to 'Show', post %></p>
                         </div>
                       </div>
                     </div>

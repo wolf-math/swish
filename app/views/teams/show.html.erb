@@ -1,0 +1,8 @@
+<h1>This is the (single) team show</h1>
+<p>Find me in view/team/show</p>
+<div class="card mb-3 team-index-card">
+            <%= image_tag "#{@team.name} #{@team.nickname}.png", class: "card-img team-card-img", alt:"team-image" %>
+
+    <h5 class="card-title"><%= @team.name %> <strong><%= @team.nickname%></strong></h5>
+    <p><%= @team.city %>, <%= @team.state %> </p>
+</div>

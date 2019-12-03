@@ -4,12 +4,13 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = policy_scope(Post).order(created_at: :desc)
+
     @professionals_posts = []
     @favorites = current_user.all_following
     @favorites.each do |fav|
       @professionals_posts << Post.find_by(team_id: fav.id)
     end
-    @professional_posts.flatten! unless @professional_posts == nil
+    @people_posts.flatten! unless @people_posts == nil
   end
 
   def new
