@@ -16,6 +16,8 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'httparty'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
