@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_113137) do
+ActiveRecord::Schema.define(version: 2019_12_03_132414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 2019_12_02_113137) do
     t.datetime "updated_at", null: false
     t.string "commentable_type"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.string "followable_type", null: false
+    t.bigint "followable_id", null: false
+    t.string "follower_type", null: false
+    t.bigint "follower_id", null: false
+    t.boolean "blocked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followable_id", "followable_type"], name: "fk_followables"
+    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
+    t.index ["follower_id", "follower_type"], name: "fk_follows"
+    t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -49,6 +63,10 @@ ActiveRecord::Schema.define(version: 2019_12_02_113137) do
     t.integer "likes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "people_id"
+    t.bigint "team_id"
+    t.index ["people_id"], name: "index_posts_on_people_id"
+    t.index ["team_id"], name: "index_posts_on_team_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -85,5 +103,7 @@ ActiveRecord::Schema.define(version: 2019_12_02_113137) do
 
   add_foreign_key "comments", "users"
   add_foreign_key "people", "teams", column: "teams_id"
+  add_foreign_key "posts", "people", column: "people_id"
+  add_foreign_key "posts", "teams"
   add_foreign_key "posts", "users"
 end

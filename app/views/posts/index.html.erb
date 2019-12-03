@@ -1,5 +1,4 @@
 <div class="post-head row justify-content-between m-5" >
-
   <div class="container">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
@@ -8,23 +7,28 @@
       <li class="nav-item">
         <a class="nav-link" id="allposts-tab" data-toggle="tab" href="#allposts" role="tab" aria-controls="allposts" aria-selected="false">all posts</a>
       </li>
+      <li>
+        <a class="nav-link" id="newpost-tab" data-toggle="tab" href="#newpost" role="tab" aria-controls="newpost" aria-selected="false">new post</a>
+      </li>
     </ul>
-
     <div class="tab-content">
       <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
         <div class="container index-container">
           <div class="row">
             <% if @people_posts.size > 1 %>
               <% @people_posts.each do |favorite| %>
-                <div class="col-md-4 col-sm-12">
-                  <div class="dashboard-card">
-                    <div class="card">
-                      <div class="dashboard-card-content">
-                        <h2><%= favorite.title %></h2>
-                        <p> <%= link_to 'Show', post %></p>
+                <div class="col-10">
+                  <%= link_to post_path(favorite) do %>
+                    <div class="dashboard-card stretched-link">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= favorite.title %></h5>
+                          <p class="card-text"><%= favorite.content[0...150] %></p>
+                          <p> <%= link_to 'Show', post %></p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  <% end %>
                 </div>
               <% end %>
             <% end %>
@@ -33,20 +37,32 @@
       </div>
       <div class="tab-pane" id="allposts" role="tabpanel" aria-labelledby="allposts-tab">
          <div class="container index-container">
+            <div class="row">
               <% @posts.each do |post| %>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title"><%= post.title %></h5>
-                        <p class="card-text">first few sentences of the article.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="col-10">
+                  <%= link_to post_path(post) do %>
+                    <div class="dashboard-card">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= post.title %></h5>
+                          <p class="card-text"><%= post.content[0...150] %></p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  <% end %>
                 </div>
               <% end %>
+            </div>
           </div>
+      </div>
+      <div class="tab-pane" id="newpost" role="tabpanel" aria-labelledby="newpost-tab">
+        <div class="container index-container">
+          <div class="row">
+            <% if policy(Post).create? %>
+              <%= render 'shared/form' %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -56,7 +72,10 @@
       })
     </script>
 
-
   </div>
 </div>
+
+
+
+
 
