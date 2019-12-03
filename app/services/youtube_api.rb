@@ -22,8 +22,16 @@ end
 
 class TwitterApi
   TWITTER_BASE = "https://api.twitter.com/1.1/search/tweets.json\?q=bryant#{TWITTER_HEADER}"
-  PLAYERS + TEAMS
+  # PLAYERS + TEAMS
+
+  def trending_tweets
+
+    HTTParty.get("https://api.twitter.com/1.1/search/tweets.json",
+        headers: 'authorization: Bearer AAAAAAAAAAAAAAAAAAAAAFBNBAEAAAAAnlJvNH1MXl90bjiJqSnS6y0td7w=VJuagf8040vgDkqazlCXZzkPYwPI9WtqxJ2iWmnZ2iCsFLYVoH'
+      )
+  end
 end
+
 
 
 
@@ -47,6 +55,9 @@ end
 # 1201512015136804865-TFm7k46YH94QYtmfmA2jEVG8PR3aDe (Access token)
 
 # pRdhyppU1yiI0SekDsoqhzDRrdt3Wi2HiFUG5ltV4AZwA (Access token secret)
+
+# --header 'authorization: Bearer AAAAAAAAAAAAAAAAAAAAAFBNBAEAAAAAnlJvNH1MXl90bjiJqSnS6y0td7w%3DVJuagf8040vgDkqazlCXZzkPYwPI9WtqxJ2iWmnZ2iCsFLYVoH'
+
 
 
 # AUTHORIZATION FOR RECEIVING BEARER TOKEN
