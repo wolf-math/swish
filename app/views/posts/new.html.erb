@@ -1,1 +1,4 @@
-<%= render 'shared/form' %>
+<% if policy(Post).create? %>
+  <%= render 'shared/form' %>
+<% end %>
+

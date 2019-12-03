@@ -1,9 +1,12 @@
-<%= simple_form_for (@post) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :category %>
-  <%= f.input :content %>
-  <%= f.input :image_url %>
-  <%= f.input :user_generated %>
-  <%= f.input :likes %>
-  <%= f.button :submit %>
-<% end %>
+<div class="new-post">
+  <div class="d-flex justify-content-end" >
+    <%= simple_form_for (@post) do |f| %>
+      <%= f.input :title, label: false, placeholder: "Title..." %>
+      <%= f.input :category, as: :hidden, label: false, placeholder: "Add a category..."%>
+      <%= f.input :content, label: false, placeholder: "Write your post here..." %>
+      <%= f.input :image_url, label: false, placeholder: "Add your image url here..." %>
+      <%= f.input :user_generated, as: :hidden, value: true %>
+      <%= f.button :submit, "Submit", label: false, id: 'btn-post', class: 'btn btn-block' %>
+    <% end %>
+  </div>
+</div>

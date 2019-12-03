@@ -4,7 +4,7 @@ class PostPolicy < ApplicationPolicy
       scope.all
     end
 
-    def index?
+    def new?
       true
     end
 
