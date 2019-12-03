@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Swish
   class Application < Rails::Application
+
+
     config.generators do |generate|
           generate.assets false
           generate.helper false
@@ -16,6 +18,11 @@ module Swish
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    Dir['.../services/*.rb'].each do  |file|
+      require_relative file
+    end
+
+    # require_relative '../services/*.rb'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
