@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   # before_action :set_post, only: [:show]
 
   def index
+    @post = Post.new
     @posts = policy_scope(Post).order(created_at: :desc)
     @professionals_posts = []
     @favorites = current_user.all_following
