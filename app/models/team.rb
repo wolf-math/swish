@@ -1,4 +1,3 @@
-class Team < Professional
-  validates :name, presence: true
-
+class Team < ApplicationRecord
+  has_many :people
 end
