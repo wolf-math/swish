@@ -1,3 +1,3 @@
-class Person < Professional
-  belongs_to :team
+class Person < ApplicationRecord
+  belongs_to :team, foreign_key: 'teams_id'
 end

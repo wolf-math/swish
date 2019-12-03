@@ -1,2 +1,3 @@
-class Team < Professional
+class Team < ApplicationRecord
+  has_many :people
 end

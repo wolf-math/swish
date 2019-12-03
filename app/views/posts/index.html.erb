@@ -1,0 +1,62 @@
+<div class="post-head row justify-content-between m-5" >
+
+  <div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-controls="favorite" aria-selected="true">favorites</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="allposts-tab" data-toggle="tab" href="#allposts" role="tab" aria-controls="allposts" aria-selected="false">all posts</a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
+        <div class="container index-container">
+          <div class="row">
+            <% if @professionals_posts.size > 1 %>
+              <% @professionals_posts.each do |favorite| %>
+                <div class="col-md-4 col-sm-12">
+                  <div class="dashboard-card">
+                    <div class="card">
+                      <div class="dashboard-card-content">
+                        <h2><%= favorite.title %></h2>
+                        <p> <%= link_to 'Show', post %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="allposts" role="tabpanel" aria-labelledby="allposts-tab">
+         <div class="container index-container">
+              <% @posts.each do |post| %>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title"><%= post.title %></h5>
+                        <p class="card-text">first few sentences of the article.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+          </div>
+      </div>
+    </div>
+
+    <script>
+      $(function () {
+        $('#myTab li:last-child a').tab('show')
+      })
+    </script>
+
+
+  </div>
+</div>
+
