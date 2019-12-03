@@ -1,5 +1,4 @@
 <div class="d-flex justify-content-end">
-
 <%= link_to "New post", new_post_path, class: "btn btn-primary new-post-btn"  %>
 </div>
 <div class="post-head row justify-content-between m-5" >
@@ -12,7 +11,6 @@
         <a class="nav-link" id="allposts-tab" data-toggle="tab" href="#allposts" role="tab" aria-controls="allposts" aria-selected="false">all posts</a>
       </li>
     </ul>
-
     <div class="tab-content">
       <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
         <div class="container index-container">
@@ -22,9 +20,10 @@
                 <div class="col-10">
                   <div class="dashboard-card">
                     <div class="card">
-                      <div class="dashboard-card-content">
-                        <h2><%= favorite.title %></h2>
-                        <p> <%= link_to 'Show', post %></p>
+                      <div class="card-body">
+                        <h5 class="card-title"><%= favorite.title %></h5>
+                        <p class="card-text"><%= favorite.content[0...150] %></p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
                       </div>
                     </div>
                   </div>
@@ -42,7 +41,7 @@
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title"><%= post.title %></h5>
-                        <p class="card-text">first few sentences of the article.</p>
+                        <p class="card-text"><%= post.content[0...150] %></p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                       </div>
                     </div>
@@ -58,7 +57,6 @@
         $('#myTab li:last-child a').tab('show')
       })
     </script>
-
 
   </div>
 </div>
