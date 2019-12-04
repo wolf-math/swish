@@ -1,25 +1,17 @@
-<div class="container new-post">
+<div class="container">
   <div class="post-container">
     <h1><%= @post.title %></h1>
     <p><%= @post.content %></p>
     <% if policy(Comment).create? %>
-    <%= render 'shared/comment' %>
+      <%= render 'shared/comment' %>
     <% end %>
     <% @post.comments.each do |comment| %>
-    <p>
-      <div class="comment-container">
-        <%= comment.user.email %>
-        <%= comment.text%>
-      </div>
-    </p>
+      <p>
+        <div class="comment-container">
+          <%= comment.user.email %>
+          <%= comment.text%>
+        </div>
+      </p>
     <% end %>
-<div class="post-head row justify-content-between m-5" >
-  <div class="container">
-    <h2><%= @post.title %></h2>
-    <p><%= @post.content %></p>
-
-    <!-- add comments below -->
-
-    <%= link_to "Back", posts_path %>
   </div>
 </div>
