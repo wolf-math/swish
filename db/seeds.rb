@@ -23,12 +23,22 @@ require 'json'
 #   sleep(0.1)
 # end
 
-print "Destroying all teams..."
-Team.destroy_all
-puts "Successfull.. next"
 puts "Destroying all players..."
 Person.destroy_all
+puts "Successfull.. next"
+print "Destroying all teams..."
+Team.destroy_all
 puts "Successfull... next"
+print "Destroying all comments..."
+Comment.destroy_all
+puts "Successfull... next"
+print "Destroying all posts..."
+Post.destroy_all
+puts "Successfull... next"
+print "Destroying all users..."
+User.destroy_all
+puts "Successfull... done"
+
 
 team_endpoint = 'https://data.nba.net/'
 
@@ -98,19 +108,19 @@ puts "creating sample player followers"
   user_list.sample.follow(Person.all.sample)
 end
 
-a.follow(Person.find(241))
+a.follow(Person.all.sample)
 
 puts "creating 5 posts..."
-Post.create!(user_id: 1, title: "LeBron is the GOAT", user_generated: true, likes: 10008, content: "Lorem ipsum dolor
+Post.create!(user: User.all.sample, title: "LeBron is the GOAT", user_generated: true, likes: 10008, content: "Lorem ipsum dolor
   sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   Ac felis donec et odio pellentesque. Tristique et egestas quis ipsum suspendisse ultrices gravida
   dictum fusce. Consequat interdum varius sit amet mattis vulputate enim nulla aliquet. Nulla pharetra
   diam sit amet nisl suscipit adipiscing bibendum. Faucibus in ornare quam viverra. Nunc consequat interdum
   arius sit amet mattis vulputate. Lorem ipsum dolor sit amet consectetur. Duis at consectetur lorem donec
   massa. Diam vel quam elementum pulvinar etiam non quam. Neque gravida in fermentum et sollicitudin ac. Est
-  ante in nibh mauris cursus.", category: "Person", people_id: 241)
+  ante in nibh mauris cursus.", category: "Person")
 
-Post.create!(user_id: 2, title: "Nobody like Jordan", user_generated: true, likes: 3, content: "Praesent
+Post.create!(user: User.all.sample, title: "Nobody like Jordan", user_generated: true, likes: 3, content: "Praesent
   elementum facilisis leo vel fringilla est ullamcorper eget nulla. Non diam phasellus vestibulum lorem sed
   sus. Luctus venenatis lectus magna fringilla urna porttitor. Elementum nisi quis eleifend quam adipiscing
   vitae proin. Velit sed ullamcorper morbi tincidunt ornare massa. Nisl pretium fusce id velit ut tortor
@@ -119,12 +129,12 @@ Post.create!(user_id: 2, title: "Nobody like Jordan", user_generated: true, like
   enim sit amet venenatis urna cursus eget nunc. Lorem dolor sed viverra ipsum nunc aliquet bibendum.",
   category: "Team",)
 
-Post.create!(user_id: 3, title: "Basketball sucks, change my mind", user_generated: true, likes: 0,
+Post.create!(user: User.all.sample, title: "Basketball sucks, change my mind", user_generated: true, likes: 0,
   content: "Magna sit amet purus gravida quis blandit turpis cursus. Vulputate enim nulla aliquet porttitor
   cus luctus. Nisl nisi scelerisque eu ultrices vitae auctor eu augue ut. Odio pellentesque diam volutpat
   commodo sed egestas. Velit dignissim sodales ut eu.", category: "Team")
 
-Post.create!(user_id: 4, title: "Larry Nance is my dad", user_generated: true, likes: 42, content: "Mattis
+Post.create!(user: User.all.sample, title: "Larry Nance is my dad", user_generated: true, likes: 42, content: "Mattis
   llentesque id nibh tortor id aliquet lectus proin nibh. Libero enim sed faucibus turpis in. Hendrerit
   dolor magna eget est lorem ipsum dolor. In ornare quam viverra orci sagittis eu volutpat. Tellus mauris
   a diam maecenas sed enim ut sem. Pharetra vel turpis nunc eget lorem dolor. Amet risus nullam eget felis
@@ -133,7 +143,7 @@ Post.create!(user_id: 4, title: "Larry Nance is my dad", user_generated: true, l
   agittis id consectetur. Pharetra vel turpis nunc eget lorem dolor sed viverra. Quam lacus suspendisse
   faucibus interdum posuere lorem. Feugiat nibh sed pulvinar proin gravida hendrerit.", category: "Person")
 
-Post.create!(user_id: 5, title: "Baseketball Sucks, change my mind", user_generated: true, likes: 9001,
+Post.create!(user_id: User.all.sample, title: "Baseketball Sucks, change my mind", user_generated: true, likes: 9001,
   content: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his
   bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could
   see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able
