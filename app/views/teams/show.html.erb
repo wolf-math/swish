@@ -1,0 +1,16 @@
+<body class="team-show-body">
+  <div class='team-avatar-position'>
+  <%= image_tag "#{@team.name} #{@team.nickname}.png", class: "team-avatar-large", alt:"team-image" %>
+  </div>
+  <div class='players-container'>
+    <% @team.people.each do |person| %>
+    <div class="row">
+    <div class="team-player-list">
+    <ul class="list-group">
+  <li class="list-group-item"><%= person.first_name %> <%= person.last_name %></li>
+   </ul>
+    </div>
+    </div>
+    <% end %>
+  </div>
+</body>

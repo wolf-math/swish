@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
+  # before_action :set_post, only: [:show]
+
   def index
+    @post = Post.new
     @posts = policy_scope(Post).order(created_at: :desc)
-    @professionals_posts = []
-    # @favorites = current_user.favorites
-    # @favorites.each do |fav|
-    #   @professionals_posts << fav.professional.posts
-    # end
-    # @professional_posts.flatten! unless @professional_posts == nil
+    @myposts = current_user.posts.order(created_at: :desc)
+    @professionals_posts = Post.where(team_id: current_user.following_by_type('Team').pluck(:id)).or(Post.where(people_id: current_user.following_by_type('Person').pluck(:id))).order(created_at: :desc)
   end
 
   def new
@@ -35,5 +34,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :category, :image_url, :user_generated, :content)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+    authorize @post
   end
 end

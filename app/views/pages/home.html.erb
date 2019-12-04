@@ -1,2 +1,50 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="tweets-container">
+  <div class="card tweets-header">
+    Personalized Feed Tweets
+  </div>
+  <% @tweet_lists.each do |tweet_list| %>
+   <% tweet_list.each do |tweet| %>
+    <div class="card tweet">
+      <a class="author">
+        <img class="avatar" src=<%= tweet[:avatar] %> />
+        <span class="name"><%= tweet[:name] %></span>
+        <span class="username">@<%= tweet[:handle] %></span>
+      </a>
+      <div class="content" >
+        <%= tweet[:text] %>
+
+      <% unless tweet[:url].nil? %>
+
+      <%= link_to tweet[:url], tweet[:url] %>
+       <%= link_to tweet[:url] do  %>
+         <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
+       <% end  %>
+
+      <% end  %>
+
+      </div>
+    </div>
+   <% end %>
+  <% end %>
+</div>
+
+<!-- <div class="tweets-container">
+  <div class="card tweets-header">
+    Personalized Youtube Vids
+  </div>
+  <h1>Preferences: <%= @chosen_preferences %></h1>
+  <% #@youtube_vids.each do |youtube_vid| %>
+   <%# youtube_vid.each do |vid| %>
+    <div class="card tweet">
+      <a class="author">
+        <span class="title"><%#= vid[:title] %></span>
+        <span class="description">@<%#= vid[:description] %></span>
+      </a>
+      <div class="content" >
+        <%#= vid[:description] %>
+        <img src="<%#= vid[:thumbnail] %>" alt="" style='max-width: 100%;'>
+      </div>
+    </div>
+   <%# end %>
+  <%# end %>
+</div> -->

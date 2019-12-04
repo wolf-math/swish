@@ -1,65 +1,97 @@
-<div class="d-flex justify-content-end">
-
-<%= link_to "New post", new_post_path, class: "btn btn-primary new-post-btn"  %>
-</div>
-<div class="post-head row justify-content-between m-5" >
-  <div class="container">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-controls="favorite" aria-selected="true">favorites</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="allposts-tab" data-toggle="tab" href="#allposts" role="tab" aria-controls="allposts" aria-selected="false">all posts</a>
-      </li>
-    </ul>
-
-    <div class="tab-content">
-      <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
-        <div class="container index-container">
-          <div class="row">
-            <% if @professionals_posts.size > 1 %>
-              <% @professionals_posts.each do |favorite| %>
-                <div class="col-10">
-                  <div class="dashboard-card">
+<div class="container">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-controls="favorite" aria-selected="true">favorites</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="allposts-tab" data-toggle="tab" href="#allposts" role="tab" aria-controls="allposts" aria-selected="false">all posts</a>
+    </li>
+    <li>
+      <a class="nav-link" id="myposts-tab" data-toggle="tab" href="#myposts", role="tab" aria-controls="myposts" aria-selected="false">my posts</a>
+    </li>
+    <li>
+      <a class="nav-link" id="newpost-tab" data-toggle="tab" href="#newpost" role="tab" aria-controls="newpost" aria-selected="false">new post</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
+      <div class="container index-container">
+        <div class="row">
+          <% if @professionals_posts.size >= 1 %>
+            <% @professionals_posts.each do |favorite| %>
+              <div class="col-10">
+                <%= link_to post_path(favorite.id) do %>
+                  <div class="dashboard-card stretched-link">
                     <div class="card">
-                      <div class="dashboard-card-content">
-                        <h2><%= favorite.title %></h2>
-                        <p> <%= link_to 'Show', post_path(favorite) %></p>
+                      <div class="card-body">
+                        <h5 class="card-title"><%= favorite.title %></h5>
+                        <p class="card-text"><%= favorite.content[0...150] %></p>
                       </div>
                     </div>
                   </div>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
-      <div class="tab-pane" id="allposts" role="tabpanel" aria-labelledby="allposts-tab">
-         <div class="container index-container">
-              <% @posts.each do |post| %>
-                <div class="row">
-                  <div class="col-12">
+    </div>
+    <div class="tab-pane" id="allposts" role="tabpanel" aria-labelledby="allposts-tab">
+       <div class="container index-container">
+          <div class="row">
+            <% @posts.each do |post| %>
+              <div class="col-10">
+                <%= link_to post_path(post) do %>
+                  <div class="dashboard-card">
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title"><%= post.title %></h5>
-                        <p class="card-text">first few sentences of the article.</p>
-                        <%= link_to "Read more", post_path(post), class: "btn btn-primary"%>
+                        <p class="card-text"><%= post.content[0...150] %></p>
                       </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="newpost" role="tabpanel" aria-labelledby="newpost-tab">
+      <div class="container index-container">
+        <div class="row">
+          <% if policy(Post).create? %>
+            <%= render 'shared/form' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
+      <div class="container index-container">
+        <div class="row">
+          <% @myposts.each do |post| %>
+            <div class="col-10">
+              <%= link_to post_path(post) do %>
+                <div class="dashboard-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= post.title %></h5>
+                      <p class="card-text"><%= post.content[0...150] %></p>
                     </div>
                   </div>
                 </div>
               <% end %>
-          </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-
-    <script>
-      $(function () {
-        $('#myTab li:last-child a').tab('show')
-      })
-    </script>
-
-
   </div>
+
+  <script>
+    $(function () {
+      $('#myTab li:last-child a').tab('show')
+    })
+  </script>
+
 </div>
 
