@@ -1,0 +1,24 @@
+.team-avatar-large {
+  max-width: 380px;
+  max-height: 380px;
+  position: absolute;
+}
+.team-show-banner {
+  background-color: white;
+  height: 200px;
+}
+.team-show-banner h1 {
+
+}
+.team-avatar-position {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+}
+.team-player-list {
+  max-width: 900px;
+}
+.players-container {
+  // display: flex;
+  // justify-content: center;
+}

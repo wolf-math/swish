@@ -50,7 +50,7 @@ res['sports_content']['teams']['team'].each do |team|
   team_id = team['team_id']
   is_nba = team['is_nba_team']
 
-  team = Team.create!(name: team_name, nickname: team_nickname, city: team_city, state: team_state, abbrevation: team_abbreviation) if is_nba
+  team = Team.create!(name: team_name, nickname: team_nickname, city: team_city, state: team_state, abbrevation: team_abbreviation, api_team_id: team_id) if is_nba
   all_teams[team_id.to_s] = team
 end
 
@@ -71,7 +71,9 @@ res['league']['standard'].each do |person|
 
   team = all_teams[api_team]
 
-  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height)
+  puts "creating people.."
+
+  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team)
   player.team = team
   player.save
 end

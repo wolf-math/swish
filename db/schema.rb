@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_132414) do
+ActiveRecord::Schema.define(version: 2019_12_04_100527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 2019_12_03_132414) do
     t.string "jersey_number"
     t.string "position"
     t.string "height"
-    t.bigint "teams_id"
+    t.bigint "team_id"
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["teams_id"], name: "index_people_on_teams_id"
+    t.index ["team_id"], name: "index_people_on_team_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_132414) do
   end
 
   add_foreign_key "comments", "users"
-  add_foreign_key "people", "teams", column: "teams_id"
+  add_foreign_key "people", "teams"
   add_foreign_key "posts", "people", column: "people_id"
   add_foreign_key "posts", "teams"
   add_foreign_key "posts", "users"
