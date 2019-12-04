@@ -40,6 +40,7 @@ res = JSON.parse(response)
 
 all_teams = {}
 
+puts "creating teams..."
 res['sports_content']['teams']['team'].each do |team|
   team_name = team['team_name']
   team_nickname = team['team_nickname']
@@ -48,8 +49,6 @@ res['sports_content']['teams']['team'].each do |team|
   team_state = team['state']
   team_id = team['team_id']
   is_nba = team['is_nba_team']
-
-  puts "creating teams..."
 
   team = Team.create!(name: team_name, nickname: team_nickname, city: team_city, state: team_state, abbrevation: team_abbreviation) if is_nba
   all_teams[team_id.to_s] = team
@@ -86,15 +85,17 @@ e = User.create!(email:"ron@Artenstein.com", password: "123456")
 
 user_list = [a, b, c, d, e]
 
+puts "creating sample team followers"
 20.times do
   user_list.sample.follow(Team.find(1...36))
 end
 
+puts "creating sample player followers"
 20.times do
   user_list.sample.follow(Person.find(1...36))
 end
 
-puts "creating 10 posts..."
+puts "creating 5 posts..."
 Post.create!(user_id: 1, title: "LeBron is the GOAT", user_generated: true, likes: 10008, content: "Lorem ipsum dolor
   sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   Ac felis donec et odio pellentesque. Tristique et egestas quis ipsum suspendisse ultrices gravida
@@ -127,5 +128,13 @@ Post.create!(user_id: 4, title: "Larry Nance is my dad", user_generated: true, l
   agittis id consectetur. Pharetra vel turpis nunc eget lorem dolor sed viverra. Quam lacus suspendisse
   faucibus interdum posuere lorem. Feugiat nibh sed pulvinar proin gravida hendrerit.", category: "family")
 
+Post.create!(user_id: 5, title: "Baseketball Sucks, change my mind", user_generated: true, likes: 9001,
+  content: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his
+  bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could
+  see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able
+  to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size
+  of the rest of him, waved about helplessly as he looked. \"What's happened to me?\" he thought. It wasn't
+  a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar
+  walls.", category: "family")
 
 puts "Successfull... done!"
