@@ -7,16 +7,14 @@ class User < ApplicationRecord
   has_many :posts
   acts_as_follower
 
-
   def preferences
     all_follows.map do |follow|
-     if follow.followable_type == "Team"
-       Team.find(follow.followable_id).team_name
-       Team.find(follow.followable_id).team_nickname
-     else
-       Person.find(follow.followable_id).full_name
-     end
-   end.sample(6)
- end
-
+      if follow.followable_type == "Team"
+        Team.find(follow.followable_id).team_name
+        Team.find(follow.followable_id).team_nickname
+      else
+        Person.find(follow.followable_id).full_name
+      end
+    end.sample(6)
+  end
 end

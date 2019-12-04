@@ -4,4 +4,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :posts, only: [:create, :index, :update, :new, :show]
   resources :teams, only: [:index, :show]
+  resources :follows, only: [:new, :create, :update, :show]
+  resources :users do
+    get :follow
+    get :unfollow
+  end
 end
