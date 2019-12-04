@@ -1,0 +1,17 @@
+<div class="container .new-post">
+  <div class="post-container">
+    <h1><%= @post.title %></h1>
+    <p><%= @post.content %></p>
+    <% if policy(Comment).create? %>
+    <%= render 'shared/comment' %>
+    <% end %>
+    <% @post.comments.each do |comment| %>
+    <p>
+      <div class="comment-container">
+        <%= comment.user.email %>
+        <%= comment.text%>
+      </div>
+    </p>
+    <% end %>
+  </div>
+</div>

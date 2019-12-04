@@ -1,9 +1,9 @@
-class PostPolicy < ApplicationPolicy
+class CommentPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
-  end
+
     def new?
       true
     end
@@ -24,4 +24,5 @@ class PostPolicy < ApplicationPolicy
       record.user == user
     end
   end
+end
 

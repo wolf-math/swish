@@ -24,7 +24,7 @@
                     <div class="card">
                       <div class="dashboard-card-content">
                         <h2><%= favorite.title %></h2>
-                        <p> <%= link_to 'Show', post %></p>
+                        <p> <%= link_to 'Show', post_path(favorite) %></p>
                       </div>
                     </div>
                   </div>
@@ -43,7 +43,7 @@
                       <div class="card-body">
                         <h5 class="card-title"><%= post.title %></h5>
                         <p class="card-text">first few sentences of the article.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <%= link_to "Read more", post_path(post), class: "btn btn-primary"%>
                       </div>
                     </div>
                   </div>
