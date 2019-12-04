@@ -1,11 +1,8 @@
 class TwitterApi < ApplicationRecord
-  TWITTER_BASE = "https://api.twitter.com/1.1/search/tweets.json\?q=bryant"
-  # PLAYERS + TEAMS
 
-  def self.perform
-     # current_user.favorite_players
-    res = ['lakers', 'kawhi leonard', 'luka doncic', 'Lebron James'].map do |player|
-      format_tweets(all_tweets(player))
+  def self.perform(preferences)
+    res = preferences.map do |preference|
+      format_tweets(all_tweets(preference))
     end
     return res
   end
@@ -15,8 +12,8 @@ class TwitterApi < ApplicationRecord
   def self.format_tweets(tweets)
     results = []
       tweets['statuses'].each do |tweet|
-        break if results.length >= 5
-        next if tweet['user']['followers_count'].to_i < 500
+        break if results.length >= 1
+        next if tweet['user']['followers_count'].to_i < 1000
 
         result = {}
         result[:text] = tweet['text']

@@ -1,8 +1,16 @@
-<h1>This is the (single) team show</h1>
-<p>Find me in view/team/show</p>
-<div class="card mb-3 team-index-card">
-  <%= image_tag "#{@team.name} #{@team.nickname}.png", class: "card-img team-card-img", alt:"team-image" %>
-
-  <h5 class="card-title"><%= @team.name %> <strong><%= @team.nickname%></strong></h5>
-  <p><%= @team.city %>, <%= @team.state %> </p>
-</div>
+<body class="team-show-body">
+  <div class='team-avatar-position'>
+  <%= image_tag "#{@team.name} #{@team.nickname}.png", class: "team-avatar-large", alt:"team-image" %>
+  </div>
+  <div class='players-container'>
+    <% @team.people.each do |person| %>
+    <div class="row">
+    <div class="team-player-list">
+    <ul class="list-group">
+  <li class="list-group-item"><%= person.first_name %> <%= person.last_name %></li>
+   </ul>
+    </div>
+    </div>
+    <% end %>
+  </div>
+</body>
