@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :posts
   acts_as_follower
 
+  mount_uploader :photo, PhotoUploader
+
 
   def preferences
     all_follows.map do |follow|
