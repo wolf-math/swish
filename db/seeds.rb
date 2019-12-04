@@ -1,27 +1,27 @@
 require 'open-uri'
 require 'json'
 
-  spinner = Enumerator.new do |e|
-  loop do
-    e.yield '.'
-    e.yield ' o'
-    e.yield '  O'
-    e.yield '   0'
-    e.yield '    O'
-    e.yield '     o'
-    e.yield '      .'
-    e.yield '     o'
-    e.yield '    O'
-    e.yield '   0'
-    e.yield '  O'
-    e.yield ' o'
-  end
-end
+#   spinner = Enumerator.new do |e|
+#   loop do
+#     e.yield '.'
+#     e.yield ' o'
+#     e.yield '  O'
+#     e.yield '   0'
+#     e.yield '    O'
+#     e.yield '     o'
+#     e.yield '      .'
+#     e.yield '     o'
+#     e.yield '    O'
+#     e.yield '   0'
+#     e.yield '  O'
+#     e.yield ' o'
+#   end
+# end
 
-1.upto(100) do |i|
-  printf("\rBooting... %s", spinner.next)
-  sleep(0.1)
-end
+# 1.upto(100) do |i|
+#   printf("\rBooting... %s", spinner.next)
+#   sleep(0.1)
+# end
 
 print "Destroying all teams..."
 Team.destroy_all
