@@ -3,6 +3,7 @@ class TeamPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+  end
 
     def index?
       true
@@ -11,5 +12,4 @@ class TeamPolicy < ApplicationPolicy
     def show?
       true
     end
-  end
 end

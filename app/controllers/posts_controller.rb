@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @favorites.each do |fav|
       @professionals_posts << Post.find_by(team_id: fav.id)
     end
-    @people_posts.flatten! unless @people_posts == nil
+    @professionals_posts.flatten! unless @professionals_posts == nil
   end
 
   def new
