@@ -1,9 +1,6 @@
 class Person < ApplicationRecord
   acts_as_followable
-  belongs_to :team, foreign_key: 'teams_id'
-
-
-
+  belongs_to :team, foreign_key: 'team_id'
 
   def full_name
     first_name + " " + last_name
