@@ -1,33 +1,50 @@
-<div class="tweets-container">
-  <div class="card tweets-header">
-    Personalized Feed Tweets
-  </div>
-  <% @tweet_lists.each do |tweet_list| %>
-   <% tweet_list.each do |tweet| %>
-    <div class="card tweet">
-      <a class="author">
-        <img class="avatar" src=<%= tweet[:avatar] %> />
-        <span class="name"><%= tweet[:name] %></span>
-        <span class="username">@<%= tweet[:handle] %></span>
-      </a>
-      <div class="content" >
-        <%= tweet[:text] %>
-
-      <% unless tweet[:url].nil? %>
-
-      <%= link_to tweet[:url], tweet[:url] %>
-       <%= link_to tweet[:url] do  %>
-         <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
-       <% end  %>
-
-      <% end  %>
-
-      </div>
+<div class="row">
+  <div class="col-8">
+    <div class="row">
+      <% 12.times do %>
+        <div class="col-2">
+          <div class="video-card">
+            video here
+          </div>
+        </div>
+      <% end %>
     </div>
-   <% end %>
-  <% end %>
-</div>
+    <div class="forum">
+      <h3>forum here</h3>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="tweets-container">
+      <div class="card tweets-header">
+        Personalized Feed Tweets
+      </div>
+      <% @tweet_lists.each do |tweet_list| %>
+       <% tweet_list.each do |tweet| %>
+        <div class="card tweet">
+          <a class="author">
+            <img class="avatar" src=<%= tweet[:avatar] %> />
+            <span class="name"><%= tweet[:name] %></span>
+            <span class="username">@<%= tweet[:handle] %></span>
+          </a>
+          <div class="content" >
+            <%= tweet[:text] %>
 
+          <% unless tweet[:url].nil? %>
+
+          <%= link_to tweet[:url], tweet[:url] %>
+           <%= link_to tweet[:url] do  %>
+             <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
+           <% end  %>
+
+          <% end %>
+
+          </div>
+        </div>
+       <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
 <!-- <div class="tweets-container">
   <div class="card tweets-header">
     Personalized Youtube Vids
