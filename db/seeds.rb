@@ -119,7 +119,7 @@ Post.create!(user_id: 2, title: "Nobody like Jordan", user_generated: true, like
   enim sit amet venenatis urna cursus eget nunc. Lorem dolor sed viverra ipsum nunc aliquet bibendum.",
   category: "Team",)
 
-Post.create!(user_id: 3, title: "Basketball sucks, change my mind", user_generated: true, likes: 0,
+Post.create!(user_id: 3, title: "My mom said yuo can't come over today", user_generated: true, likes: 0,
   content: "Magna sit amet purus gravida quis blandit turpis cursus. Vulputate enim nulla aliquet porttitor
   cus luctus. Nisl nisi scelerisque eu ultrices vitae auctor eu augue ut. Odio pellentesque diam volutpat
   commodo sed egestas. Velit dignissim sodales ut eu.", category: "Team")
