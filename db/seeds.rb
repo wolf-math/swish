@@ -61,6 +61,7 @@ uri = URI(url)
 response = Net::HTTP.get(uri)
 res = JSON.parse(response)
 
+puts "creating people.."
 res['league']['standard'].each do |person|
   first_name = person['firstName']
   last_name = person['lastName']
@@ -71,31 +72,33 @@ res['league']['standard'].each do |person|
 
   team = all_teams[api_team]
 
-  puts "creating people.."
 
   player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team)
   player.team = team
   player.save
 end
 
-puts "creating 4 users..."
-a = User.create!(email:"test@test.com", password: "123456")
-b = User.create!(email:"ron@aol.com", password: "123456")
-c = User.create!(email:"josh@bros.com", password: "123456")
-d = User.create!(email:"arnie@gmail.com", password: "123456")
-e = User.create!(email:"ron@Artenstein.com", password: "123456")
+puts "creating 6 users..."
+a = User.create!(email: "test@test.com", password: "123456")
+b = User.create!(email: "ron@aol.com", password: "123456")
+c = User.create!(email: "josh@bros.com", password: "123456")
+d = User.create!(email: "arnie@gmail.com", password: "123456")
+e = User.create!(email: "ron@Artenstein.com", password: "123456")
+f = User.create!(email: "aaron@blue.com", password: "123456")
 
-user_list = [a, b, c, d, e]
+user_list = [a, b, c, d, e, f]
 
 puts "creating sample team followers"
 20.times do
-  user_list.sample.follow(Team.find(1...36))
+  user_list.sample.follow(Team.all.sample)
 end
 
 puts "creating sample player followers"
 20.times do
-  user_list.sample.follow(Person.find(1...36))
+  user_list.sample.follow(Person.all.sample)
 end
+
+a.follow(Person.find(241))
 
 puts "creating 5 posts..."
 Post.create!(user_id: 1, title: "LeBron is the GOAT", user_generated: true, likes: 10008, content: "Lorem ipsum dolor
@@ -105,7 +108,7 @@ Post.create!(user_id: 1, title: "LeBron is the GOAT", user_generated: true, like
   diam sit amet nisl suscipit adipiscing bibendum. Faucibus in ornare quam viverra. Nunc consequat interdum
   arius sit amet mattis vulputate. Lorem ipsum dolor sit amet consectetur. Duis at consectetur lorem donec
   massa. Diam vel quam elementum pulvinar etiam non quam. Neque gravida in fermentum et sollicitudin ac. Est
-  ante in nibh mauris cursus.", category: "Clevenad Cavs")
+  ante in nibh mauris cursus.", category: "Person", people_id: 241)
 
 Post.create!(user_id: 2, title: "Nobody like Jordan", user_generated: true, likes: 3, content: "Praesent
   elementum facilisis leo vel fringilla est ullamcorper eget nulla. Non diam phasellus vestibulum lorem sed
@@ -114,12 +117,12 @@ Post.create!(user_id: 2, title: "Nobody like Jordan", user_generated: true, like
   pretium viverra. Amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus. Congue quisque egestas
   diam in arcu cursus euismod quis viverra. In metus vulputate eu scelerisque felis. Pellentesque dignissim
   enim sit amet venenatis urna cursus eget nunc. Lorem dolor sed viverra ipsum nunc aliquet bibendum.",
-  category: "Chicago Bulls")
+  category: "Team",)
 
-Post.create!(user_id: 3, title: "Basketball sucks, change my mind", user_generated: true, likes: 0,
+Post.create!(user_id: 3, title: "My mom said yuo can't come over today", user_generated: true, likes: 0,
   content: "Magna sit amet purus gravida quis blandit turpis cursus. Vulputate enim nulla aliquet porttitor
   cus luctus. Nisl nisi scelerisque eu ultrices vitae auctor eu augue ut. Odio pellentesque diam volutpat
-  commodo sed egestas. Velit dignissim sodales ut eu.", category: "troll")
+  commodo sed egestas. Velit dignissim sodales ut eu.", category: "Team")
 
 Post.create!(user_id: 4, title: "Larry Nance is my dad", user_generated: true, likes: 42, content: "Mattis
   llentesque id nibh tortor id aliquet lectus proin nibh. Libero enim sed faucibus turpis in. Hendrerit
@@ -128,7 +131,7 @@ Post.create!(user_id: 4, title: "Larry Nance is my dad", user_generated: true, l
   get nunc lobortis mattis aliquam. Enim facilisis gravida neque convallis a cras semper auctor neque. At
   elementum eu facilisis sed odio morbi quis commodo odio. Augue eget arcu dictum varius. Velit aliquet s
   agittis id consectetur. Pharetra vel turpis nunc eget lorem dolor sed viverra. Quam lacus suspendisse
-  faucibus interdum posuere lorem. Feugiat nibh sed pulvinar proin gravida hendrerit.", category: "family")
+  faucibus interdum posuere lorem. Feugiat nibh sed pulvinar proin gravida hendrerit.", category: "Person")
 
 Post.create!(user_id: 5, title: "Baseketball Sucks, change my mind", user_generated: true, likes: 9001,
   content: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his
@@ -137,6 +140,6 @@ Post.create!(user_id: 5, title: "Baseketball Sucks, change my mind", user_genera
   to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size
   of the rest of him, waved about helplessly as he looked. \"What's happened to me?\" he thought. It wasn't
   a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar
-  walls.", category: "family")
+  walls.", category: "Person")
 
 puts "Successfull... done!"

@@ -6,7 +6,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :posts
   acts_as_follower
-
+  mount_uploader :photo, PhotoUploader
+  
   def preferences
     all_follows.map do |follow|
       if follow.followable_type == "Team"

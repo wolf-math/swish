@@ -4,13 +4,8 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = policy_scope(Post).order(created_at: :desc)
-
-    @professionals_posts = []
-    @favorites = current_user.all_following
-    @favorites.each do |fav|
-      @professionals_posts << Post.find_by(team_id: fav.id)
-    end
-    @professionals_posts.flatten! unless @professionals_posts == nil
+    @myposts = current_user.posts.order(created_at: :desc)
+    @professionals_posts = Post.where(team_id: current_user.following_by_type('Team').pluck(:id)).or(Post.where(people_id: current_user.following_by_type('Person').pluck(:id))).order(created_at: :desc)
   end
 
   def new
@@ -32,6 +27,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     authorize @post
+    @comment = Comment.new
   end
 
   private

@@ -12,10 +12,24 @@
   border-radius: 10px;
 }
 
+.dashboard-card:hover{
+  // box-shadow: 10px teal;
+  box-shadow: 10px 0px 5px teal;
+
+  p {
+  text-decoration: none;
+  text-color: black;
+  }
+}
+
 .nba-logo img {
   max-height: 300px;
 }
 .team-index-card {
   padding: 10px;
   height: 600px;
+}
+
+.card-comment {
+
 }
