@@ -1,8 +1,7 @@
 class YoutubeApi < ApplicationRecord
   YOUTUBE_BASE = "https://www.googleapis.com/youtube/v3/search/?key=#{ENV['YOUTUBE_API']}&part=snippet"
   CHANNELS = ['UCT83YP07yVuaH9J19YABhlw', 'UC-XWpctw55Q6b_AHo8rkJgw', 'UCEjOSbbaOfgnfRODEEMYlCw', 'UCp3dgMf1OUP2XqOpyOY2bzQ']
-  MAX_RESULTS = "&maxResults1"
-
+  MAX_RESULTS = "&maxResults=1"
   def self.all_videos(preferences)
     results = []
      preferences.each do |preference|
@@ -12,7 +11,6 @@ class YoutubeApi < ApplicationRecord
           binding.pry
           channel_results['items'].each do |res|
             if res['snippet']['title'].match?(/#{preference}/i) || res['snippet']['description'].match?(/#{preference}/i)
-              binding.pry
               video = {}
               video[:id] = res['id']['videoId']
               video[:title] = res['snippet']['title']
@@ -26,13 +24,13 @@ class YoutubeApi < ApplicationRecord
         end
      end
     results
-  end
+    end
 
 
 end
 
 
-# key siel - AIzaSyBAynJxXy0JHJpZtXVJpktLAcXalMpWmcY
+# key siel - AIzaSyBAynJxXy0JHJpZtXVJpktLAcXalMpWmcY   - aron - AIzaSyAzKX-jwQOoFX1FKsWSM9O3z1QJR1lVDtM
 
 # https://www.googleapis.com/youtube/v3/search/?key=AIzaSyBAynJxXy0JHJpZtXVJpktLAcXalMpWmcY&part=snippet&channelId=UCT83YP07yVuaH9J19YABhlw&maxResults=4&query=iverson
 
