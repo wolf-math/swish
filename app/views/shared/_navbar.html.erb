@@ -1,8 +1,9 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="d-flex flex-row navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
-  <%= cl_image_tag "https://res.cloudinary.com/dg6wajgky/image/upload/v1575477768/crowned_wq7h87.png"%>
-  <!-- , crop: :fill  -->
-
+  <div class="d-flex align-items-end">
+    <%= cl_image_tag "https://res.cloudinary.com/dg6wajgky/image/upload/v1575541123/basketballlogoblank_js4fxo.png"%>
+    <h1 class="logo-text">Swish</h1>
+  </div>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,9 +12,6 @@
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <%= link_to root_path, class: "navbar-brand" do %>
-    <%= cl_image_tag "swish_qedtp3", class: "logo", crop: :fill %>
-    <% end %>
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item active">
@@ -23,12 +21,12 @@
         </li>
         <li>
           <button class="btn btn-light">
-          <%= link_to "Teams", teams_path, class: "nav-link" %>
+          <%= link_to "Teams", teams_path, class: "nav-link #{'active-nav-item' if params[:controller] == 'teams'}" %>
           </button>
         </li>
         <li>
           <button class="btn btn-light">
-          <%= link_to "Forum", posts_path, class: "nav-link" %>
+          <%= link_to "Forum", posts_path, class: "nav-link #{'active-nav-item' if params[:controller] == 'posts'}" %>
           </button>
         </li>
         <li>
@@ -42,7 +40,7 @@
           </button>
         </li>
         <li>
-          <button>
+          <button class="btn btn-light">
             <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
           </button>
         </li>
