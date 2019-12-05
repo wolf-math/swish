@@ -1,46 +1,51 @@
 <div class="row">
-  <div class="col-8">
-    <div class="row">
-      <% 9.times do %>
-        <div class="col-4">
-          <div class="video-card">
-            video here
-          </div>
+  <div class="col-8 vc-wrapper">
+    <div class="card tweets-header text-center ml-10 mt-10 vids-header">
+        Personalized Feed Videos
+      </div>
+    <div class="row video-container">
+      <% @youtube_vids.each do |youtube_vid| %>
+      <%youtube_vid.each do |vid| %>
+      <div class="col-4">
+        <div class="video-card" id="card">
+          <iframe src="https://www.youtube.com/embed/<%= vid[:id] %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <a class="author">
+            <span class="title"><%= vid[:title] %></span>
+          </a>
         </div>
+      </div>
       <% end %>
+      <%end %>
     </div>
-    <div class="forum">
+    <div class="forum forum-header card" id="forum-header">
+      <h3>Forum</h3>
+    </div>
       <%= render :template => "posts/index" -%>
-    </div>
   </div>
   <div class="col-4">
     <div class="tweets-container">
-      <div class="card tweets-header">
+      <div class="card tweets-header text-center">
         Personalized Feed Tweets
       </div>
       <% @tweet_lists.each do |tweet_list| %>
-       <% tweet_list.each do |tweet| %>
-        <div class="card tweet">
-          <a class="author">
-            <img class="avatar" src=<%= tweet[:avatar] %> />
-            <span class="name"><%= tweet[:name] %></span>
-            <span class="username">@<%= tweet[:handle] %></span>
-          </a>
-          <div class="content" >
-            <%= tweet[:text] %>
-
+      <% tweet_list.each do |tweet| %>
+      <div class="card tweet">
+        <a class="author">
+          <img class="avatar" src=<%= tweet[:avatar] %> />
+          <span class="name"><%= tweet[:name] %></span>
+          <span class="username">@<%= tweet[:handle] %></span>
+        </a>
+        <div class="content" >
+          <%= tweet[:text] %>
           <% unless tweet[:url].nil? %>
-
           <%= link_to tweet[:url], tweet[:url] %>
-           <%= link_to tweet[:url] do  %>
-             <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
-           <% end  %>
-
+          <%= link_to tweet[:url] do  %>
+          <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
+          <% end  %>
           <% end %>
-
-          </div>
         </div>
-       <% end %>
+      </div>
+      <% end %>
       <% end %>
     </div>
   </div>

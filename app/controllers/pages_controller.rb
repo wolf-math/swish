@@ -5,11 +5,11 @@ class PagesController < ApplicationController
       if user_signed_in?
       @chosen_preferences = current_user.preferences
       # @tweet_lists = TwitterApi.perform(current_user.preferences) || []
-      # @youtube_vids = YoutubeApi.all_videos(@chosen_preferences) || []
+      @youtube_vids = VIDEOS #YoutubeApi.all_videos(@chosen_preferences) || []
       @tweet_lists = TWEETS
       else
        @tweet_lists = []
-      # @youtube_vids =  []
+       @youtube_vids = []
       end
 
     @post = Post.new
@@ -23,6 +23,45 @@ class PagesController < ApplicationController
     @professionals_posts = Post.where(team_id: current_user.following_by_type('Team').pluck(:id)).or(Post.where(people_id: current_user.following_by_type('Person').pluck(:id))).order(created_at: :desc)
     end
   end
+
+
+
+
+
+
+
+
+
+VIDEOS =  [[{:id=>"AYJQ6YiyzC0",
+   :title=>"Los Angeles Lakers vs Utah Jazz Full Game Highlights | December 4, 2019-20 NBA Season",
+   }],
+ [{:id=>"IPdYZyNZNJM",
+   :title=>"Dallas Mavericks vs Minnesota Timberwolves Full Game Highlights | December 4, 2019-20 NBA Season",
+   }],
+ [{:id=>"twlEFbo-9U8",
+   :title=>"James Harden Dunk Not Counted | Rockets vs Spurs",
+   }],
+ [{:id=>"VXxjBGkefZ0",
+   :title=>"Bill Simmons on the Polarizing Rockets. Plus, CFB With Bruce Feldman. | The Ryen Russillo Podcast",
+   }],
+ [{:id=>"htI2fa4oWLU&t=5s",
+   :title=>"MYSTERY VIDEO - CLICK IF YOU DARE",
+   }],
+ [{:id=>"1-_31YF3PE8",
+   :title=>"LeBron James Full Highlights 2019.12.04 Lakers vs Jazz - 20 Pts, 12 Asts! | FreeDawkins",
+   }],
+ [{:id=>"_VjX2bXn0S8",
+   :title=>"Luka Doncic Full Highlights 2019.12.04 Mavs vs TWolves - 22 Pts, 7 Rebs, 6 Asts! | FreeDawkins",
+   }],
+ [{:id=>"3Tdm-gVioWI&t=431s",
+   :title=>"This PROVES Luka Doncic is BETTER than Lebron James at 20 Years Old",
+   }],
+ [{:id=>"HSOtMJbP7k4",
+   :title=>"Los Angeles Lakers vs Washington Wizards Full Game Highlights | November 29, 2019-20 NBA Season",
+   }],
+ []]
+
+
 
 TWEETS = [[{:text=>"#NBA'de bu sezon evinde oynadığı her maçı kazanan sadece üç takım kaldı;\n\n1) Philadelphia 76ers = 10-0\n2) Miami Hea… https://t.co/Bzsdz5Vl62",
    :name=>"NBA Günlükleri",
