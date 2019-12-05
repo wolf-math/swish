@@ -1,5 +1,4 @@
-.card img {
-}
+
 .card {
   border: none;
   box-shadow: 0 10px 30px rgba(0,0,0,.1);
@@ -12,7 +11,7 @@
   border-radius: 10px;
 }
 
-.dashboard-card:hover{
+.dashboard-card:hover {
   // box-shadow: 10px teal;
   box-shadow: 10px 0px 5px teal;
 
@@ -27,9 +26,11 @@
 }
 .team-index-card {
   padding: 10px;
-  height: 600px;
+  height: 474px;
 }
 
 .card-comment {
-
+}
+.card img {
+  margin: auto;
 }
