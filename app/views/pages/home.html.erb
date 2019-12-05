@@ -45,23 +45,23 @@
     </div>
   </div>
 </div>
-<!-- <div class="tweets-container">
+<div class="tweets-container">
   <div class="card tweets-header">
     Personalized Youtube Vids
   </div>
   <h1>Preferences: <%= @chosen_preferences %></h1>
-  <% #@youtube_vids.each do |youtube_vid| %>
-   <%# youtube_vid.each do |vid| %>
+  <% @youtube_vids.each do |youtube_vid| %>
+   <%youtube_vid.each do |vid| %>
     <div class="card tweet">
       <a class="author">
-        <span class="title"><%#= vid[:title] %></span>
-        <span class="description">@<%#= vid[:description] %></span>
+        <span class="title"><%= vid[:title] %></span>
+        <span class="description">@<%= vid[:description] %></span>
       </a>
       <div class="content" >
-        <%#= vid[:description] %>
-        <img src="<%#= vid[:thumbnail] %>" alt="" style='max-width: 100%;'>
+        <%= vid[:description] %>
+        <img src="<%= vid[:thumbnail] %>" alt="" style='max-width: 100%;'>
       </div>
     </div>
-   <%# end %>
-  <%# end %>
-</div> -->
+   <% end %>
+  <%end %>
+</div>
