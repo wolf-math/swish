@@ -36,6 +36,11 @@
          <%= link_to "Standings", "#", class: "nav-link" %>
           </button>
         </li>
+        <li>
+          <button>
+            <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
+          </button>
+        </li>
         <% else %>
         <li class="nav-item btn btn-light">
           <%= link_to "Home", root_path, class: "nav-link" %>
