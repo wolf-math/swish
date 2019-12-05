@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container post-show">
   <div class="post-container">
     <h1><%= @post.title %></h1>
     <p><%= @post.content %></p>
@@ -8,7 +8,7 @@
     <% @post.comments.each do |comment| %>
       <p>
         <div class="comment-container">
-          <%= comment.user.email %>
+          <p class="comment-user"><%= comment.user.email %></p>
           <%= comment.text%>
         </div>
       </p>
