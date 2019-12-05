@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :teams, only: [:index, :show]
   resources :follows, only: [:new, :create, :update, :show]
+  resources :people, only: [:index, :show]
   resources :users do
     get :follow
     get :unfollow
