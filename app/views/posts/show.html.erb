@@ -8,8 +8,11 @@
     <% @post.comments.each do |comment| %>
       <p>
         <div class="comment-container">
-          <p class="comment-user"><%= comment.user.email %></p>
-          <%= comment.text%>
+          <div class="d-flex justify-content-between">
+            <p class="comment-user"><%= comment.user.email %></p>
+            <p class="comment-user"><%= time_ago_in_words(comment.created_at) + ' ago'  %></p>
+          </div>
+          <p><%= comment.text%></p>
         </div>
       </p>
     <% end %>

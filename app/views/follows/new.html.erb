@@ -1,0 +1,32 @@
+<div class="container followable-index-container">
+  <div class='page-title'>
+    <h3 class='text-center mb-4 header'>Add Your Favourite Players & Teams</h3>
+  </div>
+
+  <%= simple_form_for(@follow) do |f| %>
+  <div class="form-group">
+   <input type="hidden" name="follow[team_ids][]" value="">
+  <div class="team-choices">
+  <div class="row justify-content-center">
+    <% @teams.each do |team| %>
+      <div class="col-md-3 col-sm-12">
+
+      <input type="checkbox" class="d-none" value="<%= team.id %>" name="follow[team_ids][]" id="follow_team_ids_<%= team.id %>">
+      <label for="follow_team_ids_<%= team.id %>" class="follow-label <%= 'active-team-choice' if current_user.following?(team) %>">
+          <div class="mb-3 followable-index-card">
+            <%= image_tag "#{team.name} #{team.nickname}.png", class: "card-img followable-card-img", alt:"team-image" %>
+          </div>
+      </label>
+      </div>
+    <% end  %>
+  </div>
+</div>
+</div>
+    <%= f.submit %>
+    <% end %>
+
+</div>
+
+<%= content_for(:after_js) do %>
+  <%= javascript_pack_tag('team_follow_choice') %>
+<% end %>

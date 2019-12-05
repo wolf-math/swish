@@ -6,5 +6,11 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update, :new, :show, :destroy]
   end
   resources :teams, only: [:index, :show]
+  resources :follows, only: [:new, :create, :update, :show]
+  resources :users do
+    get :follow
+    get :unfollow
+  end
+
   get "dashboard", to: "dashboards#dashboard", as: :dashboard
 end

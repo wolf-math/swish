@@ -9,6 +9,17 @@ class TeamsController < ApplicationController
     authorize @team
   end
 
+  # def follow
+  #   @team = Team.find(params[:id])
+  #   raise
+  #   current_user.follow(@team)
+  # end
+
+  # def unfollow
+  #   @team = Team.find(params[:id])
+  #   current_user.stop_following(@team)
+  # end
+
   def team_params
     # team is lookable by items in params
     params.require(:team).permit(:name, :nickname, :abbrevation, :state, :city)

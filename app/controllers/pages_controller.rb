@@ -10,6 +10,17 @@ class PagesController < ApplicationController
       else
        @tweet_lists = []
       # @youtube_vids =  []
+      end
+
+    @post = Post.new
+    @posts = policy_scope(Post).order(created_at: :desc)
+    @myposts = if user_signed_in?
+                 current_user.posts.order(created_at: :desc)
+                else
+                  Post.all.order(created_at: :desc)
+                end
+    if user_signed_in?
+    @professionals_posts = Post.where(team_id: current_user.following_by_type('Team').pluck(:id)).or(Post.where(people_id: current_user.following_by_type('Person').pluck(:id))).order(created_at: :desc)
     end
   end
 
