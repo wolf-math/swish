@@ -14,19 +14,19 @@
     </li>
     <% end %>
     <li>
-      <a class="nav-link" id="newpost-tab" data-toggle="tab" href="#newpost" role="tab" aria-controls="newpost" aria-selected="false">new post</a>
+      <a class="nav-link" id="newpost-tab" data-toggle="tab" href="#newpost" role="tab" aria-controls="newpost" aria-selected="false"><i class="fas fa-plus-circle"></i></a>
     </li>
   </ul>
   <div class="tab-content">
     <% if user_signed_in? %>
     <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
-      <div class="container index-container">
-        <div class="row">
+      <div class="posts-container">
+        <div class="favorites-post-container">
           <% if @professionals_posts.size >= 1 %>
             <% @professionals_posts.each do |favorite| %>
             <div class="col-10">
               <%= link_to post_path(favorite.id) do %>
-              <div class="dashboard-card stretched-link">
+              <div class="posts-card stretched-link">
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title"><%= favorite.title %></h5>
@@ -43,12 +43,12 @@
     </div>
     <% end %>
     <div class="tab-pane" id="allposts" role="tabpanel" aria-labelledby="allposts-tab">
-      <div class="container index-container">
-        <div class="row">
+      <div class="posts-container">
+        <div class="all-posts-container">
           <% @posts.each do |post| %>
           <div class="col-10">
             <%= link_to post_path(post) do %>
-            <div class="dashboard-card">
+            <div class="posts-card">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title"><%= post.title %></h5>
@@ -63,8 +63,8 @@
       </div>
     </div>
     <div class="tab-pane" id="newpost" role="tabpanel" aria-labelledby="newpost-tab">
-      <div class="container index-container">
-        <div class="row">
+      <div class="posts-container">
+        <div class="new-post-container">
           <% if policy(Post).create? %>
           <%= render 'shared/form' %>
           <% end %>
@@ -73,12 +73,12 @@
     </div>
     <% if user_signed_in? %>
     <div class="tab-pane" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
-      <div class="container index-container">
-        <div class="row">
+      <div class="posts-container">
+        <div class="my-posts-container">
           <% @myposts.each do |post| %>
           <div class="col-10">
             <%= link_to post_path(post) do %>
-            <div class="dashboard-card">
+            <div class="posts-card">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title"><%= post.title %></h5>

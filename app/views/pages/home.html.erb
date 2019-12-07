@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-8 vc-wrapper">
     <div class="card tweets-header text-center ml-10 mt-10 vids-header">
-        Personalized Feed Videos
+        <h5>Personalized Feed Videos</h5>
       </div>
     <div class="row video-container">
       <% @youtube_vids.each do |youtube_vid| %>
@@ -17,15 +17,11 @@
       <% end %>
       <%end %>
     </div>
-    <div class="forum forum-header card" id="forum-header">
-      <h3>Forum</h3>
-    </div>
-      <%= render :template => "posts/index" -%>
   </div>
   <div class="col-4">
     <div class="tweets-container">
       <div class="card tweets-header text-center">
-        Personalized Feed Tweets
+        <h5>Personalized Feed Tweets</h5>
       </div>
       <% @tweet_lists.each do |tweet_list| %>
       <% tweet_list.each do |tweet| %>
