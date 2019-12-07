@@ -1,12 +1,15 @@
 <div class="new-post">
-  <div class="d-flex justify-content-end" >
+  <div class="">
     <%= simple_form_for (@post) do |f| %>
-      <%= f.input :title, label: false, placeholder: "Title..." %>
-      <%= f.input :content, label: false, placeholder: "Write your post here..." %>
+    <h6>Topic Title</h6>
+      <%= f.input :title, label: false %>
+      <h6>Description</h6>
+      <%= f.input :content, label: false, placeholder: "Talk about something.." %>
       <%= f.input :category, as: :radio_buttons, collection: ['Team', 'Player'] %>
-      <%= f.input :image_url, label: false, placeholder: "Add your image url here..." %>
+      <h6>Add an image</h6>
+      <%= f.input :image_url, label: false%>
       <%= f.input :user_generated, as: :hidden, value: true %>
-      <%= f.button :submit, "Submit", label: false, id: 'btn-post', class: 'btn btn-block' %>
+      <%= f.button :submit, "Shoot!", label: false, class: 'new-post-btn' %>
     <% end %>
   </div>
 </div>

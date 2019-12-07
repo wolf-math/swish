@@ -9,7 +9,7 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 80px;
+  width: 40px;
 }
 
 .a.navbar-brand{
@@ -19,10 +19,30 @@
 .logo-text{
   font-family: $logo-font;
   margin-left: 10px;
-  font-size: 48px;
+  font-size: 30px;
   margin-bottom: 0px;
 }
-
+.logo-text h1{
+  font-size: 24px;
+  font-weight:600;
+  line-height: 20px;
+}
 .active-nav-item {
-  border-bottom: 4px solid orange;
+// A way to show active tab should be here
+}
+
+.btn-nav {
+  display: block;
+  color: #ffa259;
+  border: none;
+  padding: 4px 18px;
+  border-radius: 50px;
+  opacity: 0.8;
+}
+.btn-nav:hover {
+  opacity: 1;
+  background-color: #ffa259;
+  color: white;
+  transition: opacity 0.3s ease;
+
 }
