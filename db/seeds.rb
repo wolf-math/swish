@@ -147,36 +147,46 @@ puts "Successfull... done!"
 
 puts "getting all box score data"
 
-# def date_to_string(date_object)
-#   "#{date_object.year}#{format('%02i', date_object.month)}#{format('%02i', date_object.day)}"
-# end
+def date_to_string(date_object)
+  "#{date_object.year}#{format('%02i', date_object.month)}#{format('%02i', date_object.day)}"
+end
 
-# def string_to_date(date_string)
-#   Date.new(date_string[0...4].to_i, date_string[4...6].to_i, date_string[6...8].to_i)
-# end
+def string_to_date(date_string)
+  Date.new(date_string[0...4].to_i, date_string[4...6].to_i, date_string[6...8].to_i)
+end
 
-# def get_days_scores(date_string)
-#   score_url = "http://data.nba.net/10s/prod/v1/#{date_string}/scoreboard.json"
-#   data = HTTParty.get(score_url)
-#   data["games"].each do |game|
-#     box = Game.new
-#     box.date = date_string
-#     box.vTeam_id = Team.find_by(abbrevation: game["vTeam"]["triCode"]).id
-#     box.vTeamScore = game["vTeam"]["score"]
-#     box.hTeam_id = Team.find_by(abbrevation: game["hTeam"]["triCode"]).id
-#     box.hTeamScore = game["hTeam"]["score"]
-#     box.save
-#   end
-# end
+def get_days_scores(date_string)
+  score_url = "http://data.nba.net/10s/prod/v1/#{date_string}/scoreboard.json"
+  data = HTTParty.get(score_url)
+  data["games"].each do |game|
+    File.open("db/game_data.json", "a") do |f|
+      f.write(JSON.generate(game))
+    end
+    box = Game.new
+    box.date = date_string
+    box.vTeam_id = Team.find_by(abbrevation: game["vTeam"]["triCode"]).id
+    box.vTeamScore = game["vTeam"]["score"]
+    box.hTeam_id = Team.find_by(abbrevation: game["hTeam"]["triCode"]).id
+    box.hTeamScore = game["hTeam"]["score"]
+    box.save
+  end
+end
 
-# def get_season_score
-#   season_start = Time.new(2019, 10, 22)
-#   today = Time.now
-#   days = ((today - season_start) / 86_400).to_i
-#   days.times do |day| # for x in range(days)
-#     date_string = date_to_string(season_start + (day * 86_400))
-#     get_days_scores(date_string)
-#   end
-# end
+def get_season_score
+  season_start = Time.new(2019, 10, 22)
+  today = Time.now
+  days = ((today - season_start) / 86_400).to_i
+  days.times do |day|
+    date_string = date_to_string(season_start + (day * 86_400))
+    get_days_scores(date_string)
+  end
+end
 
-# get_season_score
+def get_local_score
+  File.open("db/game_data.json").each do |game|
+    puts game["vTeam"]["score"]
+  end
+end
+
+get_local_score
+
