@@ -1,16 +1,13 @@
 <div class="container team-index-container">
   <div class='page-title'>
-    <h1 class='text-center'>ALL TEAMS</h1>
-  </div>
-  <div class='nba-logo text-center'>
-    <%= image_tag "nba-logo.png", alt: "NBA-logo", class: "logo-img-top"%>
+    <h1 class='text-center logo-img-top nba-logo text-center mb-5 mt-5'><%= image_tag "nba-logo.png", alt: "NBA-logo"%> ALL TEAMS</h1>
   </div>
   <div class="row">
     <% @teams.each do |team| %>
-      <div class="col-md-4 col-sm-12">
+      <div class="col-lg-2 col-md-4 col-sm-12">
         <%= link_to team_path(team) do %>
-          <div class="card mb-3 team-index-card">
-            <%= image_tag "#{team.name} #{team.nickname}.png", class: "card-img team-card-img", alt:"team-image" %>
+          <div class="mb-3">
+            <%= image_tag "#{team.name} #{team.nickname}.png", class: "card-img", alt:"team-image" %>
           </div>
         <% end %>
       </div>
