@@ -2,16 +2,21 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
+
       if user_signed_in?
-      @chosen_preferences = current_user.preferences
-      # @tweet_lists = TwitterApi.perform(current_user.preferences) || []
-      @youtube_vids = VIDEOS #YoutubeApi.all_videos(@chosen_preferences) || []
-      @tweet_lists = TWEETS
+
+        if current_user.called
+         @youtube_vids = VIDEOS # Video.where(user: current_user)
+         @tweet_lists = TWEETS # Tweet.where(user: current_user)
+        else
+         @youtube_vids = YoutubeApi.all_videos(current_user) || []
+         @tweet_lists = TwitterApi.perform(current_user) || []
+        end
+
       else
        @tweet_lists = []
        @youtube_vids = []
       end
-
     @post = Post.new
     @posts = policy_scope(Post).order(created_at: :desc)
     @myposts = if user_signed_in?
@@ -21,7 +26,11 @@ class PagesController < ApplicationController
                 end
     if user_signed_in?
     @professionals_posts = Post.where(team_id: current_user.following_by_type('Team').pluck(:id)).or(Post.where(people_id: current_user.following_by_type('Person').pluck(:id))).order(created_at: :desc)
+    #  render 'db_home' if current_user.called
     end
+
+
+
   end
 
 

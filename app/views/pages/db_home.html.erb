@@ -4,8 +4,7 @@
         <h5>Personalized Feed Videos</h5>
       </div>
     <div class="row video-container">
-      <% @youtube_vids.each do |youtube_vid| %>
-      <%youtube_vid.each do |vid| %>
+      <% @youtube_vids.each do |vid| %>
       <div class="col-4">
         <div class="video-card" id="card">
           <iframe src="https://www.youtube.com/embed/<%= vid[:videoid] %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -14,7 +13,6 @@
           </a>
         </div>
       </div>
-      <% end %>
       <%end %>
     </div>
   </div>
@@ -23,8 +21,7 @@
       <div class="card tweets-header text-center">
         <h5>Personalized Feed Tweets</h5>
       </div>
-      <% @tweet_lists.each do |tweet_list| %>
-      <% tweet_list.each do |tweet| %>
+      <% @tweet_lists.each do |tweet| %>
       <div class="card tweet">
         <a class="author">
           <img class="avatar" src=<%= tweet[:avatar] %> />
@@ -41,7 +38,6 @@
           <% end %>
         </div>
       </div>
-      <% end %>
       <% end %>
     </div>
   </div>

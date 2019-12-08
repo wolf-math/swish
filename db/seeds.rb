@@ -189,3 +189,4 @@ def get_local_score
 end
 
 get_local_score
+
