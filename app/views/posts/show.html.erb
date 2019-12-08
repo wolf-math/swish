@@ -13,6 +13,17 @@
             <p class="comment-user"><%= time_ago_in_words(comment.created_at) + ' ago'  %></p>
           </div>
           <p><%= comment.text%></p>
+            <p>
+              <a href="#" class="reply-link">
+                <i class="fa fa-reply" aria-hidden="true"></i>
+                Reply
+              </a>
+            </p>
+            <% if policy(Comment).create? %>
+              <div class="reply-comment-form d-none">
+                <%= render 'shared/comment' %>
+              </div>
+            <% end %>
         </div>
       </p>
     <% end %>
