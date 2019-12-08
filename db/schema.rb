@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_134741) do
+ActiveRecord::Schema.define(version: 2019_12_06_084307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(version: 2019_12_04_134741) do
     t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
     t.index ["follower_id", "follower_type"], name: "fk_follows"
     t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "date"
+    t.bigint "vTeam_id"
+    t.bigint "hTeam_id"
+    t.integer "hTeamScore"
+    t.integer "vTeamScore"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hTeam_id"], name: "index_games_on_hTeam_id"
+    t.index ["vTeam_id"], name: "index_games_on_vTeam_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -103,6 +115,8 @@ ActiveRecord::Schema.define(version: 2019_12_04_134741) do
   end
 
   add_foreign_key "comments", "users"
+  add_foreign_key "games", "teams", column: "hTeam_id"
+  add_foreign_key "games", "teams", column: "vTeam_id"
   add_foreign_key "people", "teams"
   add_foreign_key "posts", "people", column: "people_id"
   add_foreign_key "posts", "teams"
