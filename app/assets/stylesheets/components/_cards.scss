@@ -1,8 +1,4 @@
 
-.card {
-  border: none;
-  box-shadow: 0 10px 30px rgba(0,0,0,.1);
-}
 .index-container {
   padding-top: 30px;
 }
@@ -22,15 +18,19 @@
 }
 
 .nba-logo img {
-  max-height: 300px;
-}
-.team-index-card {
-  padding: 10px;
-  height: 474px;
+  max-height: 60px;
+  vertical-align: middle;
 }
 
 .card-comment {
 }
-.card img {
+
+.card-img {
   margin: auto;
+  width: 100px;
+  height: auto;
 }
+.card-img:hover {
+  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+

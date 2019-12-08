@@ -1,5 +1,4 @@
 class Follow < ActiveRecord::Base
-
   extend ActsAsFollower::FollowerLib
   extend ActsAsFollower::FollowScopes
 
@@ -10,5 +9,4 @@ class Follow < ActiveRecord::Base
   def block!
     self.update_attribute(:blocked, true)
   end
-
 end
