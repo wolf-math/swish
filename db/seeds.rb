@@ -66,6 +66,7 @@ res['league']['standard'].each do |person|
   first_name = person['firstName']
   last_name = person['lastName']
   api_team = person['teamId']
+  player_id = person['personId']
   jersey = person['jersey']
   position = person['pos']
   height = person['heightMeters']
@@ -73,7 +74,7 @@ res['league']['standard'].each do |person|
   team = all_teams[api_team]
 
 
-  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team)
+  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
   player.team = team
   player.save
 end

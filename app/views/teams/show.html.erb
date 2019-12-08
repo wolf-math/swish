@@ -1,20 +1,38 @@
-<body class="team-show-body">
+<%= javascript_include_tag('player_images.js') %>
+
   <div class="team-and-players-container">
+    <div class="team-sidebar">
   <div class='team-avatar-position'>
   <%= image_tag "#{@team.name} #{@team.nickname}.png", class: "team-avatar-large", alt:"team-image" %>
   </div>
+  <div class="team-details">
+  <h5>ABB: <%= @team.abbrevation %></h5>
+  <h5>City: <%= @team.city %></h5>
+  <h5>State: <%= @team.state %></h5>
+  </div>
+  </div>
   <div class='players-container'>
-    <div class="row">
+    <div class="">
     <% @team.people.each do |person| %>
-    <div class="card col-md-4 col-sm-12">
     <div class="team-player-list">
-      <img src="https://nba-players.herokuapp.com/players/curry/stephen" class="player-img">
-      <%= person.first_name %> <%= person.last_name %>
-    </div>
+<script>
+    console.log(nba.getPlayerHeadshotURL({PlayerID: 201935, TeamID: 1610612745}));
+</script>
+      <img src="" class="player-img" id="player_pic">
+
+      <script>
+  document.getElementById("player_pic").src = img_info()
+</script>
+
+
+      <p><%= person.first_name[0] %>. <%= person.last_name %></p>
+      <p><%= person.jersey_number %></p>
+      <p><%= person.position %></p>
+      <p><%= person.height %></p>
+
     </div>
     <% end %>
   </div>
   </div>
   </div>
-</body>
 
