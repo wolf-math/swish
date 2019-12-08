@@ -3,7 +3,7 @@
     <h1><%= @post.title %></h1>
     <p><%= @post.content %></p>
     <% if policy(Comment).create? %>
-      <%= render 'shared/comment' %>
+      <%= render 'shared/comment_form', parent: @post, comment: @comment,remote: false %>
     <% end %>
     <% @post.comments.each do |comment| %>
       <p>
@@ -19,11 +19,21 @@
                 Reply
               </a>
             </p>
-            <% if policy(Comment).create? %>
-              <div class="reply-comment-form d-none">
-                <%= render 'shared/comment' %>
+            <div id="comment_replies_container_<%= comment.id%>">
+              <div id="comment-replies-<%= comment.id %>">
+                <% comment.comments.each do |subcomment| %>
+                  <p id="commentOnComment_<%= subcomment.id %>">
+                  ------- <%= subcomment.text %>
+                  </p>
+                <% end %>
               </div>
-            <% end %>
+
+              <% if policy(Comment).create? %>
+                <div class="reply-comment-form d-none" id="reply_form_<%= comment.id %>">
+                  <%= render 'shared/comment_form', parent: comment, comment: Comment.new, remote: true %>
+                </div>
+              <% end %>
+            </div>
         </div>
       </p>
     <% end %>
