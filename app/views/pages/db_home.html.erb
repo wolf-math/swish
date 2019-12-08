@@ -7,7 +7,7 @@
       <% @youtube_vids.each do |vid| %>
       <div class="col-4">
         <div class="video-card" id="card">
-          <iframe src="https://www.youtube.com/embed/<%= vid[:videoid] %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="youtube-player" data-id="<%= vid[:id] %>"></div>
           <a class="author">
             <span class="title"><%= vid[:title] %></span>
           </a>
@@ -42,3 +42,8 @@
     </div>
   </div>
 </div>
+
+
+<%= content_for :after_js do %>
+  <%= javascript_pack_tag "youtube_embed" %>
+<% end %>
