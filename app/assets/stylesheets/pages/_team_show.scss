@@ -1,5 +1,8 @@
+.team-show-body {
+ // background-color: #ffa259;
+}
 .team-avatar-large {
-  max-width: 380px;
+  max-width: 160px;
   max-height: 380px;
   position: absolute;
 }
@@ -16,9 +19,58 @@
   margin-top: 15px;
 }
 .team-player-list {
-  max-width: 900px;
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0px 6px 9px 0px rgba(0, 0, 0, 0.12);
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+
+}
+.team-player-list p {
+  margin-top: 20px;
+  margin-left: 10px;
+  margin: inherit;
 }
 .players-container {
-  // display: flex;
-  // justify-content: center;
+  background-color: white;
+  width: 720px;
+  margin: 10px;
+  border-radius: 8px;
+  overflow-y: scroll;
+  height: 500px;
+}
+.team-sidebar {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 275px;
+  height: 500px;
+  margin: 10px;
+  border-radius: 8px;
+  position: relative;
+}
+.team-sidebar h5 {
+  font-family: 'Squada One', cursive;
+
+}
+.player-img {
+  border-radius: 50%;
+  max-width: 90px;
+  max-height: 100%;
+  margin-bottom: 10px;
+}
+.team-and-players-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 40px 60px 0px 60px;
+}
+.team-details {
+  margin-top: 225px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: 25px;
+  border-top: 1px solid lightgray;
+
 }
