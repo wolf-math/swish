@@ -3,14 +3,14 @@ class TwitterApi < ApplicationRecord
   def self.perform(user)
 
     res = user.preferences.map do |preference|
-      format_tweets(all_tweets(preference))
+      format_tweets(all_tweets(preference), user)
     end
     return res
   end
 
   private
 
-  def self.format_tweets(tweets)
+  def self.format_tweets(tweets, user)
     results = []
       tweets['statuses'].each do |tweet|
         break if results.length >= 1
@@ -38,7 +38,7 @@ class TwitterApi < ApplicationRecord
                                 })
 
               twt.save!
-
+              binding.pry
         results << result
       end
       return results

@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-8 vc-wrapper">
+    <div class="card tweets-header text-center ml-10 mt-10 vids-header">
+        <h5>Personalized Feed Videos</h5>
+      </div>
+    <div class="row video-container">
+      <% @youtube_vids.each do |vid| %>
+      <div class="col-4">
+        <div class="video-card" id="card">
+          <iframe src="https://www.youtube.com/embed/<%= vid[:videoid] %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <a class="author">
+            <span class="title"><%= vid[:title] %></span>
+          </a>
+        </div>
+      </div>
+      <%end %>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="tweets-container">
+      <div class="card tweets-header text-center">
+        <h5>Personalized Feed Tweets</h5>
+      </div>
+      <% @tweet_lists.each do |tweet| %>
+      <div class="card tweet">
+        <a class="author">
+          <img class="avatar" src=<%= tweet[:avatar] %> />
+          <span class="name"><%= tweet[:name] %></span>
+          <span class="username">@<%= tweet[:handle] %></span>
+        </a>
+        <div class="content" >
+          <%= tweet[:text] %>
+          <% unless tweet[:url].nil? %>
+          <%= link_to tweet[:url], tweet[:url] %>
+          <%= link_to tweet[:url] do  %>
+          <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
+          <% end  %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
