@@ -21,11 +21,9 @@ class TwitterApi < ApplicationRecord
         result[:handle] = tweet['user']['screen_name']
         result[:followers] = tweet['user']['followers_count']
         result[:avatar] = tweet['user']['profile_image_url_https']
-
         result[:created_at] = tweet['created_at']
         result[:url] = tweet['entities']['urls'][0]['expanded_url'] rescue nil
         result[:image] = tweet['entities']['media'][0]['media_url_https'] rescue nil
-
 
         results << result
       end
