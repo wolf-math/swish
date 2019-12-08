@@ -2,10 +2,21 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
+
+
+    # if current_user.called?
+    #  @youtube_vids = Video.where(user: current_user)
+    #  @tweet_lists = Tweet.where(user: current_user)
+    # else
+    #  @youtube_vids = YoutubeApi.all_videos(current_user)
+    #  @tweet_lists = TwitterApi.perform(current_user) || []
+    # end
+
+
+
       if user_signed_in?
-      @chosen_preferences = current_user.preferences
-      # @tweet_lists = TwitterApi.perform(current_user.preferences) || []
-      @youtube_vids = VIDEOS #YoutubeApi.all_videos(@chosen_preferences) || []
+      # @tweet_lists = TwitterApi.perform(current_user) || []
+      @youtube_vids = VIDEOS #YoutubeApi.all_videos(current_user) || []
       @tweet_lists = TWEETS
       else
        @tweet_lists = []

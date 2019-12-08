@@ -8,7 +8,7 @@
       <%youtube_vid.each do |vid| %>
       <div class="col-4">
         <div class="video-card" id="card">
-          <iframe src="https://www.youtube.com/embed/<%= vid[:id] %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/<%= vid[:videoid] %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <a class="author">
             <span class="title"><%= vid[:title] %></span>
           </a>
