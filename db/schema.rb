@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_084307) do
+ActiveRecord::Schema.define(version: 2019_12_08_113920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_084307) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "player_id"
     t.index ["team_id"], name: "index_people_on_team_id"
   end
 
@@ -94,6 +95,21 @@ ActiveRecord::Schema.define(version: 2019_12_06_084307) do
     t.string "api_team_id"
   end
 
+  create_table "tweets", force: :cascade do |t|
+    t.text "text"
+    t.string "name"
+    t.string "handle"
+    t.integer "followers"
+    t.string "avatar"
+    t.date "posted_at"
+    t.string "url"
+    t.string "image"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tweets_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -103,6 +119,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_084307) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "photo"
+    t.boolean "called"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -112,6 +129,11 @@ ActiveRecord::Schema.define(version: 2019_12_06_084307) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "videoid"
+    t.string "description"
+    t.string "thumbnail"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_videos_on_user_id"
   end
 
   add_foreign_key "comments", "users"
@@ -121,4 +143,6 @@ ActiveRecord::Schema.define(version: 2019_12_06_084307) do
   add_foreign_key "posts", "people", column: "people_id"
   add_foreign_key "posts", "teams"
   add_foreign_key "posts", "users"
+  add_foreign_key "tweets", "users"
+  add_foreign_key "videos", "users"
 end

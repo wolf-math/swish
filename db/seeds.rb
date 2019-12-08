@@ -66,6 +66,7 @@ res['league']['standard'].each do |person|
   first_name = person['firstName']
   last_name = person['lastName']
   api_team = person['teamId']
+  player_id = person['personId']
   jersey = person['jersey']
   position = person['pos']
   height = person['heightMeters']
@@ -73,7 +74,8 @@ res['league']['standard'].each do |person|
   team = all_teams[api_team]
 
 
-  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team)
+  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
+  player.image_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
   player.team = team
   player.save
 end
