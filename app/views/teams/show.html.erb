@@ -1,3 +1,4 @@
+<body class="team-show-body">
 <%= javascript_include_tag('player_images.js') %>
 
   <div class="team-and-players-container">
@@ -15,14 +16,9 @@
     <div class="">
     <% @team.people.each do |person| %>
     <div class="team-player-list">
-<script>
-    console.log(nba.getPlayerHeadshotURL({PlayerID: 201935, TeamID: 1610612745}));
-</script>
+
       <img src="" class="player-img" id="player_pic">
 
-      <script>
-  document.getElementById("player_pic").src = img_info()
-</script>
 
 
       <p><%= person.first_name[0] %>. <%= person.last_name %></p>
@@ -35,4 +31,6 @@
   </div>
   </div>
   </div>
+</body>
+
 
