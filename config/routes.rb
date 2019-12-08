@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   resources :posts, only: [:create, :index, :update, :new, :show] do
     resources :comments, only: [:create, :update, :new, :show, :destroy]
   end
+
   resources :teams, only: [:index, :show]
   resources :follows, only: [:new, :create, :update, :show]
   resources :people, only: [:index, :show]
+  resources :games, only: [:index, :show]
+
   resources :users do
     get :follow
     get :unfollow
