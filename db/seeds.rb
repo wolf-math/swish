@@ -155,7 +155,8 @@ Post.create!(user_id: 5, title: "Baseketball Sucks, change my mind", user_genera
 puts "Successfull... done!"
 
 
-puts "getting all box score data"
+puts "getting all game score data"
+puts "this may take some time...."
 
 def date_to_string(date_object)
   "#{date_object.year}#{format('%02i', date_object.month)}#{format('%02i', date_object.day)}"
@@ -179,14 +180,16 @@ def get_days_scores_api(date_string)
     box.hTeam_id = home_team.id
     box.vTeamScore = game["vTeam"]["score"]
     box.hTeamScore = game["hTeam"]["score"]
-    box.vteam_q1 = game["vTeam"]["linescore"][0]
-    box.vteam_q2 = game["vTeam"]["linescore"][1]
-    box.vteam_q3 = game["vTeam"]["linescore"][2]
-    box.vteam_q4 = game["vTeam"]["linescore"][3]
-    box.hteam_q1 = game["vTeam"]["linescore"][0]
-    box.hteam_q2 = game["vTeam"]["linescore"][1]
-    box.hteam_q3 = game["vTeam"]["linescore"][2]
-    box.hteam_q4 = game["vTeam"]["linescore"][3]
+    if game["vTeam"]["linescore"][0].nil? == false
+      box.vteam_q1 = game["vTeam"]["linescore"][0]["score"]
+      box.vteam_q2 = game["vTeam"]["linescore"][1]["score"]
+      box.vteam_q3 = game["vTeam"]["linescore"][2]["score"]
+      box.vteam_q4 = game["vTeam"]["linescore"][3]["score"]
+      box.hteam_q1 = game["hTeam"]["linescore"][0]["score"]
+      box.hteam_q2 = game["hTeam"]["linescore"][1]["score"]
+      box.hteam_q3 = game["hTeam"]["linescore"][2]["score"]
+      box.hteam_q4 = game["hTeam"]["linescore"][3]["score"]
+    end
     box.save
 
     visiting_team.wins = game["vTeam"]["win"]
@@ -209,6 +212,8 @@ def get_season_score
 end
 
 get_season_score
+
+puts "done"
 
 # --------- Get to/from Local --------- #
 
