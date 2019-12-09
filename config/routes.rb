@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :teams, only: [:index, :show]
   resources :follows, only: [:new, :create, :update, :show]
+  resources :player_follows, only: [:new, :create, :update, :show]
   resources :people, only: [:index, :show]
   resources :games, only: [:index, :show]
 
