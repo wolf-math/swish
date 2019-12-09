@@ -15,12 +15,16 @@
 }
 
 .active-team-choice {
-  box-shadow: 0px 0px 14px gray;
-}
-
-.follow-label {
-  height: 230px;
-  padding: 15px;
+  &:after {
+    content: '';
+    width: 23px;
+    height: 25px;
+    position: absolute;
+    background-image: url(https://res.cloudinary.com/dg6wajgky/image/upload/v1575541123/basketballlogoblank_js4fxo.png);
+    top: -9px;
+    right: 52px;
+    background-size: contain;
+  }
 }
 
 @font-face {

@@ -1,0 +1,30 @@
+<div class="container team-index-container">
+  <div class='page-title'>
+    <h1 class='text-center logo-img-top nba-logo mb-5 mt-4'><%= image_tag "nba-logo.png", alt: "NBA-logo"%> Select Players To Follow </h1>
+  </div>
+
+  <%= simple_form_for(:thing, url: player_follows_path) do |f| %>
+  <div class='button-wrapper mb-5'>
+    <button class="teams-submit">
+      <%= f.button :submit, 'Submit Players' %>
+    </button>
+  </div>
+  <div class="row">
+    <input type="hidden" name="follow[person_ids][]" value="">
+    <% @people.each do |person| %>
+    <div class="col-lg-2 col-md-4 col-sm-12">
+      <input type="checkbox" class="d-none" value="<%= person.id %>" name="follow[person_ids][]" id="follow_person_ids_<%= person.id %>">
+      <label for="follow_person_ids_<%= person.id %>" class="follow-label <%= 'active-person-choice' if current_user.following?(person) %>">
+        <div class="mb-3 followable-index-card">
+          <%= cl_image_tag(person.photo, class: "player-img") %>
+        </div>
+      </label>
+    </div>
+    <% end  %>
+  </div>
+</div>
+<% end %>
+
+<%= content_for(:after_js) do %>
+<%= javascript_pack_tag('team_follow_choice') %>
+<% end %>
