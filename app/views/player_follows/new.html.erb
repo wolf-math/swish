@@ -3,7 +3,7 @@
     <h1 class='text-center logo-img-top nba-logo mb-5 mt-4'><%= image_tag "nba-logo.png", alt: "NBA-logo"%> Select Players To Follow </h1>
   </div>
 
-  <%= simple_form_for(@follow) do |f| %>
+  <%= simple_form_for(:thing, url: player_follows_path) do |f| %>
   <div class='button-wrapper mb-5'>
     <button class="teams-submit">
       <%= f.button :submit, 'Submit Players' %>
@@ -16,7 +16,7 @@
       <input type="checkbox" class="d-none" value="<%= person.id %>" name="follow[person_ids][]" id="follow_person_ids_<%= person.id %>">
       <label for="follow_person_ids_<%= person.id %>" class="follow-label <%= 'active-person-choice' if current_user.following?(person) %>">
         <div class="mb-3 followable-index-card">
-          <%= cl_image_tag "#{person}".photo, class: “player-img”, alt:"team-image" %>
+          <%= cl_image_tag(person.photo, class: "player-img") %>
         </div>
       </label>
     </div>
