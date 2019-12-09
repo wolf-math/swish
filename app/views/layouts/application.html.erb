@@ -12,10 +12,12 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-    <%= yield(:after_js) %>
+    <div class="Site-content">
+      <%= yield %>
+      <%= javascript_include_tag 'application' %>
+      <%= javascript_pack_tag 'application' %>
+      <%= yield(:after_js) %>
+    </div>
   </body>
   <footer>
       <%= render 'shared/footer'  %>

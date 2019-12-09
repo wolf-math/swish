@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_12_08_154154) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +49,14 @@ ActiveRecord::Schema.define(version: 2019_12_08_154154) do
     t.integer "vTeamScore"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vteam_q1"
+    t.integer "vteam_q2"
+    t.integer "vteam_q3"
+    t.integer "vteam_q4"
+    t.integer "hteam_q1"
+    t.integer "hteam_q2"
+    t.integer "hteam_q3"
+    t.integer "hteam_q4"
     t.index ["hTeam_id"], name: "index_games_on_hTeam_id"
     t.index ["vTeam_id"], name: "index_games_on_vTeam_id"
   end
@@ -93,6 +102,8 @@ ActiveRecord::Schema.define(version: 2019_12_08_154154) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "api_team_id"
+    t.integer "wins"
+    t.integer "losses"
   end
 
   create_table "tweets", force: :cascade do |t|

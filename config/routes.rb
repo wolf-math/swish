@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :posts, only: [:create, :index, :update, :new, :show] do
     resources :comments, only: [:create, :update, :new, :show, :destroy]
   end
+  # Comments on a comment
+  resources :comments do
+    resources :comments, only: [:create]
+  end
 
   resources :teams, only: [:index, :show]
   resources :follows, only: [:new, :create, :update, :show]

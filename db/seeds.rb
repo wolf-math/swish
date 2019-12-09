@@ -173,11 +173,28 @@ def get_days_scores_api(date_string)
   data["games"].each do |game|
     box = Game.new
     box.date = date_string
-    box.vTeam_id = Team.find_by(abbrevation: game["vTeam"]["triCode"]).id
+    visiting_team = Team.find_by(abbrevation: game["vTeam"]["triCode"])
+    home_team = Team.find_by(abbrevation: game["hTeam"]["triCode"])
+    box.vTeam_id = visiting_team.id
+    box.hTeam_id = home_team.id
     box.vTeamScore = game["vTeam"]["score"]
-    box.hTeam_id = Team.find_by(abbrevation: game["hTeam"]["triCode"]).id
     box.hTeamScore = game["hTeam"]["score"]
+    box.vteam_q1 = game["vTeam"]["linescore"][0]
+    box.vteam_q2 = game["vTeam"]["linescore"][1]
+    box.vteam_q3 = game["vTeam"]["linescore"][2]
+    box.vteam_q4 = game["vTeam"]["linescore"][3]
+    box.hteam_q1 = game["vTeam"]["linescore"][0]
+    box.hteam_q2 = game["vTeam"]["linescore"][1]
+    box.hteam_q3 = game["vTeam"]["linescore"][2]
+    box.hteam_q4 = game["vTeam"]["linescore"][3]
     box.save
+
+    visiting_team.wins = game["vTeam"]["win"]
+    visiting_team.losses = game["vTeam"]["loss"]
+    home_team.wins = game["hTeam"]["win"]
+    home_team.losses = game["hTeam"]["loss"]
+    visiting_team.save
+    home_team.save
   end
 end
 
