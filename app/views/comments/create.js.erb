@@ -5,7 +5,6 @@ function refreshForm(innerHTML) {
 
 function addComment(commentHTML) {
   commentRepliesContainer = document.getElementById("comment-replies-<%= @parent_comment.id  %>");
-  debugger;
   console.log("<%= @parent_comment.id %>")
   commentRepliesContainer.insertAdjacentHTML('beforeend', commentHTML);
 }
