@@ -7,14 +7,29 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comments_params)
-    @post = Post.find(params[:post_id])
-    @comment.commentable = @post
+    ## CHECK if the params contain :post_id OR :comment_id
+    if params.include?(:post_id)
+      @post = Post.find(params[:post_id])
+      @comment.commentable = @post
+    else
+#why line 16 always adding one  to id
+      @parent_comment = Comment.find(params[:comment_id])
+      @comment.commentable = @parent_comment
+      # Find the post at the top of the chain!
+      @post = @parent_comment.post_ancestor
+    end
     @comment.user = current_user
     authorize @comment
     if @comment.save
-      redirect_to post_path(@post)
+      respond_to do |format|
+        format.html { redirect_to post_path(@post) }
+        format.js
+      end
     else
-      render 'posts/show'
+      respond_to do |format|
+        format.html { render 'posts/show'}
+        format.js
+      end
     end
   end
 
