@@ -38,7 +38,6 @@ class TwitterApi < ApplicationRecord
                                 })
 
               twt.save!
-              binding.pry
         results << result
       end
       return results
