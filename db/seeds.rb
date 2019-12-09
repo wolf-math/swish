@@ -73,12 +73,20 @@ res['league']['standard'].each do |person|
 
   team = all_teams[api_team]
 
-
-  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
-  player.image_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
-  player.team = team
-  player.save
+  # if Person.find_by(player_id: player_id).nil?
+    player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
+    player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
+    response = Net::HTTP.get_response(URI.parse(player_photo_url))
+    if response.code == "200"
+      player.remote_photo_url = player_photo_url
+    else
+      player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
+    end
+    player.team = team
+    player.save
+  # end
 end
+
 
 puts "creating 6 users..."
 a = User.create!(email: "test@test.com", password: "123456")
@@ -147,7 +155,8 @@ Post.create!(user_id: 5, title: "Baseketball Sucks, change my mind", user_genera
 puts "Successfull... done!"
 
 
-puts "getting all box score data"
+puts "getting all game score data"
+puts "this may take some time...."
 
 def date_to_string(date_object)
   "#{date_object.year}#{format('%02i', date_object.month)}#{format('%02i', date_object.day)}"
@@ -171,14 +180,16 @@ def get_days_scores_api(date_string)
     box.hTeam_id = home_team.id
     box.vTeamScore = game["vTeam"]["score"]
     box.hTeamScore = game["hTeam"]["score"]
-    box.vteam_q1 = game["vTeam"]["linescore"][0]
-    box.vteam_q2 = game["vTeam"]["linescore"][1]
-    box.vteam_q3 = game["vTeam"]["linescore"][2]
-    box.vteam_q4 = game["vTeam"]["linescore"][3]
-    box.hteam_q1 = game["vTeam"]["linescore"][0]
-    box.hteam_q2 = game["vTeam"]["linescore"][1]
-    box.hteam_q3 = game["vTeam"]["linescore"][2]
-    box.hteam_q4 = game["vTeam"]["linescore"][3]
+    if game["vTeam"]["linescore"][0].nil? == false
+      box.vteam_q1 = game["vTeam"]["linescore"][0]["score"]
+      box.vteam_q2 = game["vTeam"]["linescore"][1]["score"]
+      box.vteam_q3 = game["vTeam"]["linescore"][2]["score"]
+      box.vteam_q4 = game["vTeam"]["linescore"][3]["score"]
+      box.hteam_q1 = game["hTeam"]["linescore"][0]["score"]
+      box.hteam_q2 = game["hTeam"]["linescore"][1]["score"]
+      box.hteam_q3 = game["hTeam"]["linescore"][2]["score"]
+      box.hteam_q4 = game["hTeam"]["linescore"][3]["score"]
+    end
     box.save
 
     visiting_team.wins = game["vTeam"]["win"]
@@ -201,6 +212,8 @@ def get_season_score
 end
 
 get_season_score
+
+puts "done"
 
 # --------- Get to/from Local --------- #
 

@@ -2,6 +2,7 @@
   <div class="post-container">
     <h1><%= @post.title %></h1>
     <p><%= @post.content %></p>
+    <%= cl_image_tag @post.photo, height: 300, width: 400, crop: :fill %>
     <% if policy(Comment).create? %>
       <%= render 'shared/comment_form', parent: @post, comment: @comment,remote: false %>
     <% end %>
