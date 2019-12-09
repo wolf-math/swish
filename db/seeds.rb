@@ -162,7 +162,6 @@ end
 def get_days_scores_api(date_string)
   score_url = "http://data.nba.net/10s/prod/v1/#{date_string}/scoreboard.json"
   data = HTTParty.get(score_url)
-  home_team =
   data["games"].each do |game|
     box = Game.new
     box.date = date_string
