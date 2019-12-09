@@ -1,15 +1,16 @@
 class TwitterApi < ApplicationRecord
 
-  def self.perform(preferences)
-    res = preferences.map do |preference|
-      format_tweets(all_tweets(preference))
+  def self.perform(user)
+
+    res = user.preferences.map do |preference|
+      format_tweets(all_tweets(preference), user)
     end
     return res
   end
 
   private
 
-  def self.format_tweets(tweets)
+  def self.format_tweets(tweets, user)
     results = []
       tweets['statuses'].each do |tweet|
         break if results.length >= 1
@@ -21,15 +22,25 @@ class TwitterApi < ApplicationRecord
         result[:handle] = tweet['user']['screen_name']
         result[:followers] = tweet['user']['followers_count']
         result[:avatar] = tweet['user']['profile_image_url_https']
-
         result[:created_at] = tweet['created_at']
         result[:url] = tweet['entities']['urls'][0]['expanded_url'] rescue nil
         result[:image] = tweet['entities']['media'][0]['media_url_https'] rescue nil
 
+         twt = Tweet.new({ text: result[:text],
+                            name: result[:name],
+                            handle: result[:handle],
+                            followers: result[:followers],
+                            avatar: result[:avatar],
+                            created_at: result[:created_at],
+                            url: result[:url],
+                            image: result[:image],
+                            user_id: user.id
+                                })
 
+              twt.save!
+              binding.pry
         results << result
       end
-
       return results
   end
 

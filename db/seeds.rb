@@ -66,6 +66,7 @@ res['league']['standard'].each do |person|
   first_name = person['firstName']
   last_name = person['lastName']
   api_team = person['teamId']
+  player_id = person['personId']
   jersey = person['jersey']
   position = person['pos']
   height = person['heightMeters']
@@ -73,7 +74,8 @@ res['league']['standard'].each do |person|
   team = all_teams[api_team]
 
 
-  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team)
+  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
+  player.image_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
   player.team = team
   player.save
 end
@@ -143,3 +145,75 @@ Post.create!(user_id: 5, title: "Baseketball Sucks, change my mind", user_genera
   walls.", category: "Person")
 
 puts "Successfull... done!"
+
+
+puts "getting all box score data"
+
+def date_to_string(date_object)
+  "#{date_object.year}#{format('%02i', date_object.month)}#{format('%02i', date_object.day)}"
+end
+
+def string_to_date(date_string)
+  Date.new(date_string[0...4].to_i, date_string[4...6].to_i, date_string[6...8].to_i)
+end
+
+
+# --------- Get from Online --------- #
+def get_days_scores_api(date_string)
+  score_url = "http://data.nba.net/10s/prod/v1/#{date_string}/scoreboard.json"
+  data = HTTParty.get(score_url)
+  data["games"].each do |game|
+    box = Game.new
+    box.date = date_string
+    box.vTeam_id = Team.find_by(abbrevation: game["vTeam"]["triCode"]).id
+    box.vTeamScore = game["vTeam"]["score"]
+    box.hTeam_id = Team.find_by(abbrevation: game["hTeam"]["triCode"]).id
+    box.hTeamScore = game["hTeam"]["score"]
+    box.save
+  end
+end
+
+def get_season_score
+  season_start = Time.new(2019, 10, 22)
+  today = Time.now
+  days = ((today - season_start) / 86_400).to_i
+  days.times do |day|
+    date_string = date_to_string(season_start + (day * 86_400))
+    get_days_scores_api(date_string)
+  end
+end
+
+get_season_score
+
+# --------- Get to/from Local --------- #
+
+# def days_scores_to_file(date_string)
+#   score_url = "http://data.nba.net/10s/prod/v1/#{date_string}/scoreboard.json"
+#   data = HTTParty.get(score_url)
+#   data_array = []
+#   data["games"].each do |game|
+#     data_array < game
+#   end
+#   append_api(data_array)
+# end
+
+# def append_api(game_hash)
+#   data_from_json = JSON[File.read("db/game_data.json")]
+#   File.open("./db/game_data.json","w") do |f|
+#     f.write(JSON.pretty_generate(data_from_json << game_hash))
+#   end
+# end
+
+# def load_local_score
+#   source = File.open("db/game_data.json")
+#   data = JSON.parse(source.read)
+#   data["games"].each do |game|
+#     box = Game.new
+#     box.date = date_string
+#     box.vTeam_id = Team.find_by(abbrevationJSON: game["vTeam"]["triCode"]).id
+#     box.vTeamScore = game["vTeam"]["score"]
+#     box.hTeam_id = Team.find_by(abbrevation: game["hTeam"]["triCode"]).id
+#     box.hTeamScore = game["hTeam"]["score"]
+#     box.save
+#   end
+# end

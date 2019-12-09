@@ -1,0 +1,19 @@
+<div class="container team-index-container">
+  <div class='page-title'>
+    <h1 class='text-center'>Scores</h1>
+  </div>
+  <div class="row">
+    <% @games.each do |game| %>
+      <div class="col-md-4 col-sm-12">
+        <%= link_to game_path(game) do %>
+          <div class="card mb-3 team-index-card">
+            <table>
+            <tr><td><%= game.vTeam.name %></td> <td><%= game.vTeamScore %></td></tr>
+            <tr><td><%= game.hTeam.name %></td> <td><%= game.hTeamScore %></td></tr>
+            </table>
+          </div>
+        <% end %>
+      </div>
+    <% end  %>
+  </div>
+</div>
