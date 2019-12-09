@@ -54,6 +54,30 @@ res['sports_content']['teams']['team'].each do |team|
   all_teams[team_id.to_s] = team
 end
 
+
+standings_data = HTTParty.get("http://data.nba.net/10s/prod/v1/current/standings_conference.json")
+standing = 1
+standings_data["league"]["standard"]["conference"]["east"].each do |team|
+  team = Team.find_by(abbrevation: team["teamSitesOnly"]["teamTricode"])
+  team.conference = "east"
+  team.standing = standing
+  standing += 1
+  team.save
+end
+
+standing = 1
+standings_data["league"]["standard"]["conference"]["west"].each do |team|
+  team = Team.find_by(abbrevation: team["teamSitesOnly"]["teamTricode"])
+  team.conference = "west"
+  team.standing = standing
+  standing += 1
+  team.save
+end
+
+# Sample query
+# Team.find_by(standing: 3, conference: "west")
+
+
 puts "Successfull... next"
 
 url = 'https://data.nba.net/10s/prod/v1/2019/players.json'
