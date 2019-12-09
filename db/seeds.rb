@@ -73,12 +73,20 @@ res['league']['standard'].each do |person|
 
   team = all_teams[api_team]
 
-
-  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
-  player.image_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
-  player.team = team
-  player.save
+  # if Person.find_by(player_id: player_id).nil?
+    player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
+    player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
+    response = Net::HTTP.get_response(URI.parse(player_photo_url))
+    if response.code == "200"
+      player.remote_photo_url = player_photo_url
+    else
+      player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
+    end
+    player.team = team
+    player.save
+  # end
 end
+
 
 puts "creating 6 users..."
 a = User.create!(email: "test@test.com", password: "123456")

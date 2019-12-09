@@ -11,6 +11,6 @@ class PeopleController < ApplicationController
 
   def person_params
     # team is lookable by items in params
-    params.require(:person).permit(:first_name, :last_name)
+    params.require(:person).permit(:first_name, :last_name, :photo)
   end
 end

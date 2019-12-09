@@ -17,10 +17,7 @@
     <% @team.people.each do |person| %>
     <div class="team-player-list">
 
-      <img src="" class="player-img" id="player_pic">
-
-
-
+      <%= cl_image_tag person.photo, class: "player-img" %>
       <p><%= person.first_name[0] %>. <%= person.last_name %></p>
       <p><%= person.jersey_number %></p>
       <p><%= person.position %></p>
