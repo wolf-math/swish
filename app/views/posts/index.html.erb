@@ -1,5 +1,5 @@
 <div class="container">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <ul class="mt-3 nav nav-tabs" id="myTab" role="tablist">
     <% if user_signed_in? %>
     <li class="nav-item">
       <a class="nav-link active" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-controls="favorite" aria-selected="true">favorites</a>
@@ -9,11 +9,11 @@
       <a class="nav-link" id="allposts-tab" data-toggle="tab" href="#allposts" role="tab" aria-controls="allposts" aria-selected="false">all posts</a>
     </li>
     <% if user_signed_in? %>
-    <li>
+    <li  class="nav-item">
       <a class="nav-link" id="myposts-tab" data-toggle="tab" href="#myposts", role="tab" aria-controls="myposts" aria-selected="false">my posts</a>
     </li>
     <% end %>
-    <li>
+    <li  class="nav-item">
       <a class="nav-link" id="newpost-tab" data-toggle="tab" href="#newpost" role="tab" aria-controls="newpost" aria-selected="false"><i class="fas fa-plus-circle"></i></a>
     </li>
   </ul>

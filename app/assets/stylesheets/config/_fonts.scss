@@ -26,3 +26,12 @@ $logo-font: 'Kaushan Script', "sans-serif", cursive;
 //   src: url('../fonts/osa_font.ttf') format("truetype");
 // }
 
+a {
+  color: black !important;
+  &:hover {
+    text-decoration: none !important;
+    color: #fa4252 !important;
+    transition: ease 0.3s;
+  }
+}
+
