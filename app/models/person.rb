@@ -1,4 +1,5 @@
 class Person < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
   acts_as_followable
   belongs_to :team, foreign_key: 'team_id'
 
