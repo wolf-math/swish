@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
       @post = Post.find(params[:post_id])
       @comment.commentable = @post
     else
+#why line 16 always adding one  to id
       @parent_comment = Comment.find(params[:comment_id])
       @comment.commentable = @parent_comment
       # Find the post at the top of the chain!

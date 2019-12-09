@@ -23,8 +23,24 @@
               <div id="comment-replies-<%= comment.id %>">
                 <% comment.comments.each do |subcomment| %>
                   <p id="commentOnComment_<%= subcomment.id %>">
-                  ------- <%= subcomment.text %>
+                   <p class="subcomment"> <%= subcomment.text %></p>
                   </p>
+                  <a href="#" class="reply-link">
+                <i class="fa fa-reply" aria-hidden="true"></i>
+                Reply
+              </a>
+              <div id="comment_replies_container_<%= subcomment.id %>">
+                <div id="comment-replies-<%= subcomment.id %>">
+                <% subcomment.comments.each do |subsubcomment| %>
+                  <p id="commentOnComment_<%= subsubcomment.id %>">
+                    <p class="subsubcomment"> <%= subsubcomment.text %></p>
+                  </p>
+                  <% end %>
+                </div>
+              </div>
+                  <div class="reply-comment-form d-none" id="reply_form_<%= subcomment.id %>">
+                  <%= render 'shared/comment_form', parent: subcomment, comment: Comment.new, remote: true %>
+                </div>
                 <% end %>
               </div>
 
@@ -39,3 +55,5 @@
     <% end %>
   </div>
 </div>
+
+

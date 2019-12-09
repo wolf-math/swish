@@ -5,11 +5,13 @@ function refreshForm(innerHTML) {
 
 function addComment(commentHTML) {
   commentRepliesContainer = document.getElementById("comment-replies-<%= @parent_comment.id  %>");
+  debugger;
   console.log("<%= @parent_comment.id %>")
   commentRepliesContainer.insertAdjacentHTML('beforeend', commentHTML);
 }
 
  <% if @comment.errors.any? %>
+
   refreshForm('<%= j render "shared/comment_form", parent: @parent_comment, comment: Comment.new, remote: true %>')
  <% else %>
   addComment("------<p id='commentOnComment_<%= @comment.id %>'><%= @comment.text %></p>");
