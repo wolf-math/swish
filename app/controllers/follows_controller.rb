@@ -17,7 +17,7 @@ class FollowsController < ApplicationController
     end
 
     authorize Follow
-    redirect_to root_path
+    redirect_to new_player_follow_path
   end
 
   def update

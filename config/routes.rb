@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :posts, only: [:create, :index, :update, :new, :show] do
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :teams, only: [:index, :show]
   resources :follows, only: [:new, :create, :update, :show]
+  resources :player_follows, only: [:new, :create, :update, :show]
   resources :people, only: [:index, :show]
   resources :games, only: [:index, :show]
 
