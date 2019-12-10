@@ -35,6 +35,18 @@
   font-family: 'Solway', serif;
   text-shadow: 2px 2px gray;
 }
+.landing_title {
+  position: relative
+}
+.unsigned_buttons {
+  position: absolute;
+  display: flex;
+  margin: 10px;
+  top: 50vh;
+  left: 40vw;
+  justify-content: space-between;
+  width: 220px;
+}
 
 .centered {
   position: absolute;
