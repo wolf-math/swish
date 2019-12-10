@@ -10,18 +10,23 @@
   <h5>ABB: <%= @team.abbrevation %></h5>
   <h5>City: <%= @team.city %></h5>
   <h5>State: <%= @team.state %></h5>
+  <% if @team.followers_count == 0 %>
+  <p>No Followers</p>
+  <% else %>
+  <h5><i class="fas fa-users"></i> <%=  @team.followers_count %> Followers</h5>
+  <% end %>
   </div>
   </div>
   <div class='players-container'>
     <div class="">
     <% @team.people.each do |person| %>
     <div class="team-player-list">
-
       <%= cl_image_tag person.photo, class: "player-img" %>
       <p><%= person.first_name[0] %>. <%= person.last_name %></p>
       <p><%= person.jersey_number %></p>
       <p><%= person.position %></p>
       <p><%= person.height %></p>
+      <p><i class="fas fa-users"></i>  <%= person.followers_count %></p>
 
     </div>
     <% end %>
