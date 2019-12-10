@@ -1,6 +1,5 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.all
     @games = policy_scope(Game).order(date: :desc)
   end
 
