@@ -5,7 +5,7 @@
 
   <%= simple_form_for(:thing, url: player_follows_path) do |f| %>
   <div class='button-wrapper mb-5'>
-    <label>Search players <input type="text" id="player-follow-filter"></label>
+    <input type="text" maxlength= "8" id="player-follow-filter" placeholder="Search..." class="searchbar">
     <button class="teams-submit">
       <%= f.button :submit, 'Submit Players' %>
     </button>
@@ -20,7 +20,7 @@
       <label for="follow_person_ids_<%= person.id %>" class="follow-label <%= 'active-person-choice' if current_user.following?(person) %>">
         <div class="mb-3 followable-index-card flexcontainer">
           <%= cl_image_tag(person.photo, class: "player-img", :quality=>"auto", fetch_format: :auto) %>
-          <%= person.full_name %>
+          <span class="player-name"><%= person.full_name %></span>
         </div>
       </label>
     </div>

@@ -116,48 +116,151 @@ puts "creating sample player followers"
 end
 
 a.follow(Person.find(241))
+puts "creating 5 comments"
+
+Comment.create!( id: 1,
+ user_id: 1,
+ text: "he’s not nearly as good as charles. He’s really talented. But, listen, I love the kid,
+ I wish him nothing but the best but it’s disrespectful",
+ likes: nil,
+ commentable_id: 5,
+ created_at: Tue, 10 Dec 2019 15:16:07 UTC +00:00,
+ updated_at: Tue, 10 Dec 2019 15:16:07 UTC +00:00,
+ commentable_type: "Post">
+  )
+Comment.create!(
+  id: 2,
+ user_id: 1,
+ text: "Zion will destroy barkley in his prime in a one on one game",
+ likes: nil,
+ commentable_id: 1,
+ created_at: Tue, 10 Dec 2019 15:30:25 UTC +00:00,
+ updated_at: Tue, 10 Dec 2019 15:30:25 UTC +00:00,
+ commentable_type: "Comment">
+  )
+  Comment.create!(
+    id: 3,
+ user_id: 1,
+ text: "Huge mistake by Atlanta for trading him.",
+ likes: nil,
+ commentable_id: 3,
+ created_at: Tue, 10 Dec 2019 15:56:45 UTC +00:00,
+ updated_at: Tue, 10 Dec 2019 15:56:45 UTC +00:00,
+ commentable_type: "Post">
+    )
+  Comment.create!(
+     id: 4,
+ user_id: 1,
+ text: "I can say he passed Kobe on the Goat chase but not Jordan",
+ likes: nil,
+ commentable_id: 1,
+ created_at: Tue, 10 Dec 2019 16:05:06 UTC +00:00,
+ updated_at: Tue, 10 Dec 2019 16:05:06 UTC +00:00,
+ commentable_type: "Post">
+ )
+  Comment.create!(id: 5,
+   user_id: 1,
+   text:
+    "Jordan was an amazing player. He couldn't be any closer to the greatest ever.
+     He's not overrated. Others are just underrated.\r\n\r\nJordan is overated in
+     my opinion Kareemis the goat, along with his great individual accomplishments,
+     was a winner. He took the Bucks, a 27 win team, and made them into NBA champions in two years.",
+   likes: nil,
+   commentable_id: 2,
+   created_at: Tue, 10 Dec 2019 16:24:38 UTC +00:00,
+   updated_at: Tue, 10 Dec 2019 16:24:38 UTC +00:00,
+   commentable_type: "Post">
+   )
+
+
 
 puts "creating 5 posts"
-Post.create!(user_id: 1, title: "LeBron is the GOAT", user_generated: true, likes: 10008, content: "Lorem ipsum dolor
-  sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  Ac felis donec et odio pellentesque. Tristique et egestas quis ipsum suspendisse ultrices gravida
-  dictum fusce. Consequat interdum varius sit amet mattis vulputate enim nulla aliquet. Nulla pharetra
-  diam sit amet nisl suscipit adipiscing bibendum. Faucibus in ornare quam viverra. Nunc consequat interdum
-  arius sit amet mattis vulputate. Lorem ipsum dolor sit amet consectetur. Duis at consectetur lorem donec
-  massa. Diam vel quam elementum pulvinar etiam non quam. Neque gravida in fermentum et sollicitudin ac. Est
-  ante in nibh mauris cursus.", category: "Person", people_id: 241)
+Post.create!(user_id: 1, title: "LeBron is the GOAT", user_generated: true, likes: 10008, content: "Lebron
+James is the greatest basketball player of all time.
 
-Post.create!(user_id: 2, title: "Nobody like Jordan", user_generated: true, likes: 3, content: "Praesent
-  elementum facilisis leo vel fringilla est ullamcorper eget nulla. Non diam phasellus vestibulum lorem sed
-  sus. Luctus venenatis lectus magna fringilla urna porttitor. Elementum nisi quis eleifend quam adipiscing
-  vitae proin. Velit sed ullamcorper morbi tincidunt ornare massa. Nisl pretium fusce id velit ut tortor
-  pretium viverra. Amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus. Congue quisque egestas
-  diam in arcu cursus euismod quis viverra. In metus vulputate eu scelerisque felis. Pellentesque dignissim
-  enim sit amet venenatis urna cursus eget nunc. Lorem dolor sed viverra ipsum nunc aliquet bibendum.",
+Most talented? That goes to Jordan. But best overall player? Lebron JAMES. LeGOAT.
+
+3 rings. 1 ring he got by being down 3-1 against one of the best teams in basketball history.
+
+8 straight finals. I understand it’s the east, but he went to 8 STRAIGHT. Even without Kyrie, and a weak roster,
+he made it to the finals.
+
+Look at the cavaliers after Lebron West. They went from the BEST TEAM IN THE EAST TO THE WORST TEAM IN THE EAST
+WITH JUST LOSING ONE PLAYER.
+
+He’s also been the best player in the league for 14 YEARS. He’s 34 (and while he did get injured) and is still
+the best basketball or one of the best in the world.",
+ category: "Person", people_id: 241)
+
+Post.create!(user_id: 2, title: "Jordan is the GOAT", user_generated: true, likes: 3, content: "For one,
+ he’s first in points per game even though he’s not first in total points considering he took a few years
+ off here and there.
+ He’s even ahead of wilt chamberlain, who averaged 50 ppg one season. He also has 14
+  all star appearances and 5 mvps and even has a defensive player of the year award, one of three guards
+in history to win it.
+
+There’s also the fact that he’s 6-0 in the finals. People will say that he’s only 6-0 because he sometimes
+ lost earlier in the playoffs and didn’t make it to the finals, but that’s a bad argument because while he’s
+ still been to less finals than Lebron, he’s won twice as many.
+  It would be a different story if Lebron was
+ 6-3 and Jordan was 6-0 because then Lebron would have the edge but to me, total championships outweighs finals
+  appearances.
+  He also accomplished this while remaining on the same team the whole time, and it’s notable that
+  he prevented other all time players like Barkley, Ewing etc from winning a ring.
+   He won FMVP in every one of
+  these finals as well.
+
+Finally, he’s the most iconic player.
+ He has a number of highlights that even casual fans are familiar with,
+ his sneaker brand is the most famous basketball sneaker in the world, and he and the nba rose to popularity
+ at the same time. He has the career achievements, legacy, clutch moments and by now he’s pretty much legend
+ status with his shoe and his perfect finals record.
+  Whether or not these all matter to you is up to you but
+  these reasons are why many consider him the greatest.",
   category: "Team",)
 
-Post.create!(user_id: 3, title: "My mom said yuo can't come over today", user_generated: true, likes: 0,
-  content: "Magna sit amet purus gravida quis blandit turpis cursus. Vulputate enim nulla aliquet porttitor
-  cus luctus. Nisl nisi scelerisque eu ultrices vitae auctor eu augue ut. Odio pellentesque diam volutpat
-  commodo sed egestas. Velit dignissim sodales ut eu.", category: "Team")
+Post.create!(user_id: 3, title: "Luka is going to be the MVP ", user_generated: true, likes: 0,
+  content: "So far in 2019, Luka is also leading the NBA in PER (player efficiency rating) at 33.5. The two
+  closest to him are the two most recent MVPs in Giannis Antetokounmpo and James Harden. He leads them both
+   by more than a point. If you still aren’t buying into the Luka hype, he has the best PER for a season in
+    NBA history using his numbers so far.
+he became the second player in NBA history to record 2,000 points, 500 rebounds, and 500 assists before their
+ 90th career game.
+ It took Doncic 88 games. To add some perspective, the only person to do it faster was Oscar Robinson,
+  who did it in 66 games..", category: "Team")
 
-Post.create!(user_id: 4, title: "Larry Nance is my dad", user_generated: true, likes: 42, content: "Mattis
-  llentesque id nibh tortor id aliquet lectus proin nibh. Libero enim sed faucibus turpis in. Hendrerit
-  dolor magna eget est lorem ipsum dolor. In ornare quam viverra orci sagittis eu volutpat. Tellus mauris
-  a diam maecenas sed enim ut sem. Pharetra vel turpis nunc eget lorem dolor. Amet risus nullam eget felis
-  get nunc lobortis mattis aliquam. Enim facilisis gravida neque convallis a cras semper auctor neque. At
-  elementum eu facilisis sed odio morbi quis commodo odio. Augue eget arcu dictum varius. Velit aliquet s
-  agittis id consectetur. Pharetra vel turpis nunc eget lorem dolor sed viverra. Quam lacus suspendisse
-  faucibus interdum posuere lorem. Feugiat nibh sed pulvinar proin gravida hendrerit.", category: "Person")
+Post.create!(user_id: 4, title: "Why i hate James Harden", user_generated: true, likes: 42, content: "Harden
+ exploits the current set of rules surrounding fouls on an offensive player driving to the basket.
+  Harden
+ incredibly adept at attacking the basket and drawing contact with opposing players while he does so.
 
-Post.create!(user_id: 5, title: "Baseketball Sucks, change my mind", user_generated: true, likes: 9001,
-  content: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his
-  bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could
-  see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able
-  to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size
-  of the rest of him, waved about helplessly as he looked. \"What's happened to me?\" he thought. It wasn't
-  a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar
-  walls.", category: "Person")
+His penchant for doing this has received immense amounts of criticism and subsequent hatred by his peers,
+ basketball fans, and media members alike.
+ Can it be frustrating that he has found a way to excellent at exploiting
+ a flawed system? Yes, absolutely, yet Harden receives the flack for it.", category: "Person")
+
+Post.create!(user_id: 5, title: "Zion the new and improved Barkley", user_generated: true, likes: 9001,
+  content: "Zion is a once in a lifetime athlete, we have never seen someone at his frame be able to move the way
+  he does, especially vertically.
+   He has absolutely elite explosive ability, open court speed, and great quickness
+   for his size as well.
+    His strength, acceleration, and coordination are all superb as well.
+     This is apparent to
+    anyone who watches a few plays of his, and it has been apparent since he was first noticed in high school.
+    He will
+     enter the NBA as a top 5 athlete in the league, and will likely be the best athlete in the league at times during
+     his career.
+
+Zion's all-world athleticism often allows him to explode through contact at the rim, finish crazy highlight lobs, act as
+ a weakside rim protector, and just overall wreak havoc in transition.
+ He should be a top 5 transition threat upon entering
+ the league, even on defense with his timing and instincts to break up plays with blocks and steals.
+ He is smooth and light
+ on his feet in the open court and keeps his head up, always looking to push the ball. He has a really nice handle for a guy
+  with his size, keeping the ball low to the ground out of the reach of opponents.
+  This allows him to be an elite grab & go
+  threat, especially with his great rebounding ability", category: "Person")
+
 
 puts "getting all game score data"
 puts "this may take some time...."

@@ -1,4 +1,5 @@
 .button-wrapper {
+
   text-align: center;
     position: -webkit-sticky;
     position: sticky;
@@ -6,6 +7,12 @@
     background: white;
     z-index: 3;
     transition: all 1s ease;
+
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+
 }
 
 .teams-submit {

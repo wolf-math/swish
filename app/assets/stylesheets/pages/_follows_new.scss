@@ -33,4 +33,61 @@
 
 }
 
+.active-team-choice .player-name {
+  font-weight: bold;
+  text-shadow: 1px 1px 2px red;
+}
+
+.active-team-choice .team-name {
+  box-shadow: 2px 50px 30px red;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.searchbar {
+  font-size: 1.4rem;
+  width: 20rem;
+  height: 3rem;
+  border: none;
+  outline: none;
+  border-radius: 10rem;
+  box-shadow: 0 1rem 2rem rgba(black, .1);
+  padding: 1.5rem;
+  // position: relative;
+    transition: all .2s;
+  transition-delay: .1s;
+}
+
+.searchbar:hover {
+  width:400px;
+}
+
+.button {
+  height: 2rem;
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.searchbar:hover + .button {
+  height: 2.5rem;
+  top: 1.8rem;
+  right: 0;
+}
+
+.searchbar::placeholder {
+  opacity: .5;
+}
+
 
