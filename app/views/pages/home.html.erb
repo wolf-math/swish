@@ -3,18 +3,23 @@
   <div class="col-8 vc-wrapper">
     <div class="row video-container">
       <% @youtube_vids.each do |youtube_vid| %>
-      <%youtube_vid.each do |vid| %>
+      <% youtube_vid.each do |vid| %>
       <div class="col-4">
         <div class="video-card" id="card">
           <div class="youtube-player" data-id="<%= vid[:id] %>"></div>
           <a class="author">
             <span class="title"><%= vid[:title] %></span>
           </a>
+          <div class="share-icon">
+            <p class="align-text-bottom"><i class="fas fa-share-alt"></i><%= link_to "Share!", new_post_path(title: vid[:title],
+            content: "https://www.youtube.com/watch?v=#{vid[:id]}") %>
+          </p>
         </div>
       </div>
-      <% end %>
-      <%end %>
+      <% p vid %>
     </div>
+    <% end %>
+    <% end %>
   </div>
   <div class="col-4">
     <div class="tweets-container">
@@ -38,11 +43,11 @@
       </div>
       <% end %>
       <% end %>
-    </div>ra
+    </div>
   </div>
 </div>
+</div>
 <% else %>
-
 <div class="landing_container crossfade">
   <img id="f3" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1556168505-d00e911d52eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80">
     <img id="f2" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1550171362-62bca9e5ad4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
@@ -53,6 +58,7 @@
   </div>
   <% end %>
 <%= content_for :after_js do %>
+
   <%= javascript_pack_tag "youtube_embed" %>
 
 <% end %>

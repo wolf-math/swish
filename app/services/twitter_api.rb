@@ -17,6 +17,7 @@ class TwitterApi < ApplicationRecord
         next if tweet['user']['followers_count'].to_i < 1000
 
         result = {}
+        result[:id] = tweet['id']
         result[:text] = tweet['text']
         result[:name] = tweet['user']['name']
         result[:handle] = tweet['user']['screen_name']
@@ -27,6 +28,7 @@ class TwitterApi < ApplicationRecord
         result[:image] = tweet['entities']['media'][0]['media_url_https'] rescue nil
 
          twt = Tweet.new({ text: result[:text],
+                            id: result[:id],
                             name: result[:name],
                             handle: result[:handle],
                             followers: result[:followers],
