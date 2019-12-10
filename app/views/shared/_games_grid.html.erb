@@ -7,7 +7,7 @@
       <% slasterday = "#{lasterday.year}#{format('%02i', lasterday.month)}#{format('%02i', lasterday.day)}" %>
       <% games.all.where(date: slasterday...stoday).each do |game| %>
         <div class="navbar-score-card">
-          <%= game.date %>
+          <%= "#{game.date[4..5]}-#{game.date[6..7]}" %>
           <table>
             <tr>
               <td class="bold"><%= link_to game.vTeam.abbrevation, team_path(Team.find(game.vTeam.id)) %></td>
