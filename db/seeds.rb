@@ -56,21 +56,34 @@ end
 
 
 standings_data = HTTParty.get("http://data.nba.net/10s/prod/v1/current/standings_conference.json")
-standing = 1
-standings_data["league"]["standard"]["conference"]["east"].each do |team|
-  team = Team.find_by(abbrevation: team["teamSitesOnly"]["teamTricode"])
+
+standings_data["league"]["standard"]["conference"]["east"].each do |rank|
+  team = Team.find_by(abbrevation: rank["teamSitesOnly"]["teamTricode"])
   team.conference = "east"
-  team.standing = standing
-  standing += 1
+  team.standing = rank["confRank"]
+  team.win_percent = rank["winPct"]
+  team.games_behind = rank["gamesBehind"]
+  team.conf_win = rank["confWin"]
+  team.conf_loss = rank["confLoss"]
+  team.last10wins = rank["lastTenWin"]
+  team.last10loss = rank["lastTenLoss"]
+  team.streak = rank["streak"]
+  team.streak_wins = rank["isWinStreak"]
   team.save
 end
 
-standing = 1
-standings_data["league"]["standard"]["conference"]["west"].each do |team|
-  team = Team.find_by(abbrevation: team["teamSitesOnly"]["teamTricode"])
+standings_data["league"]["standard"]["conference"]["west"].each do |rank|
+  team = Team.find_by(abbrevation: rank["teamSitesOnly"]["teamTricode"])
   team.conference = "west"
-  team.standing = standing
-  standing += 1
+  team.standing = rank["confRank"]
+  team.win_percent = rank["winPct"]
+  team.games_behind = rank["gamesBehind"]
+  team.conf_win = rank["confWin"]
+  team.conf_loss = rank["confLoss"]
+  team.last10wins = rank["lastTenWin"]
+  team.last10loss = rank["lastTenLoss"]
+  team.streak = rank["streak"]
+  team.streak_wins = rank["isWinStreak"]
   team.save
 end
 

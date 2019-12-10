@@ -1,0 +1,82 @@
+<div class="container">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="eastern-tab" data-toggle="tab" href="#eastern" role="tab" aria-controls="eastern" aria-selected="true">Eastern Conference</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="western-tab" data-toggle="tab" href="#western" role="tab" aria-controls="western" aria-selected="false">Western Conference</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="eastern" role="tabpanel" aria-labelledby="eastern-tab">
+      <table>
+        <tr>
+          <td>Rank</td>
+          <td>Team</td>
+          <td>games behind</td>
+          <td>wins</td>
+          <td>losses</td>
+          <td>win pct</td>
+          <td>10wins</td>
+          <td>10loss</td>
+          <td>streak</td>
+        </tr>
+        <% @east.each do |team| %>
+          <tr>
+            <td><%= team.standing %></td>
+            <td><%= team.name %></td>
+            <td><%= team.games_behind %></td>
+            <td><%= team.wins %></td>
+            <td><%= team.losses %></td>
+            <td><%= team.win_percent %></td>
+            <td><%= team.last10wins %></td>
+            <td><%= team.last10loss %></td>
+            <% if team.streak_wins == true %>
+              <td><%= team.streak %>W</td>
+            <% else %>
+              <td><%= team.streak %>L</td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="tab-pane" id="western" role="tabpanel" aria-labelledby="western-tab">
+      <table>
+        <tr>
+          <td>Rank</td>
+          <td>Team</td>
+          <td>games behind</td>
+          <td>wins</td>
+          <td>losses</td>
+          <td>win pct</td>
+          <td>10wins</td>
+          <td>10loss</td>
+          <td>streak</td>
+        </tr>
+        <% @west.each do |team| %>
+          <tr>
+            <td><%= team.standing %></td>
+            <td><%= team.name %></td>
+            <td><%= team.games_behind %></td>
+            <td><%= team.wins %></td>
+            <td><%= team.losses %></td>
+            <td><%= team.win_percent %></td>
+            <td><%= team.last10wins %></td>
+            <td><%= team.last10loss %></td>
+            <% if team.streak_wins == true %>
+              <td><%= team.streak %>W</td>
+            <% else %>
+              <td><%= team.streak %>L</td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+  <script>
+  $(function () {
+  $('#myTab li:last-child a').tab('show')
+  })
+  </script>
+</div>
