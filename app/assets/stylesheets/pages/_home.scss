@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css?family=Solway:700,800&display=swap');
+
 .forum-header {
   background-color: white;
   color: black;
@@ -19,4 +22,66 @@
 
 .Site-content {
   flex: 1;
+}
+
+// SPECIFICALLY IF USER IS NOT SIGNED IN //
+
+.landing_container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.landing_container h1 {
+  font-family: 'Solway', serif;
+  text-shadow: 2px 2px gray;
+}
+
+.centered {
+  position: absolute;
+  top: 200px;
+  left: 250px;
+
+}
+
+.crossfade img {
+    position:absolute;
+    left:-55px;
+    top:0;
+    -webkit-animation-name: fade;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 6s;
+    animation-name: fade;
+    animation-iteration-count: infinite;
+    animation-duration: 6s;
+}
+
+@-webkit-keyframes fade {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    33% {opacity: 1;}
+    53% {opacity: 0;}
+    100% {opacity: 0;}
+}
+@keyframes fade {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    33% {opacity: 1;}
+    53% {opacity: 0;}
+    100% {opacity: 0;}
+}
+
+#f1 {
+    background-color: lightblue;
+    background-size: cover;
+}
+
+#f2 {
+    -webkit-animation-delay: -4s;
+    // background-color: yellow;
+    background-size: cover;
+}
+#f3 {
+    -webkit-animation-delay: -2s;
+    // background-color: lightgreen;
+    background-size: cover;
 }

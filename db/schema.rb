@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_064844) do
+ActiveRecord::Schema.define(version: 2019_12_09_175224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_064844) do
     t.string "position"
     t.string "height"
     t.bigint "team_id"
-    t.string "image_url"
+    t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "player_id"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_064844) do
     t.bigint "user_id"
     t.string "title"
     t.string "category"
-    t.string "image_url"
+    t.string "photo"
     t.boolean "user_generated"
     t.text "content"
     t.integer "likes"
@@ -103,6 +103,16 @@ ActiveRecord::Schema.define(version: 2019_12_09_064844) do
     t.string "api_team_id"
     t.integer "wins"
     t.integer "losses"
+    t.string "conference"
+    t.integer "standing"
+    t.float "win_percent"
+    t.float "games_behind"
+    t.integer "conf_win"
+    t.integer "last10wins"
+    t.integer "last10loss"
+    t.integer "streak"
+    t.boolean "streak_wins"
+    t.integer "conf_loss"
   end
 
   create_table "tweets", force: :cascade do |t|

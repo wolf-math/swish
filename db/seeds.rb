@@ -1,46 +1,19 @@
 require 'open-uri'
 require 'json'
 
-#   spinner = Enumerator.new do |e|
-#   loop do
-#     e.yield '.'
-#     e.yield ' o'
-#     e.yield '  O'
-#     e.yield '   0'
-#     e.yield '    O'
-#     e.yield '     o'
-#     e.yield '      .'
-#     e.yield '     o'
-#     e.yield '    O'
-#     e.yield '   0'
-#     e.yield '  O'
-#     e.yield ' o'
-#   end
-# end
-
-# 1.upto(100) do |i|
-#   printf("\rBooting... %s", spinner.next)
-#   sleep(0.1)
-# end
-
-print "Destroying all teams..."
+print "Destroying all teams"
 Team.destroy_all
-puts "Successfull.. next"
-puts "Destroying all players..."
+puts "Destroying all players"
 Person.destroy_all
-puts "Successfull... next"
 
+puts "creating teams"
 team_endpoint = 'https://data.nba.net/'
-
 uri = URI(team_endpoint)
 response = Net::HTTP.get(uri)
 res = JSON.parse(response)
-# res['b_path'].each { |h| h.delete('id') }
-
 
 all_teams = {}
 
-puts "creating teams..."
 res['sports_content']['teams']['team'].each do |team|
   team_name = team['team_name']
   team_nickname = team['team_nickname']
@@ -54,15 +27,49 @@ res['sports_content']['teams']['team'].each do |team|
   all_teams[team_id.to_s] = team
 end
 
-puts "Successfull... next"
 
-url = 'https://data.nba.net/10s/prod/v1/2019/players.json'
-uri = URI(url)
-response = Net::HTTP.get(uri)
-res = JSON.parse(response)
+puts "Creating standings data"
 
-puts "creating people.."
-res['league']['standard'].each do |person|
+standings_data = HTTParty.get("http://data.nba.net/10s/prod/v1/current/standings_conference.json")
+
+standings_data["league"]["standard"]["conference"]["east"].each do |rank|
+  team = Team.find_by(abbrevation: rank["teamSitesOnly"]["teamTricode"])
+  team.conference = "east"
+  team.standing = rank["confRank"]
+  team.win_percent = rank["winPct"]
+  team.games_behind = rank["gamesBehind"]
+  team.conf_win = rank["confWin"]
+  team.conf_loss = rank["confLoss"]
+  team.last10wins = rank["lastTenWin"]
+  team.last10loss = rank["lastTenLoss"]
+  team.streak = rank["streak"]
+  team.streak_wins = rank["isWinStreak"]
+  team.save
+end
+
+standings_data["league"]["standard"]["conference"]["west"].each do |rank|
+  team = Team.find_by(abbrevation: rank["teamSitesOnly"]["teamTricode"])
+  team.conference = "west"
+  team.standing = rank["confRank"]
+  team.win_percent = rank["winPct"]
+  team.games_behind = rank["gamesBehind"]
+  team.conf_win = rank["confWin"]
+  team.conf_loss = rank["confLoss"]
+  team.last10wins = rank["lastTenWin"]
+  team.last10loss = rank["lastTenLoss"]
+  team.streak = rank["streak"]
+  team.streak_wins = rank["isWinStreak"]
+  team.save
+end
+
+# Sample query
+# Team.find_by(standing: 3, conference: "west")
+
+puts "getting player data"
+puts "this may take some time...."
+
+player_data = HTTParty.get('https://data.nba.net/10s/prod/v1/2019/players.json')
+player_data['league']['standard'].each do |person|
   first_name = person['firstName']
   last_name = person['lastName']
   api_team = person['teamId']
@@ -73,14 +80,22 @@ res['league']['standard'].each do |person|
 
   team = all_teams[api_team]
 
-
-  player = Person.new(first_name: first_name, last_name: last_name,jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
-  player.image_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
+  # if Person.find_by(player_id: player_id).nil?
+  player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
+  player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
+  response = Net::HTTP.get_response(URI.parse(player_photo_url))
+  if response.code == "200"
+    player.remote_photo_url = player_photo_url
+  else
+    player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
+  end
   player.team = team
   player.save
+  # end
 end
 
-puts "creating 6 users..."
+
+puts "creating 6 users"
 a = User.create!(email: "test@test.com", password: "123456")
 b = User.create!(email: "ron@aol.com", password: "123456")
 c = User.create!(email: "josh@bros.com", password: "123456")
@@ -102,7 +117,7 @@ end
 
 a.follow(Person.find(241))
 
-puts "creating 5 posts..."
+puts "creating 5 posts"
 Post.create!(user_id: 1, title: "LeBron is the GOAT", user_generated: true, likes: 10008, content: "Lorem ipsum dolor
   sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   Ac felis donec et odio pellentesque. Tristique et egestas quis ipsum suspendisse ultrices gravida
@@ -144,10 +159,8 @@ Post.create!(user_id: 5, title: "Baseketball Sucks, change my mind", user_genera
   a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar
   walls.", category: "Person")
 
-puts "Successfull... done!"
-
-
-puts "getting all box score data"
+puts "getting all game score data"
+puts "this may take some time...."
 
 def date_to_string(date_object)
   "#{date_object.year}#{format('%02i', date_object.month)}#{format('%02i', date_object.day)}"
@@ -171,14 +184,16 @@ def get_days_scores_api(date_string)
     box.hTeam_id = home_team.id
     box.vTeamScore = game["vTeam"]["score"]
     box.hTeamScore = game["hTeam"]["score"]
-    box.vteam_q1 = game["vTeam"]["linescore"][0]
-    box.vteam_q2 = game["vTeam"]["linescore"][1]
-    box.vteam_q3 = game["vTeam"]["linescore"][2]
-    box.vteam_q4 = game["vTeam"]["linescore"][3]
-    box.hteam_q1 = game["vTeam"]["linescore"][0]
-    box.hteam_q2 = game["vTeam"]["linescore"][1]
-    box.hteam_q3 = game["vTeam"]["linescore"][2]
-    box.hteam_q4 = game["vTeam"]["linescore"][3]
+    if game["vTeam"]["linescore"][0].nil? == false
+      box.vteam_q1 = game["vTeam"]["linescore"][0]["score"]
+      box.vteam_q2 = game["vTeam"]["linescore"][1]["score"]
+      box.vteam_q3 = game["vTeam"]["linescore"][2]["score"]
+      box.vteam_q4 = game["vTeam"]["linescore"][3]["score"]
+      box.hteam_q1 = game["hTeam"]["linescore"][0]["score"]
+      box.hteam_q2 = game["hTeam"]["linescore"][1]["score"]
+      box.hteam_q3 = game["hTeam"]["linescore"][2]["score"]
+      box.hteam_q4 = game["hTeam"]["linescore"][3]["score"]
+    end
     box.save
 
     visiting_team.wins = game["vTeam"]["win"]
@@ -201,6 +216,8 @@ def get_season_score
 end
 
 get_season_score
+
+puts "done"
 
 # --------- Get to/from Local --------- #
 

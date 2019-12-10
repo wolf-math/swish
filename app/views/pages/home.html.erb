@@ -1,8 +1,6 @@
+<% if user_signed_in? %>
 <div class="row">
   <div class="col-8 vc-wrapper">
-    <div class="card tweets-header text-center ml-10 mt-10 vids-header">
-      <h5>Personalized Feed Videos</h5>
-    </div>
     <div class="row video-container">
       <% @youtube_vids.each do |youtube_vid| %>
       <% youtube_vid.each do |vid| %>
@@ -21,40 +19,46 @@
       <% p vid %>
     </div>
     <% end %>
-    <%end %>
+    <% end %>
   </div>
-</div>
-<div class="col-4">
-  <div class="tweets-container">
-    <div class="card tweets-header text-center">
-      <h5>Personalized Feed Tweets</h5>
+  <div class="col-4">
+    <div class="tweets-container">
+      <% @tweet_lists.each do |tweet_list| %>
+      <% tweet_list.each do |tweet| %>
+      <div class="card tweet">
+        <a class="author">
+          <img class="avatar" src=<%= tweet[:avatar] %> />
+          <span class="name"><%= tweet[:name] %></span>
+          <span class="username">@<%= tweet[:handle] %></span>
+        </a>
+        <div class="content" >
+          <%= tweet[:text] %>
+          <% unless tweet[:url].nil? %>
+          <%= link_to tweet[:url], tweet[:url] %>
+          <%= link_to tweet[:url] do  %>
+          <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
+          <% end  %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
     </div>
-    <% @tweet_lists.each do |tweet_list| %>
-    <% tweet_list.each do |tweet| %>
-    <% raise %>
-    <div class="card tweet">
-      <a class="author">
-        <img class="avatar" src=<%= tweet[:avatar] %> />
-        <span class="name"><%= tweet[:name] %></span>
-        <span class="username">@<%= tweet[:handle] %></span>
-      </a>
-      <div class="content" >
-        <%= tweet[:text] %>
-        <% unless tweet[:url].nil? %>
-        <%= link_to tweet[:url], tweet[:url] %>
-        <%= link_to tweet[:url] do  %>
-        <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
-        <% end  %>
-        <% end %>
   </div>
 </div>
-<% end %>
-<% end %>
 </div>
-</div>
-</div>
-
-
+<% else %>
+<div class="landing_container crossfade">
+  <img id="f3" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1556168505-d00e911d52eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80">
+    <img id="f2" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1550171362-62bca9e5ad4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
+    <img id="f1" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1533923156502-be31530547c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
+  <div class="landing_title">
+    <h1 class="centered">Your Home For NBA Updates & Details</h1>
+  </div>
+  </div>
+  <% end %>
 <%= content_for :after_js do %>
-<%= javascript_pack_tag "youtube_embed" %>
+
+  <%= javascript_pack_tag "youtube_embed" %>
+
 <% end %>

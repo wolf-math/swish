@@ -1,6 +1,5 @@
 class PeopleController < ApplicationController
   def index
-    @people = Person.all
     @people = policy_scope(Person).order(first_name: :asc)
   end
 
@@ -11,6 +10,6 @@ class PeopleController < ApplicationController
 
   def person_params
     # team is lookable by items in params
-    params.require(:person).permit(:first_name, :last_name)
+    params.require(:person).permit(:first_name, :last_name, :photo)
   end
 end
