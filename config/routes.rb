@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :follows, only: [:new, :create, :update, :show]
   resources :people, only: [:index, :show]
   resources :games, only: [:index, :show]
+  resources :standings, only: :index
 
   resources :users do
     get :follow

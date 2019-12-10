@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_154213) do
+ActiveRecord::Schema.define(version: 2019_12_09_175224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,14 @@ ActiveRecord::Schema.define(version: 2019_12_09_154213) do
     t.integer "losses"
     t.string "conference"
     t.integer "standing"
+    t.float "win_percent"
+    t.float "games_behind"
+    t.integer "conf_win"
+    t.integer "last10wins"
+    t.integer "last10loss"
+    t.integer "streak"
+    t.boolean "streak_wins"
+    t.integer "conf_loss"
   end
 
   create_table "tweets", force: :cascade do |t|
