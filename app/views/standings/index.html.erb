@@ -24,7 +24,7 @@
         <% @east.each do |team| %>
           <tr>
             <td><%= team.standing %></td>
-            <td><%= team.name %></td>
+            <td><%= link_to team.name, team_path(team.id) %></td>
             <td><%= team.games_behind %></td>
             <td><%= team.wins %></td>
             <td><%= team.losses %></td>
@@ -56,7 +56,7 @@
         <% @west.each do |team| %>
           <tr>
             <td><%= team.standing %></td>
-            <td><%= team.name %></td>
+            <td><%= link_to team.name, team_path(team.id) %></td>
             <td><%= team.games_behind %></td>
             <td><%= team.wins %></td>
             <td><%= team.losses %></td>
