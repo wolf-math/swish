@@ -4,6 +4,7 @@
   margin: 0px 10px;
   background-color: white;
   overflow: hidden;
+  position: relative;
 }
 #card {
   border-radius: 4px;
@@ -18,8 +19,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: 50px;
-  // background-color: white;
-  // margin-top: 20px;
+  box-shadow: 8px 8px 20px 0px #88888852;
+  border-radius: 10px;
 }
 iframe {
   width: 100%;
