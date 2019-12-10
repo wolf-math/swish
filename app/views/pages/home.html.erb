@@ -1,6 +1,7 @@
 <% if user_signed_in? %>
 <div class="row">
   <div class="col-8 vc-wrapper">
+  <h4>Recent Videos</h4>
     <div class="row video-container">
       <% @youtube_vids.each do |youtube_vid| %>
       <% youtube_vid.each do |vid| %>
@@ -27,6 +28,7 @@
   </div>
   <div class="col-4">
     <div class="tweets-container">
+    <h4>Recent Tweets</h4>
       <% @tweet_lists.each do |tweet_list| %>
       <% tweet_list.each do |tweet| %>
       <div class="card tweet">
