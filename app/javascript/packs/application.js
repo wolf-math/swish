@@ -6,6 +6,11 @@ if (document.querySelector('.post-container')) {
   setupInlineComments()
 }
 
+import { setupPlayerFollowFilter } from '../components/player-follow-filter'
+if (document.getElementById('player-follow-filter')) {
+  setupPlayerFollowFilter()
+}
+
 import nba from 'nba-api-client'
 
 
