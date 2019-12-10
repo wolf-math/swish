@@ -16,7 +16,7 @@
       <input type="checkbox" class="d-none" value="<%= team.id %>" name="follow[team_ids][]" id="follow_team_ids_<%= team.id %>">
       <label for="follow_team_ids_<%= team.id %>" class="follow-label <%= 'active-team-choice' if current_user.following?(team) %>">
         <div class="mb-3 followable-index-card">
-          <%= image_tag "#{team.name} #{team.nickname}.png", class: "card-img", alt:"team-image" %>
+          <%= image_tag "#{team.name} #{team.nickname}.png", class: "card-img", alt:"team-image", :quality=>"auto", fetch_format: :auto %>
         </div>
       </label>
     </div>
