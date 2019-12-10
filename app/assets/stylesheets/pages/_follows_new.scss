@@ -38,12 +38,11 @@
 
 .active-team-choice .player-name {
   font-weight: bold;
-  text-shadow: 1px 1px 2px #91bd3a;
+  text-shadow: 1px 1px 2px red;
 }
 
 .active-team-choice .team-name {
-  font-weight: bold;
-  text-shadow: 1px 1px 2px #91bd3a;
+  box-shadow: 2px 50px 30px red;
 }
 
 *,
