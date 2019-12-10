@@ -1,6 +1,5 @@
 class PeopleController < ApplicationController
   def index
-    @people = Person.all
     @people = policy_scope(Person).order(first_name: :asc)
   end
 

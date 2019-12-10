@@ -19,7 +19,7 @@
       <input type="checkbox" class="d-none" value="<%= person.id %>" name="follow[person_ids][]" id="follow_person_ids_<%= person.id %>">
       <label for="follow_person_ids_<%= person.id %>" class="follow-label <%= 'active-person-choice' if current_user.following?(person) %>">
         <div class="mb-3 followable-index-card flexcontainer">
-          <%= cl_image_tag(person.photo, class: "player-img") %>
+          <%= cl_image_tag(person.photo, class: "player-img", :quality=>"auto", fetch_format: :auto) %>
           <%= person.full_name %>
         </div>
       </label>
@@ -28,7 +28,6 @@
   </div>
 </div>
 <% end %>
-
 <%= content_for(:after_js) do %>
 <%= javascript_pack_tag('team_follow_choice') %>
 <% end %>
