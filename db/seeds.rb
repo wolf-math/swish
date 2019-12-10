@@ -116,37 +116,106 @@ puts "creating sample player followers"
 end
 
 a.follow(Person.find(241))
+puts "creating 5 comments"
+
+Comment.create!( id: 1,
+ user_id: 1,
+ text: "he’s not nearly as good as charles. He’s really talented. But, listen, I love the kid,
+ I wish him nothing but the best but it’s disrespectful",
+ likes: nil,
+ commentable_id: 5,
+ created_at: Tue, 10 Dec 2019 15:16:07 UTC +00:00,
+ updated_at: Tue, 10 Dec 2019 15:16:07 UTC +00:00,
+ commentable_type: "Post">
+  )
+Comment.create!(
+  id: 2,
+ user_id: 1,
+ text: "Zion will destroy barkley in his prime in a one on one game",
+ likes: nil,
+ commentable_id: 1,
+ created_at: Tue, 10 Dec 2019 15:30:25 UTC +00:00,
+ updated_at: Tue, 10 Dec 2019 15:30:25 UTC +00:00,
+ commentable_type: "Comment">
+  )
+  Comment.create!(
+    id: 3,
+ user_id: 1,
+ text: "Huge mistake by Atlanta for trading him.",
+ likes: nil,
+ commentable_id: 3,
+ created_at: Tue, 10 Dec 2019 15:56:45 UTC +00:00,
+ updated_at: Tue, 10 Dec 2019 15:56:45 UTC +00:00,
+ commentable_type: "Post">
+    )
+  Comment.create!(
+     id: 4,
+ user_id: 1,
+ text: "I can say he passed Kobe on the Goat chase but not Jordan",
+ likes: nil,
+ commentable_id: 1,
+ created_at: Tue, 10 Dec 2019 16:05:06 UTC +00:00,
+ updated_at: Tue, 10 Dec 2019 16:05:06 UTC +00:00,
+ commentable_type: "Post">
+ )
+  Comment.create!(id: 5,
+   user_id: 1,
+   text:
+    "Jordan was an amazing player. He couldn't be any closer to the greatest ever.
+     He's not overrated. Others are just underrated.\r\n\r\nJordan is overated in
+     my opinion Kareemis the goat, along with his great individual accomplishments,
+     was a winner. He took the Bucks, a 27 win team, and made them into NBA champions in two years.",
+   likes: nil,
+   commentable_id: 2,
+   created_at: Tue, 10 Dec 2019 16:24:38 UTC +00:00,
+   updated_at: Tue, 10 Dec 2019 16:24:38 UTC +00:00,
+   commentable_type: "Post">
+   )
+
+
 
 puts "creating 5 posts"
 Post.create!(user_id: 1, title: "LeBron is the GOAT", user_generated: true, likes: 10008, content: "Lebron
 James is the greatest basketball player of all time.
-Most talented? That goes to Jordan. But BESR overall player? Lebron JAMES. LeGOAT.
+
+Most talented? That goes to Jordan. But best overall player? Lebron JAMES. LeGOAT.
+
 3 rings. 1 ring he got by being down 3-1 against one of the best teams in basketball history.
+
 8 straight finals. I understand it’s the east, but he went to 8 STRAIGHT. Even without Kyrie, and a weak roster,
 he made it to the finals.
+
 Look at the cavaliers after Lebron West. They went from the BEST TEAM IN THE EAST TO THE WORST TEAM IN THE EAST
 WITH JUST LOSING ONE PLAYER.
+
 He’s also been the best player in the league for 14 YEARS. He’s 34 (and while he did get injured) and is still
 the best basketball or one of the best in the world.",
  category: "Person", people_id: 241)
 
 Post.create!(user_id: 2, title: "Jordan is the GOAT", user_generated: true, likes: 3, content: "For one,
  he’s first in points per game even though he’s not first in total points considering he took a few years
- off here and there. He’s even ahead of wilt chamberlain, who averaged 50 ppg one season. He also has 14
+ off here and there.
+ He’s even ahead of wilt chamberlain, who averaged 50 ppg one season. He also has 14
   all star appearances and 5 mvps and even has a defensive player of the year award, one of three guards
 in history to win it.
+
 There’s also the fact that he’s 6-0 in the finals. People will say that he’s only 6-0 because he sometimes
  lost earlier in the playoffs and didn’t make it to the finals, but that’s a bad argument because while he’s
- still been to less finals than Lebron, he’s won twice as many. It would be a different story if Lebron was
+ still been to less finals than Lebron, he’s won twice as many.
+  It would be a different story if Lebron was
  6-3 and Jordan was 6-0 because then Lebron would have the edge but to me, total championships outweighs finals
-  appearances. He also accomplished this while remaining on the same team the whole time, and it’s notable that
-  he prevented other all time players like Barkley, Ewing etc from winning a ring. He won FMVP in every one of
+  appearances.
+  He also accomplished this while remaining on the same team the whole time, and it’s notable that
+  he prevented other all time players like Barkley, Ewing etc from winning a ring.
+   He won FMVP in every one of
   these finals as well.
 
-Finally, he’s the most iconic player. He has a number of highlights that even casual fans are familiar with,
+Finally, he’s the most iconic player.
+ He has a number of highlights that even casual fans are familiar with,
  his sneaker brand is the most famous basketball sneaker in the world, and he and the nba rose to popularity
  at the same time. He has the career achievements, legacy, clutch moments and by now he’s pretty much legend
- status with his shoe and his perfect finals record. Whether or not these all matter to you is up to you but
+ status with his shoe and his perfect finals record.
+  Whether or not these all matter to you is up to you but
   these reasons are why many consider him the greatest.",
   category: "Team",)
 
@@ -161,25 +230,35 @@ he became the second player in NBA history to record 2,000 points, 500 rebounds,
   who did it in 66 games..", category: "Team")
 
 Post.create!(user_id: 4, title: "Why i hate James Harden", user_generated: true, likes: 42, content: "Harden
- exploits the current set of rules surrounding fouls on an offensive player driving to the basket. Harden
+ exploits the current set of rules surrounding fouls on an offensive player driving to the basket.
+  Harden
  incredibly adept at attacking the basket and drawing contact with opposing players while he does so.
+
 His penchant for doing this has received immense amounts of criticism and subsequent hatred by his peers,
- basketball fans, and media members alike. Can it be frustrating that he has found a way to excellent at exploiting
+ basketball fans, and media members alike.
+ Can it be frustrating that he has found a way to excellent at exploiting
  a flawed system? Yes, absolutely, yet Harden receives the flack for it.", category: "Person")
 
 Post.create!(user_id: 5, title: "Zion the new and improved Barkley", user_generated: true, likes: 9001,
   content: "Zion is a once in a lifetime athlete, we have never seen someone at his frame be able to move the way
-  he does, especially vertically. He has absolutely elite explosive ability, open court speed, and great quickness
-   for his size as well. His strength, acceleration, and coordination are all superb as well. This is apparent to
-    anyone who watches a few plays of his, and it has been apparent since he was first noticed in high school. He will
+  he does, especially vertically.
+   He has absolutely elite explosive ability, open court speed, and great quickness
+   for his size as well.
+    His strength, acceleration, and coordination are all superb as well.
+     This is apparent to
+    anyone who watches a few plays of his, and it has been apparent since he was first noticed in high school.
+    He will
      enter the NBA as a top 5 athlete in the league, and will likely be the best athlete in the league at times during
      his career.
 
 Zion's all-world athleticism often allows him to explode through contact at the rim, finish crazy highlight lobs, act as
- a weakside rim protector, and just overall wreak havoc in transition. He should be a top 5 transition threat upon entering
- the league, even on defense with his timing and instincts to break up plays with blocks and steals. He is smooth and light
+ a weakside rim protector, and just overall wreak havoc in transition.
+ He should be a top 5 transition threat upon entering
+ the league, even on defense with his timing and instincts to break up plays with blocks and steals.
+ He is smooth and light
  on his feet in the open court and keeps his head up, always looking to push the ball. He has a really nice handle for a guy
-  with his size, keeping the ball low to the ground out of the reach of opponents. This allows him to be an elite grab & go
+  with his size, keeping the ball low to the ground out of the reach of opponents.
+  This allows him to be an elite grab & go
   threat, especially with his great rebounding ability", category: "Person")
 
 
