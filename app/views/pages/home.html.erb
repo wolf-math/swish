@@ -1,53 +1,60 @@
 <div class="row">
   <div class="col-8 vc-wrapper">
     <div class="card tweets-header text-center ml-10 mt-10 vids-header">
-        <h5>Personalized Feed Videos</h5>
-      </div>
+      <h5>Personalized Feed Videos</h5>
+    </div>
     <div class="row video-container">
       <% @youtube_vids.each do |youtube_vid| %>
-      <%youtube_vid.each do |vid| %>
+      <% youtube_vid.each do |vid| %>
       <div class="col-4">
         <div class="video-card" id="card">
           <div class="youtube-player" data-id="<%= vid[:id] %>"></div>
           <a class="author">
             <span class="title"><%= vid[:title] %></span>
           </a>
+          <div class="share-icon">
+            <p class="align-text-bottom"><i class="fas fa-share-alt"></i><%= link_to "Share!", new_post_path(title: vid[:title],
+            content: "https://www.youtube.com/watch?v=#{vid[:id]}") %>
+          </p>
         </div>
       </div>
-      <% end %>
-      <%end %>
+      <% p vid %>
     </div>
+    <% end %>
+    <%end %>
   </div>
-  <div class="col-4">
-    <div class="tweets-container">
-      <div class="card tweets-header text-center">
-        <h5>Personalized Feed Tweets</h5>
-      </div>
-      <% @tweet_lists.each do |tweet_list| %>
-      <% tweet_list.each do |tweet| %>
-      <div class="card tweet">
-        <a class="author">
-          <img class="avatar" src=<%= tweet[:avatar] %> />
-          <span class="name"><%= tweet[:name] %></span>
-          <span class="username">@<%= tweet[:handle] %></span>
-        </a>
-        <div class="content" >
-          <%= tweet[:text] %>
-          <% unless tweet[:url].nil? %>
-          <%= link_to tweet[:url], tweet[:url] %>
-          <%= link_to tweet[:url] do  %>
-          <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
-          <% end  %>
-          <% end %>
-        </div>
-      </div>
-      <% end %>
-      <% end %>
+</div>
+<div class="col-4">
+  <div class="tweets-container">
+    <div class="card tweets-header text-center">
+      <h5>Personalized Feed Tweets</h5>
     </div>
+    <% @tweet_lists.each do |tweet_list| %>
+    <% tweet_list.each do |tweet| %>
+    <% raise %>
+    <div class="card tweet">
+      <a class="author">
+        <img class="avatar" src=<%= tweet[:avatar] %> />
+        <span class="name"><%= tweet[:name] %></span>
+        <span class="username">@<%= tweet[:handle] %></span>
+      </a>
+      <div class="content" >
+        <%= tweet[:text] %>
+        <% unless tweet[:url].nil? %>
+        <%= link_to tweet[:url], tweet[:url] %>
+        <%= link_to tweet[:url] do  %>
+        <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
+        <% end  %>
+        <% end %>
   </div>
+</div>
+<% end %>
+<% end %>
+</div>
+</div>
 </div>
 
 
 <%= content_for :after_js do %>
-  <%= javascript_pack_tag "youtube_embed" %>
+<%= javascript_pack_tag "youtube_embed" %>
 <% end %>

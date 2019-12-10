@@ -15,6 +15,10 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    # if params contains info about the post which is to be created,
+    # set values to @post before rendering.
+    @post.title = params[:title] if params.include?(:title)
+    @post.content = params[:content] if params.include?(:content)
     authorize @post
   end
 
