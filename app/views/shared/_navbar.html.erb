@@ -49,10 +49,10 @@
 
   <% end %>
 
-  <div class="nav-item dropdown btn btn-light">
+  <div class="nav-item dropdown btn">
     <% if user_signed_in? %>
       <% if current_user.photo.file.nil? %>
-        <%= cl_image_tag "blank-avatar_rupjxt", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <%= cl_image_tag "user_avatar_uwwwti", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% else %>
         <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% end %>
