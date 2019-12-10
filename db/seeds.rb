@@ -1,46 +1,19 @@
 require 'open-uri'
 require 'json'
 
-#   spinner = Enumerator.new do |e|
-#   loop do
-#     e.yield '.'
-#     e.yield ' o'
-#     e.yield '  O'
-#     e.yield '   0'
-#     e.yield '    O'
-#     e.yield '     o'
-#     e.yield '      .'
-#     e.yield '     o'
-#     e.yield '    O'
-#     e.yield '   0'
-#     e.yield '  O'
-#     e.yield ' o'
-#   end
-# end
-
-# 1.upto(100) do |i|
-#   printf("\rBooting... %s", spinner.next)
-#   sleep(0.1)
-# end
-
-print "Destroying all teams..."
+print "Destroying all teams"
 Team.destroy_all
-puts "Successfull.. next"
-puts "Destroying all players..."
+puts "Destroying all players"
 Person.destroy_all
-puts "Successfull... next"
 
+puts "creating teams"
 team_endpoint = 'https://data.nba.net/'
-
 uri = URI(team_endpoint)
 response = Net::HTTP.get(uri)
 res = JSON.parse(response)
-# res['b_path'].each { |h| h.delete('id') }
-
 
 all_teams = {}
 
-puts "creating teams..."
 res['sports_content']['teams']['team'].each do |team|
   team_name = team['team_name']
   team_nickname = team['team_nickname']
@@ -54,6 +27,8 @@ res['sports_content']['teams']['team'].each do |team|
   all_teams[team_id.to_s] = team
 end
 
+
+puts "Creating standings data"
 
 standings_data = HTTParty.get("http://data.nba.net/10s/prod/v1/current/standings_conference.json")
 
@@ -90,16 +65,11 @@ end
 # Sample query
 # Team.find_by(standing: 3, conference: "west")
 
+puts "getting player data"
+puts "this may take some time...."
 
-puts "Successfull... next"
-
-url = 'https://data.nba.net/10s/prod/v1/2019/players.json'
-uri = URI(url)
-response = Net::HTTP.get(uri)
-res = JSON.parse(response)
-
-puts "creating people.."
-res['league']['standard'].each do |person|
+player_data = HTTParty.get('https://data.nba.net/10s/prod/v1/2019/players.json')
+player_data['league']['standard'].each do |person|
   first_name = person['firstName']
   last_name = person['lastName']
   api_team = person['teamId']
@@ -111,21 +81,21 @@ res['league']['standard'].each do |person|
   team = all_teams[api_team]
 
   # if Person.find_by(player_id: player_id).nil?
-    player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
-    player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
-    response = Net::HTTP.get_response(URI.parse(player_photo_url))
-    if response.code == "200"
-      player.remote_photo_url = player_photo_url
-    else
-      player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
-    end
-    player.team = team
-    player.save
+  player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
+  player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
+  response = Net::HTTP.get_response(URI.parse(player_photo_url))
+  if response.code == "200"
+    player.remote_photo_url = player_photo_url
+  else
+    player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
+  end
+  player.team = team
+  player.save
   # end
 end
 
 
-puts "creating 6 users..."
+puts "creating 6 users"
 a = User.create!(email: "test@test.com", password: "123456")
 b = User.create!(email: "ron@aol.com", password: "123456")
 c = User.create!(email: "josh@bros.com", password: "123456")
@@ -147,7 +117,7 @@ end
 
 a.follow(Person.find(241))
 
-puts "creating 5 posts..."
+puts "creating 5 posts"
 Post.create!(user_id: 1, title: "LeBron is the GOAT", user_generated: true, likes: 10008, content: "Lorem ipsum dolor
   sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   Ac felis donec et odio pellentesque. Tristique et egestas quis ipsum suspendisse ultrices gravida
@@ -188,9 +158,6 @@ Post.create!(user_id: 5, title: "Baseketball Sucks, change my mind", user_genera
   of the rest of him, waved about helplessly as he looked. \"What's happened to me?\" he thought. It wasn't
   a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar
   walls.", category: "Person")
-
-puts "Successfull... done!"
-
 
 puts "getting all game score data"
 puts "this may take some time...."
