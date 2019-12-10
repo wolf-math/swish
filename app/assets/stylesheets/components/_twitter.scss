@@ -60,6 +60,10 @@ p {
 
 .tweets-container {
   margin: 20px;
+  overflow-y: scroll;
+  height: 856px;
+  box-shadow: 8px 8px 20px 0px #88888852;
+  border-radius: 10px;
 }
 
 .tweets-header {

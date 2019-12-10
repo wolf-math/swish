@@ -51,6 +51,7 @@
 }
 
 .searchbar {
+  margin-right: 26px;
   font-size: 1.4rem;
   width: 20rem;
   height: 3rem;
@@ -59,7 +60,6 @@
   border-radius: 10rem;
   box-shadow: 0 1rem 2rem rgba(black, .1);
   padding: 1.5rem;
-  // position: relative;
     transition: all .2s;
   transition-delay: .1s;
 }
