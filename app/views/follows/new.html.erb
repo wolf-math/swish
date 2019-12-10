@@ -1,14 +1,16 @@
 <div class="container team-index-container">
-  <div class='page-title'>
-    <h1 class='text-center logo-img-top nba-logo mb-5 mt-4'><%= image_tag "nba-logo.png", alt: "NBA-logo"%> Select Teams To Follow </h1>
-  </div>
 
-  <%= simple_form_for(@follow) do |f| %>
-  <div class='button-wrapper mb-5'>
-    <button class="teams-submit">
-      <%= f.button :submit, 'Submit Teams' %>
-    </button>
-  </div>
+    <div class='page-title'>
+      <h1 class='text-center logo-img-top nba-logo mb-5' id="logo-img-top"><%= image_tag "nba-logo.png", alt: "NBA-logo"%> Select Teams To Follow </h1>
+    </div>
+
+    <%= simple_form_for(@follow) do |f| %>
+    <div class='button-wrapper mb-5'>
+      <button class="teams-submit">
+        <%= f.button :submit, 'Submit Teams' %>
+      </button>
+    </div>
+
   <div class="row">
     <input type="hidden" name="follow[team_ids][]" value="">
     <% @teams.each do |team| %>

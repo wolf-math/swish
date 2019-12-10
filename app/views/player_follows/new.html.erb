@@ -1,6 +1,6 @@
 <div class="container team-index-container">
   <div class='page-title'>
-    <h1 class='text-center logo-img-top nba-logo mb-5 mt-4'><%= image_tag "nba-logo.png", alt: "NBA-logo"%> Select Players To Follow </h1>
+    <h1 class='text-center logo-img-top nba-logo mb-5' id="logo-img-top"><%= image_tag "nba-logo.png", alt: "NBA-logo"%> Select Players To Follow </h1>
   </div>
 
   <%= simple_form_for(:thing, url: player_follows_path) do |f| %>

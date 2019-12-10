@@ -1,5 +1,11 @@
 .button-wrapper {
   text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 70px;
+    background: white;
+    z-index: 3;
+    transition: all 1s ease;
 }
 
 .teams-submit {
@@ -7,6 +13,7 @@
   color: white;
   border: none;
   padding: 4px 18px;
+  margin-bottom: 10px;
   border-radius: 50px;
   opacity: 0.8;
 }
