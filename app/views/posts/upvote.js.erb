@@ -1,4 +1,12 @@
-var unlike_post = $('.like_post');
-unlike_post.parent().parent().find('.vote_count').html('<%= escape_javascript @post.votes_for.size.to_s %>');
-unlike_post.closest('.unlike_post').hide();
-unlike_post.closest('.votes').html(' <%= link_to "Like",  upvote_post_path(@post), remote: true, method: :get, class: "like_post" %>');
+
+function upVote(){
+
+  const likePost = document.querySelector('.like_post');
+  const unlikePost = document.querySelector('.unlike_post');
+  const likeVoteCount = likePost.querySelector('.vote_count');
+  const unlikeVoteCount = unlikePost.querySelector('.vote_count');
+
+  likeVoteCount.innerText = "<%= @post.get_upvotes.size%>"
+  unlikeVoteCount.innerText = "<%= @post.get_downvotes.size%>"
+}
+upVote()
