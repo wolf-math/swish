@@ -1,4 +1,19 @@
 <div class="container post-show">
+  <div class="votes">
+<%= link_to upvote_post_path(@post), method: :get, remote: true, class: 'like_post' do %>
+    <button type="button" class="btn btn-info" aria-label="Left Align">
+        <i class="fa fa-arrow-up"></i>
+        <span class="badge vote_count"><%= @post.get_upvotes.size %></span>
+    </button>
+<% end %>
+
+<%= link_to downvote_post_path(@post), method: :get, remote: true, class: 'unlike_post' do %>
+    <button type="button" class="btn btn-info" aria-label="Left Align">
+        <i class="fa fa-arrow-down"></i>
+        <span class="badge vote_count"><%= @post.get_downvotes.size %></span>
+    </button>
+<% end %>
+</div>
   <div class="post-container">
     <div class="post-content-container">
       <div class="post-content-text">

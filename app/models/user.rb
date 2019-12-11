@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :posts
   acts_as_follower
+  acts_as_voter
   mount_uploader :photo, PhotoUploader
   has_many :videos
   has_many :tweets

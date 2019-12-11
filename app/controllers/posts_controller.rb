@@ -38,6 +38,28 @@ class PostsController < ApplicationController
     authorize @post
     @comment = Comment.new
   end
+  # upvote from user
+
+  def upvote
+    @post = Post.find(params[:id])
+    @post.upvote_from current_user
+    respond_to do |format|
+      format.html { redirect_to posts_path(@post) }
+      format.js
+    end
+    # @post = policy_scope(Post).order(created_at: :desc)
+  end
+  # downvote from user
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote_from current_user
+    respond_to do |format|
+      format.html { redirect_to posts_path(@post) }
+      format.js
+    end
+    # @post = policy_scope(Post).order(created_at: :desc)
+  end
 
   private
 
