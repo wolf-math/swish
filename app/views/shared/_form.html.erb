@@ -6,6 +6,8 @@
     <%= f.input :title, label: false %>
     <h6>Description</h6>
     <%= f.input :content, label: false, placeholder: "Talk about something.." %>
+    <%= f.association :team, collection:  current_user.following_by_type('Team') %>
+    <%= f.association :person, collection:  current_user.following_by_type('Person').map { |person| [ person.full_name, person.id,] } %>
     <label class="btn add-image-btn">
       <i class="fas fa-image"></i>
       <span style="display:none;">
