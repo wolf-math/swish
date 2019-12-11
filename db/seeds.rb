@@ -71,8 +71,8 @@ standings_data["league"]["standard"]["conference"]["west"].each do |rank|
   team.save
 end
 
-# Sample query
-# Team.find_by(standing: 3, conference: "west")
+############### Sample query ##############
+########### Team.find_by(standing: 3, conference: "west") #########
 
 
 puts "getting player data"
@@ -94,13 +94,13 @@ player_data['league']['standard'].each do |person|
 
   player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
 
-  player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
-  response = Net::HTTP.get_response(URI.parse(player_photo_url))
-  if response.code == "200"
-    player.remote_photo_url = player_photo_url
-  else
-    player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
-  end
+  ##player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
+  ## response = Net::HTTP.get_response(URI.parse(player_photo_url))
+  ## if response.code == "200"
+  ##   player.remote_photo_url = player_photo_url
+  ## else
+  ##   player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
+  ## end
   player.team = team
   player.save
 end
@@ -125,8 +125,9 @@ puts "creating sample player followers"
   user_list.sample.follow(Person.all.sample)
 end
 
-a.follow(Person.find(241))
-puts "creating 5 comments"
+# a.follow(Person.find(241))
+
+# puts "creating 5 comments"
 
  user_id: User.first.id,
  text: "he’s not nearly as good as charles. He’s really talented. But, listen, I love the kid,
