@@ -1,7 +1,7 @@
 class YoutubeApi < ApplicationRecord
   YOUTUBE_BASE = "https://www.googleapis.com/youtube/v3/search/?key=#{ENV['YOUTUBE_API']}&part=snippet"
   CHANNELS = ['UCT83YP07yVuaH9J19YABhlw', 'UC-XWpctw55Q6b_AHo8rkJgw', 'UCEjOSbbaOfgnfRODEEMYlCw', 'UCp3dgMf1OUP2XqOpyOY2bzQ']
-  MAX_RESULTS = "&maxResults=1"
+  MAX_RESULTS = "&maxResults=5"
   def self.all_videos(user)
     results = []
      user.preferences
