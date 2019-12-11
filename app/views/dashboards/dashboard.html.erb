@@ -73,7 +73,8 @@
       </div>
     </div>
     <div class="tab-pane" id="teams" role="tabpanel" aria-labelledby="my-teams">
-      <div class="row">
+      <div class="container index-container">
+        <div class="container player-team-container">
           <% @teams.each do |team| %>
             <div class="col-lg-2 col-md-4 col-sm-12">
               <%= link_to team_path(team) do %>
@@ -83,6 +84,7 @@
               <% end %>
             </div>
           <% end %>
+        </div>
       </div>
     </div>
   </div>
