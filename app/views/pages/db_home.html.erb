@@ -2,17 +2,17 @@
   <div class="col-8 vc-wrapper">
     <div class="card tweets-header text-center ml-10 mt-10 vids-header">
         <h5>Personalized Feed Videos</h5>
-      </div>
+    </div>
     <div class="row video-container">
       <% @youtube_vids.each do |vid| %>
-      <div class="col-4">
-        <div class="video-card" id="card">
-          <div class="youtube-player" data-id="<%= vid[:id] %>"></div>
-          <a class="author">
-            <span class="title"><%= vid[:title] %></span>
-          </a>
+        <div class="col-4">
+          <div class="video-card" id="card">
+            <div class="youtube-player" data-id="<%= vid[:id] %>"></div>
+              <a class="author">
+                <span class="title"><%= vid[:title] %></span>
+            </a>
+          </div>
         </div>
-      </div>
       <%end %>
     </div>
   </div>
@@ -22,22 +22,22 @@
         <h5>Personalized Feed Tweets</h5>
       </div>
       <% @tweet_lists.each do |tweet| %>
-      <div class="card tweet">
-        <a class="author">
-          <img class="avatar" src=<%= tweet[:avatar] %> />
-          <span class="name"><%= tweet[:name] %></span>
-          <span class="username">@<%= tweet[:handle] %></span>
-        </a>
-        <div class="content" >
-          <%= tweet[:text] %>
-          <% unless tweet[:url].nil? %>
-          <%= link_to tweet[:url], tweet[:url] %>
-          <%= link_to tweet[:url] do  %>
-          <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
-          <% end  %>
-          <% end %>
+        <div class="card tweet">
+          <a class="author">
+            <img class="avatar" src=<%= tweet[:avatar] %> />
+            <span class="name"><%= tweet[:name] %></span>
+            <span class="username">@<%= tweet[:handle] %></span>
+          </a>
+          <div class="content" >
+            <%= tweet[:text] %>
+            <% unless tweet[:url].nil? %>
+              <%= link_to tweet[:url], tweet[:url] %>
+              <%= link_to tweet[:url] do  %>
+                <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
+              <% end  %>
+            <% end %>
+          </div>
         </div>
-      </div>
       <% end %>
     </div>
   </div>

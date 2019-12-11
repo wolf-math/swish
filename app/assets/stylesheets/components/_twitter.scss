@@ -58,12 +58,17 @@ p {
   color: #888;
 }
 
-.tweets-container {
+.tweet-container {
   margin: 20px;
-  overflow-y: scroll;
-  height: 856px;
+  // height: 856px;
   box-shadow: 8px 8px 20px 0px #88888852;
   border-radius: 10px;
+}
+
+.tweet-container h4 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tweets-header {
