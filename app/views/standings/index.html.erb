@@ -13,8 +13,8 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="eastern" role="tabpanel" aria-labelledby="eastern-tab">
-        <table class="standings-table">
-          <tr class="head-row">
+        <table class="table table-hover">
+          <tr class="head-row bg-warning">
             <td>Rank</td>
             <td>Team</td>
             <td>GB</td>
@@ -28,7 +28,10 @@
           <% @east.each do |team| %>
             <tr>
               <td><%= team.standing %></td>
-              <td><%= link_to team.nickname, team_path(team.id) %></td>
+              <td>
+                <%= image_tag "#{team.name} #{team.nickname}.png", class: "team-avatar-icon", alt:"team-image" %>
+                <%= link_to team.nickname, team_path(team.id) %>
+              </td>
               <td><%= team.games_behind %></td>
               <td><%= team.wins %></td>
               <td><%= team.losses %></td>
@@ -45,8 +48,8 @@
         </table>
       </div>
       <div class="tab-pane" id="western" role="tabpanel" aria-labelledby="western-tab">
-        <table class="standings-table">
-          <tr class="head-row">
+        <table class="table table-hover">
+          <tr class="head-row bg-warning">
             <td>Rank</td>
             <td>Team</td>
             <td>GB</td>
@@ -60,7 +63,10 @@
           <% @west.each do |team| %>
             <tr>
               <td><%= team.standing %></td>
-              <td><%= link_to team.nickname, team_path(team.id) %></td>
+              <td>
+                <%= image_tag "#{team.name} #{team.nickname}.png", class: "team-avatar-icon", alt:"team-image" %>
+                <%= link_to team.nickname, team_path(team.id) %>
+              </td>
               <td><%= team.games_behind %></td>
               <td><%= team.wins %></td>
               <td><%= team.losses %></td>
