@@ -1,23 +1,29 @@
 <div class="container">
-  <ul class="mt-3 nav nav-tabs" id="myTab" role="tablist">
-    <% if user_signed_in? %>
+  <div class='page-title'>
+    <h1 class='text-center logo-img-top nba-logo text-center mb-5 mt-4'><%= image_tag "nba-logo.png", alt: "NBA-logo"%> Forum</h1>
+  </div>
+  <div class="flex-container">
+    <ul class="mt-3 nav nav-tabs" id="myTab" role="tablist">
+      <% if user_signed_in? %>
 
+        <li class="nav-item">
+          <a class="nav-link active" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-controls="favorite" aria-selected="true">Followed</a>
+        </li>
+      <% end %>
       <li class="nav-item">
-        <a class="nav-link active" id="favorite-tab" data-toggle="tab" href="#favorite" role="tab" aria-controls="favorite" aria-selected="true">Followed</a>
+        <a class="nav-link" id="allposts-tab" data-toggle="tab" href="#allposts" role="tab" aria-controls="allposts" aria-selected="false">all posts</a>
       </li>
-    <% end %>
-    <li class="nav-item">
-      <a class="nav-link" id="allposts-tab" data-toggle="tab" href="#allposts" role="tab" aria-controls="allposts" aria-selected="false">all posts</a>
-    </li>
-    <% if user_signed_in? %>
-    <li  class="nav-item">
-      <a class="nav-link" id="myposts-tab" data-toggle="tab" href="#myposts", role="tab" aria-controls="myposts" aria-selected="false">my posts</a>
-    </li>
-    <% end %>
-    <li  class="nav-item">
-      <a class="nav-link" id="newpost-tab" data-toggle="tab" href="#newpost" role="tab" aria-controls="newpost" aria-selected="false">Create <i class="fas fa-plus-circle"></i></a>
-    </li>
-  </ul>
+      <% if user_signed_in? %>
+      <li  class="nav-item">
+        <a class="nav-link" id="myposts-tab" data-toggle="tab" href="#myposts", role="tab" aria-controls="myposts" aria-selected="false">my posts</a>
+      </li>
+      <% end %>
+      <li  class="nav-item">
+        <a class="nav-link" id="newpost-tab" data-toggle="tab" href="#newpost" role="tab" aria-controls="newpost" aria-selected="false">Create <i class="fas fa-plus-circle"></i></a>
+      </li>
+    </ul>
+  </div>
+</div>
   <div class="tab-content">
     <% if user_signed_in? %>
     <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
@@ -107,24 +113,3 @@
     <% end %>
   </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
