@@ -3,84 +3,64 @@ class PagesController < ApplicationController
 
   def home
     if user_signed_in?
+      @myposts = current_user.posts.order(created_at: :desc)
+      @professionals_posts = Post.where(team_id: current_user.following_by_type('Team').pluck(:id)).or(Post.where(people_id: current_user.following_by_type('Person').pluck(:id))).order(created_at: :desc)
+      @post = Post.new
+      @posts = policy_scope(Post).order(created_at: :desc)
+      @games = Game.all.where(date_time: 1.week.ago..Date.today).order(date_time: :desc)
+      @arr = @games.group_by(&:date_time)
       if current_user.called
         @youtube_vids = VIDEOS # Video.where(user: current_user)
         @tweet_lists = TWEETS # Tweet.where(user: current_user)
       else
-        @youtube_vids = VIDEOS  #YoutubeApi.all_videos(current_user) || []
-        @tweet_lists = TWEETS  #TwitterApi.perform(current_user) || []
+        @youtube_vids = VIDEOS # YoutubeApi.all_videos(current_user) || []
+        @tweet_lists = TWEETS # TwitterApi.perform(current_user) || []
       end
     else
+      @myposts = Post.all.order(created_at: :desc)
       @tweet_lists = []
       @youtube_vids = []
     end
-    @post = Post.new
-    @posts = policy_scope(Post).order(created_at: :desc)
-    if user_signed_in?
-      @myposts = current_user.posts.order(created_at: :desc)
-    else
-      @myposts = Post.all.order(created_at: :desc)
-    end
-    if user_signed_in?
-      @professionals_posts = Post.where(team_id: current_user.following_by_type('Team').pluck(:id)).or(Post.where(people_id: current_user.following_by_type('Person').pluck(:id))).order(created_at: :desc)
-  # render 'db_home' if current_user.called
-    end
-    @games = Game.all.where(date_time: 1.week.ago..Date.today)
   end
 
   VIDEOS =  [[{ id: "AYJQ6YiyzC0", title: "Los Angeles Lakers vs Utah Jazz Full Game Highlights | December 4, 2019-20 NBA Season" }],
-            [{ id: "IPdYZyNZNJM", title: "Dallas Mavericks vs Minnesota Timberwolves Full Game Highlights | December 4, 2019-20 NBA Season" }],
-            [{:id=>"twlEFbo-9U8",
-   :title=>"James Harden Dunk Not Counted | Rockets vs Spurs",
-  }],
-  [{:id=>"VXxjBGkefZ0",
-   :title=>"Bill Simmons on the Polarizing Rockets. Plus, CFB With Bruce Feldman. | The Ryen Russillo Podcast",
-  }],
-  [{:id=>"htI2fa4oWLU&t=5s",
-   :title=>"MYSTERY VIDEO - CLICK IF YOU DARE",
-  }],
-  [{:id=>"1-_31YF3PE8",
-   :title=>"LeBron James Full Highlights 2019.12.04 Lakers vs Jazz - 20 Pts, 12 Asts! | FreeDawkins",
-  }],
-  [{:id=>"_VjX2bXn0S8",
-   :title=>"Luka Doncic Full Highlights 2019.12.04 Mavs vs TWolves - 22 Pts, 7 Rebs, 6 Asts! | FreeDawkins",
-  }],
-  [{:id=>"3Tdm-gVioWI&t=431s",
-   :title=>"This PROVES Luka Doncic is BETTER than Lebron James at 20 Years Old",
-  }],
-  [{:id=>"HSOtMJbP7k4",
-   :title=>"Los Angeles Lakers vs Washington Wizards Full Game Highlights | November 29, 2019-20 NBA Season",
-  }],
-  []]
+      [{ id: "IPdYZyNZNJM", title: "Dallas Mavericks vs Minnesota Timberwolves Full Game Highlights | December 4, 2019-20 NBA Season" }],
+      [{ id: "twlEFbo-9U8", title: "James Harden Dunk Not Counted | Rockets vs Spurs" }],
+      [{ id: "VXxjBGkefZ0", title: "Bill Simmons on the Polarizing Rockets. Plus, CFB With Bruce Feldman. | The Ryen Russillo Podcast" }],
+      [{ id: "htI2fa4oWLU&t=5s", title: "MYSTERY VIDEO - CLICK IF YOU DARE" }],
+      [{ id: "1-_31YF3PE8", title: "LeBron James Full Highlights 2019.12.04 Lakers vs Jazz - 20 Pts, 12 Asts! | FreeDawkins" }],
+      [{ id: "_VjX2bXn0S8", title: "Luka Doncic Full Highlights 2019.12.04 Mavs vs TWolves - 22 Pts, 7 Rebs, 6 Asts! | FreeDawkins" }],
+      [{ id: "3Tdm-gVioWI&t=431s", title: "This PROVES Luka Doncic is BETTER than Lebron James at 20 Years Old" }],
+      [{ id: "HSOtMJbP7k4", title: "Los Angeles Lakers vs Washington Wizards Full Game Highlights | November 29, 2019-20 NBA Season" }]
+    ]
 
+  TWEETS = [[{ text: "Wow!! Ball game. What A Game! Best game of the year thus far! #49ersvsSaints",
+               :name=>"LeBron James",
+               :handle=>"KingJames",
+               :followers=>44100000,
+               :avatar=>"https://pbs.twimg.com/profile_images/1010862750401253377/Rof4XuYC_400x400.jpg",
+               :created_at=>"Thu Dec 12 10:49:22 +0000 2019",
+               :url=>nil,
+               :image=>nil },
 
+           {:text=>"halftime report on tnt is the best show 😂😂😂😂 @SHAQ @NBAonTNT",
+             :name=>"Luka Doncic",
+             :handle=>"luka7doncic",
+             :followers=>538000,
+             :avatar=>"https://pbs.twimg.com/profile_images/1034982555538284544/BEeQmYf-_400x400.jpg",
+             :created_at=>"Thu Dec 12 10:42:48 +0000 2019",
+             :url=>nil,
+             :image=>nil}
+            ],
 
-  TWEETS = [[{:text=>"Wow!! Ball game. What A Game! Best game of the year thus far! #49ersvsSaints",
-   :name=>"LeBron James",
-   :handle=>"KingJames",
-   :followers=>44100000,
-   :avatar=>"https://pbs.twimg.com/profile_images/1010862750401253377/Rof4XuYC_400x400.jpg",
-   :created_at=>"Thu Dec 12 10:49:22 +0000 2019",
-   :url=>nil,
-   :image=>nil},
-
-   {:text=>"halftime report on tnt is the best show 😂😂😂😂 @SHAQ @NBAonTNT",
-     :name=>"Luka Doncic",
-     :handle=>"luka7doncic",
-     :followers=>538000,
-     :avatar=>"https://pbs.twimg.com/profile_images/1034982555538284544/BEeQmYf-_400x400.jpg",
-     :created_at=>"Thu Dec 12 10:42:48 +0000 2019",
-     :url=>nil,
-     :image=>nil}],
-
-     [{:text=>"Maaan what????  Can’t end it like that !!! No way!",
-       :name=>"James Harden",
-       :handle=>"JHarden13",
-       :followers=>4491,
-       :avatar=>"https://pbs.twimg.com/profile_images/799472766869237760/8UPlPkqJ_400x400.jpg",
-       :created_at=>"Thu Dec 12 10:33:42 +0000 2019",
-       :url=>nil,
-       :image=>nil},
+           [{:text=>"Maaan what????  Can’t end it like that !!! No way!",
+             :name=>"James Harden",
+             :handle=>"JHarden13",
+             :followers=>4491,
+             :avatar=>"https://pbs.twimg.com/profile_images/799472766869237760/8UPlPkqJ_400x400.jpg",
+             :created_at=>"Thu Dec 12 10:33:42 +0000 2019",
+             :url=>nil,
+             :image=>nil},
 
        {:text=>"Luka Doncic started his rookie season with a 79 #2KRatings
 
@@ -171,5 +151,4 @@ class PagesController < ApplicationController
                      :url=>nil,
                      :image=>nil}],
   ]
-
 end

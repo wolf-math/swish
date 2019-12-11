@@ -106,11 +106,12 @@
   border-radius: 10px;
 }
 
+
 .scores-container {
   margin: 20px;
   width: 100%;
   box-shadow: 8px 8px 20px 0px #88888852;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .scores-container h4 {
@@ -137,3 +138,15 @@
   }
 }
 
+.team-avatar-icon {
+  max-width: 20px;
+  max-height: 20px;
+  position: relative;
+}
+
+.homepage-date {
+  text-align: center;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+}
