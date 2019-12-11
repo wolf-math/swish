@@ -119,4 +119,21 @@
   margin-right: auto;
 }
 
+.navbar-score-card {
+  &:hover {
+  transform: scale(1.1);
+  }
+}
+
+.video-card {
+  &:hover {
+  transform: scale(1.05);
+  }
+}
+
+.tweet {
+  &:hover {
+  transform: scale(1.07);
+  }
+}
 
