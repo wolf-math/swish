@@ -41,7 +41,7 @@
     </div>
     <% end %>
 
-    <div class="tab-pane active" id="comments" role="tabpanel" aria-labelledby="my-comments">
+    <div class="tab-pane" id="comments" role="tabpanel" aria-labelledby="my-comments">
       <div class="posts-container">
         <div class="my-posts-container">
           <% @comments.each do |comment| %>
@@ -62,18 +62,11 @@
     </div>
     <div class="tab-pane" id="players" role="tabpanel" aria-labelledby="my-players">
       <div class="container index-container">
-        <div class="my-posts-container">
+        <div class="container player-team-container">
           <% @players.each do |player| %>
-            <div class="col-10">
-              <%= link_to team_path(Person.find(player.followable_id).team_id) do %>
-                <div class="dashboard-item">
-                  <%= cl_image_tag Person.find(player.followable_id).photo, class: "player-img" %>
-                  <p><%= Person.find(player.followable_id).first_name[0] %>. <%= Person.find(player.followable_id).last_name %></p>
-                  <p><%= Person.find(player.followable_id).jersey_number %></p>
-                  <p><%= Person.find(player.followable_id).position %></p>
-                  <p><%= Person.find(player.followable_id).height %></p>
-                </div>
-              <% end %>
+            <div class="mb-3 followable-index-card flexcontainer">
+              <%= cl_image_tag(Person.find(player.followable_id).photo, class: "player-image", :quality=>"auto", fetch_format: :auto) %>
+              <span class="player-name"><%= Person.find(player.followable_id).first_name[0] %>. <%= Person.find(player.followable_id).last_name %></span>
             </div>
           <% end %>
         </div>
@@ -81,18 +74,12 @@
     </div>
     <div class="tab-pane" id="teams" role="tabpanel" aria-labelledby="my-teams">
       <div class="container index-container">
-        <div class="my-posts-container">
+        <div class="container player-team-container">
           <% @teams.each do |team| %>
-            <div class="col-10">
-              <%= link_to team_path(Team.find(team.followable_id).id) do %>
-                <div class="posts-card">
-                  <div class="card">
-                    <div class="card-body">
-                      <%= image_tag "#{Team.find(team.followable_id).name} #{Team.find(team.followable_id).nickname}.png", class: "card-img", alt:"team-image" %>
-                      <h5><%= Team.find(team.followable_id).name %></h5>
-                      <p>Rank: <%= Team.find(team.followable_id).standing %> GB: <%= Team.find(team.followable_id).games_behind %> </p>
-                    </div>
-                  </div>
+            <div class="col-lg-2 col-md-4 col-sm-12">
+              <%= link_to team_path(team) do %>
+                <div class="mb-3">
+                  <%= image_tag "#{Team.find(team.followable_id).name} #{Team.find(team.followable_id).nickname}.png", class: "card-img", alt:"team-image" %>
                 </div>
               <% end %>
             </div>

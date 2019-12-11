@@ -65,34 +65,39 @@ end
 # Sample query
 # Team.find_by(standing: 3, conference: "west")
 
-# puts "getting player data"
-# puts "this may take some time...."
 
-# player_data = HTTParty.get('https://data.nba.net/10s/prod/v1/2019/players.json')
-# player_data['league']['standard'].each do |person|
-#   first_name = person['firstName']
-#   last_name = person['lastName']
-#   api_team = person['teamId']
-#   player_id = person['personId']
-#   jersey = person['jersey']
-#   position = person['pos']
-#   height = person['heightMeters']
+puts "getting player data"
 
-#   team = all_teams[api_team]
 
-#   # if Person.find_by(player_id: player_id).nil?
-#   player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
-#   player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
-#   response = Net::HTTP.get_response(URI.parse(player_photo_url))
-#   if response.code == "200"
-#     player.remote_photo_url = player_photo_url
-#   else
-#     player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
-#   end
-#   player.team = team
-#   player.save
-#   # end
-# end
+def player_pics
+  puts "this may take some time...."
+  player_data = HTTParty.get('https://data.nba.net/10s/prod/v1/2019/players.json')
+  player_data['league']['standard'].each do |person|
+    first_name = person['firstName']
+    last_name = person['lastName']
+    api_team = person['teamId']
+    player_id = person['personId']
+    jersey = person['jersey']
+    position = person['pos']
+    height = person['heightMeters']
+
+    team = all_teams[api_team]
+
+    player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
+    player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
+    response = Net::HTTP.get_response(URI.parse(player_photo_url))
+    if response.code == "200"
+      player.remote_photo_url = player_photo_url
+    else
+      player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
+    end
+    player.team = team
+    player.save
+  end
+end
+
+# uncomment if you need player pictures
+# player_pics
 
 
 puts "creating 6 users"
@@ -118,59 +123,59 @@ end
 a.follow(Person.find(241))
 puts "creating 5 comments"
 
-Comment.create!( id: 1,
- user_id: 1,
- text: "he’s not nearly as good as charles. He’s really talented. But, listen, I love the kid,
- I wish him nothing but the best but it’s disrespectful",
- likes: nil,
- commentable_id: 5,
- created_at: Tue, 10 Dec 2019 15:16:07 UTC +00:00,
- updated_at: Tue, 10 Dec 2019 15:16:07 UTC +00:00,
- commentable_type: "Post">
-  )
-Comment.create!(
-  id: 2,
- user_id: 1,
- text: "Zion will destroy barkley in his prime in a one on one game",
- likes: nil,
- commentable_id: 1,
- created_at: Tue, 10 Dec 2019 15:30:25 UTC +00:00,
- updated_at: Tue, 10 Dec 2019 15:30:25 UTC +00:00,
- commentable_type: "Comment">
-  )
-  Comment.create!(
-    id: 3,
- user_id: 1,
- text: "Huge mistake by Atlanta for trading him.",
- likes: nil,
- commentable_id: 3,
- created_at: Tue, 10 Dec 2019 15:56:45 UTC +00:00,
- updated_at: Tue, 10 Dec 2019 15:56:45 UTC +00:00,
- commentable_type: "Post">
-    )
-  Comment.create!(
-     id: 4,
- user_id: 1,
- text: "I can say he passed Kobe on the Goat chase but not Jordan",
- likes: nil,
- commentable_id: 1,
- created_at: Tue, 10 Dec 2019 16:05:06 UTC +00:00,
- updated_at: Tue, 10 Dec 2019 16:05:06 UTC +00:00,
- commentable_type: "Post">
- )
-  Comment.create!(id: 5,
-   user_id: 1,
-   text:
-    "Jordan was an amazing player. He couldn't be any closer to the greatest ever.
-     He's not overrated. Others are just underrated.\r\n\r\nJordan is overated in
-     my opinion Kareemis the goat, along with his great individual accomplishments,
-     was a winner. He took the Bucks, a 27 win team, and made them into NBA champions in two years.",
-   likes: nil,
-   commentable_id: 2,
-   created_at: Tue, 10 Dec 2019 16:24:38 UTC +00:00,
-   updated_at: Tue, 10 Dec 2019 16:24:38 UTC +00:00,
-   commentable_type: "Post">
-   )
+# Comment.create!( id: 1,
+#  user_id: 1,
+#  text: "he’s not nearly as good as charles. He’s really talented. But, listen, I love the kid,
+#  I wish him nothing but the best but it’s disrespectful",
+#  likes: nil,
+#  commentable_id: 5,
+#  created_at: Tue, 10 Dec 2019 15:16:07 UTC +00:00,
+#  updated_at: Tue, 10 Dec 2019 15:16:07 UTC +00:00,
+#  commentable_type: "Post">
+#   )
+# Comment.create!(
+#   id: 2,
+#  user_id: 1,
+#  text: "Zion will destroy barkley in his prime in a one on one game",
+#  likes: nil,
+#  commentable_id: 1,
+#  created_at: Tue, 10 Dec 2019 15:30:25 UTC +00:00,
+#  updated_at: Tue, 10 Dec 2019 15:30:25 UTC +00:00,
+#  commentable_type: "Comment">
+#   )
+#   Comment.create!(
+#     id: 3,
+#  user_id: 1,
+#  text: "Huge mistake by Atlanta for trading him.",
+#  likes: nil,
+#  commentable_id: 3,
+#  created_at: Tue, 10 Dec 2019 15:56:45 UTC +00:00,
+#  updated_at: Tue, 10 Dec 2019 15:56:45 UTC +00:00,
+#  commentable_type: "Post">
+#     )
+#   Comment.create!(
+#      id: 4,
+#  user_id: 1,
+#  text: "I can say he passed Kobe on the Goat chase but not Jordan",
+#  likes: nil,
+#  commentable_id: 1,
+#  created_at: Tue, 10 Dec 2019 16:05:06 UTC +00:00,
+#  updated_at: Tue, 10 Dec 2019 16:05:06 UTC +00:00,
+#  commentable_type: "Post">
+#  )
+#   Comment.create!(id: 5,
+#    user_id: 1,
+#    text:
+#     "Jordan was an amazing player. He couldn't be any closer to the greatest ever.
+#      He's not overrated. Others are just underrated.\r\n\r\nJordan is overated in
+#      my opinion Kareemis the goat, along with his great individual accomplishments,
+#      was a winner. He took the Bucks, a 27 win team, and made them into NBA champions in two years.",
+#    likes: nil,
+#    commentable_id: 2,
+#    created_at: Tue, 10 Dec 2019 16:24:38 UTC +00:00,
+#    updated_at: Tue, 10 Dec 2019 16:24:38 UTC +00:00,
+#    commentable_type: "Post">
+#    )
 
 
 
@@ -281,6 +286,7 @@ def get_days_scores_api(date_string)
   data["games"].each do |game|
     box = Game.new
     box.date = date_string
+    box.date_time = string_to_date(date_string)
     visiting_team = Team.find_by(abbrevation: game["vTeam"]["triCode"])
     home_team = Team.find_by(abbrevation: game["hTeam"]["triCode"])
     box.vTeam_id = visiting_team.id

@@ -6,10 +6,11 @@
       <h6>Description</h6>
       <%= f.input :content, label: false, placeholder: "Talk about something.." %>
             <h6>Add an image</h6>
+
         <%= f.input :photo %>
-        <%= f.input :photo_cache, as: :hidden %>
-      <%= f.input :user_generated, as: :hidden, value: true %>
-      <%= f.button :submit, "Shoot!", label: false, class: 'new-post-btn' %>
+    <%= f.input :photo_cache, as: :hidden %>
+    <%= f.input :user_generated, as: :hidden, value: true %>
+    <%= f.button :submit, "Shoot!", label: false, class: 'new-post-btn' %>
     <% end %>
   </div>
 </div>
