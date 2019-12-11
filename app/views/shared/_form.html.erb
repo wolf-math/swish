@@ -2,14 +2,19 @@
   <div class="">
     <%= simple_form_for (@post) do |f| %>
     <h6>Topic Title</h6>
-      <%= f.input :title, label: false %>
-      <h6>Description</h6>
-      <%= f.input :content, label: false, placeholder: "Talk about something.." %>
-      <%= f.input :category, as: :radio_buttons, collection: ['Team', 'Player'] %>
+
+    <%= f.input :title, label: false %>
+    <h6>Description</h6>
+    <%= f.input :content, label: false, placeholder: "Talk about something.." %>
+    <label class="btn add-image-btn">
+      <i class="fas fa-image"></i>
+      <span style="display:none;">
         <%= f.input :photo %>
-        <%= f.input :photo_cache, as: :hidden %>
-      <%= f.input :user_generated, as: :hidden, value: true %>
-      <%= f.button :submit, "Shoot!", label: false, class: 'new-post-btn' %>
+      </span>
+    </label>
+    <%= f.input :photo_cache, as: :hidden %>
+    <%= f.input :user_generated, as: :hidden, value: true %>
+    <%= f.button :submit, "Shoot!", label: false, class: 'new-post-btn' %>
     <% end %>
   </div>
 </div>
