@@ -1,8 +1,13 @@
 <div class="container post-show">
   <div class="post-container">
+    <div class="post-content-container">
+      <div class="post-content-text">
     <h1><%= @post.title %></h1>
     <p><%= @post.content %></p>
-    <%= cl_image_tag @post.photo, height: 300, width: 400, crop: :fill %>
+    <p class="comment-user"><%= time_ago_in_words(@post.created_at) + ' ago'  %></p>
+    </div>
+    <%= cl_image_tag @post.photo, class: "post_content_image" %>
+    </div>
     <% if policy(Comment).create? %>
       <%= render 'shared/comment_form', parent: @post, comment: @comment,remote: false %>
     <% end %>

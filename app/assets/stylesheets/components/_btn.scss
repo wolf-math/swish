@@ -13,6 +13,13 @@
   transition: opacity 0.3s ease;
 
 }
+.add-image-btn {
+  background-color: #ffa259;
+  border-radius: 50px;
+}
+.add-image-btn:hover{
+  background-color: #fe6845;
+}
 .btn-log-in {
   display: block;
   color: #91bd3a;

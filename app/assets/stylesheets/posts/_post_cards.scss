@@ -1,9 +1,33 @@
 .posts-card {
  margin: 8px;
+ box-shadow: 10px 4px 16px lightgrey;
+ border-radius: 4px;
+}
+.post-card-body {
+
 }
 .posts-container {
  text-decoration: none;
 }
-.card-title {
-  border-bottom: 1px solid lightgray;
+.post-content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+.card-preview-text h5 {
+  font-weight: bold;
+}
+.card-preview-text p {
+  font-weight: 200;
+}
+
+.card-body-preview {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.post_image_preview {
+  border-radius: 8px;
+  margin-right: 28px;
 }
