@@ -65,34 +65,34 @@ end
 # Sample query
 # Team.find_by(standing: 3, conference: "west")
 
-puts "getting player data"
-puts "this may take some time...."
+# puts "getting player data"
+# puts "this may take some time...."
 
-player_data = HTTParty.get('https://data.nba.net/10s/prod/v1/2019/players.json')
-player_data['league']['standard'].each do |person|
-  first_name = person['firstName']
-  last_name = person['lastName']
-  api_team = person['teamId']
-  player_id = person['personId']
-  jersey = person['jersey']
-  position = person['pos']
-  height = person['heightMeters']
+# player_data = HTTParty.get('https://data.nba.net/10s/prod/v1/2019/players.json')
+# player_data['league']['standard'].each do |person|
+#   first_name = person['firstName']
+#   last_name = person['lastName']
+#   api_team = person['teamId']
+#   player_id = person['personId']
+#   jersey = person['jersey']
+#   position = person['pos']
+#   height = person['heightMeters']
 
-  team = all_teams[api_team]
+#   team = all_teams[api_team]
 
-  # if Person.find_by(player_id: player_id).nil?
-  player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
-  player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
-  response = Net::HTTP.get_response(URI.parse(player_photo_url))
-  if response.code == "200"
-    player.remote_photo_url = player_photo_url
-  else
-    player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
-  end
-  player.team = team
-  player.save
-  # end
-end
+#   # if Person.find_by(player_id: player_id).nil?
+#   player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
+#   player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
+#   response = Net::HTTP.get_response(URI.parse(player_photo_url))
+#   if response.code == "200"
+#     player.remote_photo_url = player_photo_url
+#   else
+#     player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
+#   end
+#   player.team = team
+#   player.save
+#   # end
+# end
 
 
 puts "creating 6 users"

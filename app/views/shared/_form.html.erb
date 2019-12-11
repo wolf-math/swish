@@ -5,8 +5,7 @@
       <%= f.input :title, label: false %>
       <h6>Description</h6>
       <%= f.input :content, label: false, placeholder: "Talk about something.." %>
-      <%= f.input :category, as: :radio_buttons, collection: ['Team', 'Player'] %>
-      <h6>Add an image</h6>
+            <h6>Add an image</h6>
         <%= f.input :photo %>
         <%= f.input :photo_cache, as: :hidden %>
       <%= f.input :user_generated, as: :hidden, value: true %>
