@@ -16,3 +16,12 @@
     <label class="btn add-image-btn">
       <i class="fas fa-image"></i>
       <span style="display:none;">
+       <%= f.input :photo %>
+      </span>
+    </label>
+    <%= f.input :photo_cache, as: :hidden %>
+    <%= f.input :user_generated, as: :hidden, value: true %>
+    <%= f.button :submit, "Shoot!", label: false, class: 'new-post-btn' %>
+    <% end %>
+  </div>
+</div>
