@@ -60,3 +60,9 @@ a.nav-link {
   letter-spacing: 1px;
   font-family: 'Open Sans';
 }
+
+.dropdown-toggle {
+  &:hover {
+    transform: scale(1.2);
+  }
+}
