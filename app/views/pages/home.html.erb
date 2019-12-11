@@ -1,86 +1,106 @@
 <% if user_signed_in? %>
-<div class="row">
-  <div class="col-8 vc-wrapper">
-    <h4>Recent Videos</h4>
-    <div class="row video-container">
-      <% @youtube_vids.each do |youtube_vid| %>
-      <% youtube_vid.each do |vid| %>
-      <div class="col-4">
-        <div class="video-card" id="card">
-          <div class="youtube-player" data-id="<%= vid[:id] %>"></div>
-          <a class="author">
-            <span class="title"><%= vid[:title] %></span>
-          </a>
-          <div class="share-icon">
-            <p class="">
-              <%= link_to new_post_path(title: vid[:title],
-              content: "https://www.youtube.com/watch?v=#{vid[:id]}") do %>
-              <i class="far fa-comment-dots"></i>
-              <% end %>
-            </p>
+  <div class="row">
+    <div class="col-2 vc-wrapper">
+      <div class="scores-container">
+        <h4>Week's Scores</h4>
+        <% @games.all.each do |game| %>
+          <div class="col-12">
+            <div class="navbar-score-card">
+              <%= "#{game.date[4..5]}-#{game.date[6..7]}" %>
+              <table>
+                <tr>
+                  <td class="bold"><%= link_to game.vTeam.abbrevation, team_path(Team.find(game.vTeam.id)) %></td>
+                  <td class="bold"><%= game.vTeamScore %></td>
+                </tr>
+                <tr>
+                  <td class="bold"><%= link_to game.hTeam.abbrevation, team_path(Team.find(game.vTeam.id)) %></td>
+                  <td class="bold"><%= game.hTeamScore %></td>
+                </tr>
+              </table>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
-      <% p vid %>
-      <% end %>
-      <% end %>
     </div>
-  </div>
-  <div class="col-4">
-    <div class="tweets-container">
-      <h4>Recent Tweets</h4>
-      <% @tweet_lists.each do |tweet_list| %>
-      <% tweet_list.each do |tweet| %>
-      <div class="card tweet">
-        <a class="author">
-          <img class="avatar" src=<%= tweet[:avatar] %> />
-          <span class="name"><%= tweet[:name] %></span>
-          <span class="username">@<%= tweet[:handle] %></span>
-        </a>
-        <div class="content" >
-          <div class="share-icon">
-            <p class="">
-              <%= link_to new_post_path(title: tweet[:text],
-            content: tweet[:url]) do %>
-            <i class="far fa-comment-dots"></i>
+    <div class="col-6 vc-wrapper">
+      <div class="vids-container">
+        <div class="row video-container">
+          <h4>Recent Videos</h4>
+          <% @youtube_vids.each do |youtube_vid| %>
+            <% youtube_vid.each do |vid| %>
+              <div class="col-12">
+                <div class="video-card" id="card">
+                  <div class="youtube-player" data-id="<%= vid[:id] %>"></div>
+                  <a class="author">
+                    <span class="title"><%= vid[:title] %></span>
+                  </a>
+                  <div class="share-icon">
+                    <p class="">
+                      <%= link_to new_post_path(title: vid[:title], content: "https://www.youtube.com/watch?v=#{vid[:id]}") do %>
+                        <i class="far fa-comment-dots"></i>
+                      <% end %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% p vid %>
             <% end %>
-          </p>
-          </div>
-
-          <%= tweet[:text] %>
-          <% unless tweet[:url].nil? %>
-          <%= link_to tweet[:url], tweet[:url] %>
-          <%= link_to tweet[:url] do  %>
-          <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
-          <% end  %>
           <% end %>
         </div>
       </div>
-
-      <% end %>
-      <% end %>
     </div>
+    <div class="col-4 vc-wrapper" >
+      <div class="tweet-container">
+        <h4>Recent Tweets</h4>
+        <% @tweet_lists.each do |tweet_list| %>
+          <% tweet_list.each do |tweet| %>
+            <div class="card tweet">
+              <a class="author">
+                <img class="avatar" src=<%= tweet[:avatar] %> />
+                <span class="name"><%= tweet[:name] %></span>
+                <span class="username">@<%= tweet[:handle] %></span>
+              </a>
+              <div class="content" >
+                <div class="share-icon">
+                  <p class="">
+                    <%= link_to new_post_path(title: tweet[:text], content: tweet[:url]) do %>
+                      <i class="far fa-comment-dots"></i>
+                    <% end %>
+                </p>
+                </div>
 
-  </div>
-  <% else %>
-  <div class="landing_container crossfade">
-    <img id="f3" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1556168505-d00e911d52eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80">
-    <img id="f2" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1550171362-62bca9e5ad4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
-    <img id="f1" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1533923156502-be31530547c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
-    <div class="landing_title">
-      <h1 class="centered">Your Home For NBA Updates & Details</h1>
-      <div class="unsigned_buttons">
-        <button class="btn-log-in">
-        <%= link_to "Login", new_user_session_path %>
-        </button>
-        <button class="btn-sign-up">
-        <%= link_to "Sign-up", new_user_registration_path %>
-        </button>
+                <%= tweet[:text] %>
+                <% unless tweet[:url].nil? %>
+                  <%= link_to tweet[:url], tweet[:url] %>
+                  <%= link_to tweet[:url] do  %>
+                    <img src="<%= tweet[:image] %>" alt="" style='max-width: 100%;'>
+                  <% end  %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
+    <% else %>
+      <div class="landing_container crossfade">
+        <img id="f3" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1556168505-d00e911d52eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80">
+        <img id="f2" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1550171362-62bca9e5ad4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
+        <img id="f1" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1533923156502-be31530547c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
+        <div class="landing_title">
+          <h1 class="centered">Your Home For NBA Updates & Details</h1>
+          <div class="unsigned_buttons">
+            <button class="btn-log-in">
+              <%= link_to "Login", new_user_session_path %>
+            </button>
+            <button class="btn-sign-up">
+              <%= link_to "Sign-up", new_user_registration_path %>
+            </button>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-</div>
-<% end %>
-<%= content_for :after_js do %>
-<%= javascript_pack_tag "youtube_embed" %>
+  <%= content_for :after_js do %>
+  <%= javascript_pack_tag "youtube_embed" %>
 <% end %>
