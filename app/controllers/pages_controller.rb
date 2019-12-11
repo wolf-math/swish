@@ -10,8 +10,8 @@ class PagesController < ApplicationController
          @youtube_vids = VIDEOS # Video.where(user: current_user)
          @tweet_lists = TWEETS # Tweet.where(user: current_user)
        else
-         @youtube_vids = YoutubeApi.all_videos(current_user) || []
-         @tweet_lists = TwitterApi.perform(current_user) || []
+         @youtube_vids = VIDEOS  #YoutubeApi.all_videos(current_user) || []
+         @tweet_lists = TWEETS  #TwitterApi.perform(current_user) || []
        end
 
      else
