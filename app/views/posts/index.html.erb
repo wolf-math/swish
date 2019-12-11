@@ -27,12 +27,15 @@
           <% @professionals_posts.each do |favorite| %>
           <div class="col-10">
             <%= link_to post_path(favorite.id) do %>
-            <div class="posts-card stretched-link">
-              <div class="card">
-                <div class="card-body">
+            <div class="posts-card stretched-link card-body">
+              <div class="card-body-preview">
+                  <div class="card-preview-text">
                   <h5 class="card-title"><%= favorite.title %></h5>
                   <p class="card-text"><%= favorite.content[0...150] %></p>
                 </div>
+                <%   unless favorite.photo.blank?  %>
+                  <%= cl_image_tag favorite.photo, width: 100, class: "post_image_preview"%>
+                  <% end %>
               </div>
             </div>
             <% end %>
@@ -84,12 +87,15 @@
           <% @myposts.each do |post| %>
           <div class="col-10">
             <%= link_to post_path(post) do %>
-            <div class="posts-card">
-              <div class="card">
-                <div class="card-body">
+          <div class="posts-card stretched-link card-body">
+              <div class="card-body-preview">
+                  <div class="card-preview-text">
                   <h5 class="card-title"><%= post.title %></h5>
                   <p class="card-text"><%= post.content[0...150] %></p>
                 </div>
+                <%   unless post.photo.blank?  %>
+                  <%= cl_image_tag post.photo, width: 100, class: "post_image_preview"%>
+                  <% end %>
               </div>
             </div>
             <% end %>
