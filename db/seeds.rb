@@ -65,6 +65,7 @@ end
 # Sample query
 # Team.find_by(standing: 3, conference: "west")
 
+
 puts "getting player data"
 
 

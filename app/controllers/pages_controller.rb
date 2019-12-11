@@ -5,6 +5,7 @@ class PagesController < ApplicationController
 
     if user_signed_in?
 
+
       if current_user.called
          @youtube_vids = VIDEOS # Video.where(user: current_user)
          @tweet_lists = TWEETS # Tweet.where(user: current_user)
@@ -25,6 +26,7 @@ class PagesController < ApplicationController
       Post.all.order(created_at: :desc)
     end
     if user_signed_in?
+
       @professionals_posts = Post.where(team_id: current_user.following_by_type('Team').pluck(:id)).or(Post.where(people_id: current_user.following_by_type('Person').pluck(:id))).order(created_at: :desc)
     #  render 'db_home' if current_user.called
   end

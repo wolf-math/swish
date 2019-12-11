@@ -38,6 +38,15 @@
           <span class="username">@<%= tweet[:handle] %></span>
         </a>
         <div class="content" >
+          <div class="share-icon">
+            <p class="">
+              <%= link_to new_post_path(title: tweet[:text],
+            content: tweet[:url]) do %>
+            <i class="far fa-comment-dots"></i>
+            <% end %>
+          </p>
+          </div>
+
           <%= tweet[:text] %>
           <% unless tweet[:url].nil? %>
           <%= link_to tweet[:url], tweet[:url] %>
@@ -47,9 +56,11 @@
           <% end %>
         </div>
       </div>
+
       <% end %>
       <% end %>
     </div>
+
   </div>
   <% else %>
   <div class="landing_container crossfade">
