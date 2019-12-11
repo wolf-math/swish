@@ -84,17 +84,39 @@
 }
 
 #f1 {
-    background-color: lightblue;
-    background-size: cover;
+  background-color: lightblue;
+  background-size: cover;
 }
 
 #f2 {
-    -webkit-animation-delay: -4s;
-    // background-color: yellow;
-    background-size: cover;
+  -webkit-animation-delay: -4s;
+  // background-color: yellow;
+  background-size: cover;
 }
 #f3 {
-    -webkit-animation-delay: -2s;
-    // background-color: lightgreen;
-    background-size: cover;
+  -webkit-animation-delay: -2s;
+  // background-color: lightgreen;
+  background-size: cover;
 }
+
+.vids-container {
+  margin: 20px;
+  width: 100%;
+  box-shadow: 8px 8px 20px 0px #88888852;
+  border-radius: 10px;
+}
+
+.scores-container {
+  margin: 20px;
+  width: 100%;
+  box-shadow: 8px 8px 20px 0px #88888852;
+  border-radius: 10px;
+}
+
+.scores-container h4 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
