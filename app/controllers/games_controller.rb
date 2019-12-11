@@ -6,6 +6,7 @@ class GamesController < ApplicationController
     yesterday = Date.yesterday
     @yesterday_game = Game.all.where(date: yesterday)
     @this_week = Game.all.where(date: today.cweek)
+    @arr = @games.group_by(&:date_time)
   end
 
   def show
