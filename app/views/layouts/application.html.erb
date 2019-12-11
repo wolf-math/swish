@@ -24,7 +24,6 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body style="background-color: white;">
-    <%= render 'shared/games_grid', games: policy_scope(Game).order(date: :desc) %>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <div class="Site-content">
