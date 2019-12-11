@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_12_11_103524) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_103524) do
     t.integer "hteam_q2"
     t.integer "hteam_q3"
     t.integer "hteam_q4"
+    t.date "date_time"
     t.index ["hTeam_id"], name: "index_games_on_hTeam_id"
     t.index ["vTeam_id"], name: "index_games_on_vTeam_id"
   end

@@ -28,7 +28,7 @@ class TwitterApi < ApplicationRecord
         result[:image] = tweet['entities']['media'][0]['media_url_https'] rescue nil
 
          twt = Tweet.new({ text: result[:text],
-                            id: result[:id],
+                            # id: result[:id],
                             name: result[:name],
                             handle: result[:handle],
                             followers: result[:followers],
@@ -46,8 +46,9 @@ class TwitterApi < ApplicationRecord
   end
 
   def self.all_tweets(person)
-    HTTParty.get("https://api.twitter.com/1.1/search/tweets.json?q=#{person}",
+    x = HTTParty.get("https://api.twitter.com/1.1/search/tweets.json?q=#{person}",
         headers: { Authorization: "Bearer #{ENV['T_BEARER']}" })
+    # binding.pry
   end
 end
 

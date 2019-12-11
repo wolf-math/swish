@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = policy_scope(Post).order(created_at: :desc)
+
     if user_signed_in?
       @myposts = current_user.posts.order(created_at: :desc)
       @professionals_posts = Post.where(team_id: current_user.following_by_type('Team').pluck(:id)).or(Post.where(people_id: current_user.following_by_type('Person').pluck(:id))).order(created_at: :desc)
@@ -24,6 +25,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.people_id = params[:post][:person_id]
     @post.user = current_user
     if @post.save
       redirect_to posts_path
@@ -64,7 +66,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :category, :photo, :user_generated, :content)
+    params.require(:post).permit(:title, :category, :photo, :user_generated, :content, :team_id)
   end
 
   def set_post

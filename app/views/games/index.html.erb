@@ -3,6 +3,88 @@
     <h1 class='text-center'>Game Score</h1>
   </div>
 
+<!-- # Last night -->
+  <div class="row">
+    <% @yesterday_game.each do |game| %>
+      <div class="col-md-4 col-sm-12">
+        <% date = game.date %>
+        <% date_obj = Time.new(date[0...4].to_i, date[4...6].to_i, date[6...8].to_i) %>
+        <% d = date_obj.strftime("%e") + "-" %>
+        <% d += date_obj.strftime("%b") + "-" %>
+        <% d += date_obj.strftime("%y") %>
+          <div class="team-score-card">
+            <table class="score-card-table">
+              <tr class="thead">
+                <td><%= d %></td>
+                <td>Q1</td>
+                <td>Q2</td>
+                <td>Q3</td>
+                <td>Q4</td>
+                <td class="bold">Final</td>
+              </tr>
+              <tr>
+                <td class="bold"><%= link_to game.vTeam.abbrevation, team_path(Team.find(game.vTeam.id)) %></td>
+                <td><%= game.vteam_q1 %></td>
+                <td><%= game.vteam_q2 %></td>
+                <td><%= game.vteam_q3 %></td>
+                <td><%= game.vteam_q4 %></td>
+                <td class="bold"><%= game.vTeamScore %></td>
+              </tr>
+              <tr>
+                <td class="bold"><%= link_to game.hTeam.abbrevation, team_path(Team.find(game.vTeam.id)) %></td>
+                <td><%= game.hteam_q1 %></td>
+                <td><%= game.hteam_q2 %></td>
+                <td><%= game.hteam_q3 %></td>
+                <td><%= game.hteam_q4 %></td>
+                <td class="bold"><%= game.hTeamScore %></td>
+              </tr>
+            </table>
+          </div>
+      </div>
+    <% end  %>
+  </div>
+
+<!-- # This week -->
+  <div class="row">
+    <% @this_week.each do |game| %>
+      <div class="col-md-4 col-sm-12">
+        <% date = game.date %>
+        <% date_obj = Time.new(date[0...4].to_i, date[4...6].to_i, date[6...8].to_i) %>
+        <% d = date_obj.strftime("%e") + "-" %>
+        <% d += date_obj.strftime("%b") + "-" %>
+        <% d += date_obj.strftime("%y") %>
+          <div class="team-score-card">
+            <table class="score-card-table">
+              <tr class="thead">
+                <td><%= d %></td>
+                <td>Q1</td>
+                <td>Q2</td>
+                <td>Q3</td>
+                <td>Q4</td>
+                <td class="bold">Final</td>
+              </tr>
+              <tr>
+                <td class="bold"><%= link_to game.vTeam.abbrevation, team_path(Team.find(game.vTeam.id)) %></td>
+                <td><%= game.vteam_q1 %></td>
+                <td><%= game.vteam_q2 %></td>
+                <td><%= game.vteam_q3 %></td>
+                <td><%= game.vteam_q4 %></td>
+                <td class="bold"><%= game.vTeamScore %></td>
+              </tr>
+              <tr>
+                <td class="bold"><%= link_to game.hTeam.abbrevation, team_path(Team.find(game.vTeam.id)) %></td>
+                <td><%= game.hteam_q1 %></td>
+                <td><%= game.hteam_q2 %></td>
+                <td><%= game.hteam_q3 %></td>
+                <td><%= game.hteam_q4 %></td>
+                <td class="bold"><%= game.hTeamScore %></td>
+              </tr>
+            </table>
+          </div>
+      </div>
+    <% end  %>
+  </div>
+
   <div class="row">
     <% @games.each do |game| %>
       <div class="col-md-4 col-sm-12">
@@ -39,7 +121,6 @@
               </tr>
             </table>
           </div>
-
       </div>
     <% end  %>
   </div>

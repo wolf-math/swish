@@ -1,11 +1,13 @@
 class Post < ApplicationRecord
   belongs_to :user, optional: true
-  belongs_to :professional, optional: true
+  belongs_to :team, optional:true
+  belongs_to :person, optional:true
+  # belongs_to :people, source: "Person"
   has_many :comments, as: :commentable
   validates :title, presence: true
   mount_uploader :photo, PhotoUploader
   acts_as_votable
-end
+
 def upvote
   @post = Post.find(params[:id])
 
@@ -17,3 +19,10 @@ def upvote
 
   @post.create_activity :upvote, owner: current_user
 end
+
+  def person_id
+    people_id
+  end
+
+end
+
