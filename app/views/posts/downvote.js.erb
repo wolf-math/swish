@@ -1,0 +1,4 @@
+var like_post = $('.unlike_post');
+like_post.parent().parent().find('.vote_count').html('<%= escape_javascript @post.votes_for.size.to_s %>');
+like_post.closest('.like_post').hide();
+like_post.closest('.votes').html(' <%= link_to "Unlike",  downvote_post_path(@post), remote: true, method: :get, class: "unlike_post" %>');

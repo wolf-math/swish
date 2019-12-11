@@ -21,6 +21,14 @@ class PostPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def upvote?
+    true
+  end
+
+  def downvote?
+    true
+  end
+
   def destroy?
     record.user == user
   end

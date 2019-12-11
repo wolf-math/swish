@@ -34,6 +34,14 @@ class ApplicationPolicy
     false
   end
 
+  def upvote?
+    false
+  end
+
+  def downvote?
+    false
+  end
+
   class Scope
     attr_reader :user, :scope
 
