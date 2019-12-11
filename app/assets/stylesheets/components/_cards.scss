@@ -40,9 +40,11 @@
 }
 
 .navbar-score-card {
-  width: 95%;
+  width: 98%;
   height: auto;
-  box-shadow: 5px 5px 5px #DBDBDB;
+  // box-shadow: 5px 5px 5px #DBDBDB;
+  border-width: 1px;
+  border-color: #DBDBDB;
   padding: 10px;
   td {
     padding-right: 20px;
