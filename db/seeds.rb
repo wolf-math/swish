@@ -1,10 +1,19 @@
 require 'open-uri'
 require 'json'
 
-print "Destroying all teams"
-Team.destroy_all
+puts "Destroying all games"
+Game.destroy_all
+puts "Destroying all comments"
+Comment.destroy_all
+puts "Destroying all posts"
+Post.destroy_all
 puts "Destroying all players"
 Person.destroy_all
+puts "Destroying all teams"
+Team.destroy_all
+puts "Destroying all users"
+User.destroy_all
+
 
 puts "creating teams"
 team_endpoint = 'https://data.nba.net/'
@@ -119,54 +128,58 @@ end
 a.follow(Person.find(241))
 puts "creating 5 comments"
 
-Comment.create!( id: 1,
- user_id: 1,
+ user_id: User.first.id,
  text: "he’s not nearly as good as charles. He’s really talented. But, listen, I love the kid,
  I wish him nothing but the best but it’s disrespectful",
  likes: nil,
- commentable_id: 5,
- created_at: Tue, 10 Dec 2019 15:16:07 UTC +00:00,
- updated_at: Tue, 10 Dec 2019 15:16:07 UTC +00:00,
- commentable_type: "Post">
+ commentable_id: Post.,
+ created_at: DateTime.parse("Tue, 10 Dec 2019 15:16:07 UTC +00:00"),
+ updated_at: DateTime.parse("Tue, 10 Dec 2019 15:16:07 UTC +00:00"),
+ commentable_type: "Post"
   )
 Comment.create!( id: 2,
  user_id: 1,
  text: "Zion will destroy barkley in his prime in a one on one game",
  likes: nil,
  commentable_id: 1,
- created_at: Tue, 10 Dec 2019 15:30:25 UTC +00:00,
- updated_at: Tue, 10 Dec 2019 15:30:25 UTC +00:00,
- commentable_type: "Comment">
+ created_at: DateTime.parse("Tue, 10 Dec 2019 15:30:25 UTC +00:00"),
+ updated_at: DateTime.parse("Tue, 10 Dec 2019 15:30:25 UTC +00:00"),
+ commentable_type: "Comment"
   )
   Comment.create!( id: 3,
  user_id: 1,
  text: "Huge mistake by Atlanta for trading him.",
  likes: nil,
  commentable_id: 3,
- created_at: Tue, 10 Dec 2019 15:56:45 UTC +00:00,
- updated_at: Tue, 10 Dec 2019 15:56:45 UTC +00:00,
- commentable_type: "Post">
+
+ created_at: DateTime.parse("Tue, 10 Dec 2019 15:56:45 UTC +00:00"),
+ updated_at: DateTime.parse("Tue, 10 Dec 2019 15:56:45 UTC +00:00"),
+ commentable_type: "Post"
   )
   Comment.create!( id: 4,
  user_id: 1,
  text: "I can say he passed Kobe on the Goat chase but not Jordan",
  likes: nil,
  commentable_id: 1,
- created_at: Tue, 10 Dec 2019 16:05:06 UTC +00:00,
- updated_at: Tue, 10 Dec 2019 16:05:06 UTC +00:00,
- commentable_type: "Post">
+ created_at: DateTime.parse("Tue, 10 Dec 2019 16:05:06 UTC +00:00"),
+ updated_at: DateTime.parse("Tue, 10 Dec 2019 16:05:06 UTC +00:00"),
+ commentable_type: "Post"
  )
   Comment.create!( id: 5,
    user_id: 1,
    text: "Jordan was an amazing player. He couldn't be any closer to the greatest ever.
-     He's not overrated. Others are just underrated.\r\n\r\nJordan is overated in
+
+     He's not overrated. Others are just underrated. Jordan is overated in
+
      my opinion Kareemis the goat, along with his great individual accomplishments,
      was a winner. He took the Bucks, a 27 win team, and made them into NBA champions in two years.",
    likes: nil,
    commentable_id: 2,
-   created_at: Tue, 10 Dec 2019 16:24:38 UTC +00:00,
-   updated_at: Tue, 10 Dec 2019 16:24:38 UTC +00:00,
-   commentable_type: "Post">
+
+   created_at: DateTime.parse("Tue, 10 Dec 2019 16:24:38 UTC +00:00"),
+   updated_at: DateTime.parse("Tue, 10 Dec 2019 16:24:38 UTC +00:00"),
+   commentable_type: "Post"
+
    )
 
 
@@ -187,9 +200,8 @@ WITH JUST LOSING ONE PLAYER.
 
 He’s also been the best player in the league for 14 YEARS. He’s 34 (and while he did get injured) and is still
 the best basketball or one of the best in the world.",
- category: "Person", people_id: 241)
-
-Post.create!(user_id: 2, title: "Jordan is the GOAT", user_generated: true, likes: 3, content: "For one,
+ )
+Post.create!(title: "Jordan is the GOAT", content: "For one,
  he’s first in points per game even though he’s not first in total points considering he took a few years
  off here and there.
  He’s even ahead of wilt chamberlain, who averaged 50 ppg one season. He also has 14
@@ -213,8 +225,7 @@ Finally, he’s the most iconic player.
  at the same time. He has the career achievements, legacy, clutch moments and by now he’s pretty much legend
  status with his shoe and his perfect finals record.
   Whether or not these all matter to you is up to you but
-  these reasons are why many consider him the greatest.",
-  category: "Team", people_id: 243, team_id: 3)
+  these reasons are why many consider him the greatest.",)
 
 Post.create!(user_id: 3, title: "Luka is going to be the MVP ", user_generated: true, likes: 0,
   content: "So far in 2019, Luka is also leading the NBA in PER (player efficiency rating) at 33.5. The two
@@ -328,3 +339,12 @@ get_season_score
 get_days_scores_api(date_to_string(Date.yesterday))
 
 puts "done"
+
+
+
+
+
+
+
+
+
