@@ -8,7 +8,26 @@
   border-bottom-left-radius: 8px;
 }
 
-.dash-img{
+.dash-img {
   height: 25%;
   width: auto;
+}
+
+.dashboard-card {
+  width:auto;
+  display: flex;
+  transition: 0.3s;
+  border-color: black;
+  border-width: 2px;
+  box-shadow: 0px 6px 9px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.player-team-container {
+display: grid;
+grid-template-columns: repeat(3, 2fr);
+grid-auto-rows: auto;
+grid-gap: 1rem;
 }

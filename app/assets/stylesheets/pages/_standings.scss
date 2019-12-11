@@ -1,0 +1,17 @@
+.head-row {
+  font-weight: bold;
+}
+
+.standings-table td {
+  box-sizing: border-box;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+.table-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
