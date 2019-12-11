@@ -116,8 +116,8 @@ puts "creating sample player followers"
   user_list.sample.follow(Person.all.sample)
 end
 
-# a.follow(Person.find(241))
-# puts "creating 5 comments"
+a.follow(Person.find(241))
+puts "creating 5 comments"
 
 # Comment.create!( id: 1,
 #  user_id: 1,
@@ -214,7 +214,7 @@ Finally, he’s the most iconic player.
  status with his shoe and his perfect finals record.
   Whether or not these all matter to you is up to you but
   these reasons are why many consider him the greatest.",
-  category: "Team",)
+  category: "Team", people_id: 243, team_id: 3)
 
 Post.create!(user_id: 3, title: "Luka is going to be the MVP ", user_generated: true, likes: 0,
   content: "So far in 2019, Luka is also leading the NBA in PER (player efficiency rating) at 33.5. The two
