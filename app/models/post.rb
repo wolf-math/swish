@@ -9,8 +9,8 @@ class Post < ApplicationRecord
   acts_as_votable
 
 def upvote
-  @post = Post.find(params[:id])
 
+  @post = Post.find(params[:id])
   if current_user.up_votes @post
     @post.unvote_up current_user
   else
@@ -18,6 +18,7 @@ def upvote
   end
 
   @post.create_activity :upvote, owner: current_user
+
 end
 
   def person_id

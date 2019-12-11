@@ -16,8 +16,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # if params contains info about the post which is to be created,
-    # set values to @post before rendering.
     @post.title = params[:title] if params.include?(:title)
     @post.content = params[:content] if params.include?(:content)
     authorize @post
@@ -44,6 +42,7 @@ class PostsController < ApplicationController
 
   def upvote
     @post = Post.find(params[:id])
+    authorize @post
     @post.upvote_from current_user
     respond_to do |format|
       format.html { redirect_to posts_path(@post) }
@@ -55,6 +54,7 @@ class PostsController < ApplicationController
 
   def downvote
     @post = Post.find(params[:id])
+    authorize @post
     @post.downvote_from current_user
     respond_to do |format|
       format.html { redirect_to posts_path(@post) }
