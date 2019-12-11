@@ -85,7 +85,6 @@ player_data['league']['standard'].each do |person|
 
   player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
 
-  #uncomment if you already have images
   # player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
   # response = Net::HTTP.get_response(URI.parse(player_photo_url))
   # if response.code == "200"
@@ -93,15 +92,9 @@ player_data['league']['standard'].each do |person|
   # else
   #   player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
   # end
-  #uncomment if you already have images
-
   player.team = team
   player.save
 end
-
-# uncomment if you need player pictures
-# player_pics
-
 
 puts "creating 6 users"
 a = User.create!(email: "test@test.com", password: "123456")
@@ -323,39 +316,7 @@ def get_season_score
   end
 end
 
-get_season_score
+#get_season_score
+get_days_scores_api(date_to_string(Date.yesterday))
 
 puts "done"
-
-# --------- Get to/from Local --------- #
-
-# def days_scores_to_file(date_string)
-#   score_url = "http://data.nba.net/10s/prod/v1/#{date_string}/scoreboard.json"
-#   data = HTTParty.get(score_url)
-#   data_array = []
-#   data["games"].each do |game|
-#     data_array < game
-#   end
-#   append_api(data_array)
-# end
-
-# def append_api(game_hash)
-#   data_from_json = JSON[File.read("db/game_data.json")]
-#   File.open("./db/game_data.json","w") do |f|
-#     f.write(JSON.pretty_generate(data_from_json << game_hash))
-#   end
-# end
-
-# def load_local_score
-#   source = File.open("db/game_data.json")
-#   data = JSON.parse(source.read)
-#   data["games"].each do |game|
-#     box = Game.new
-#     box.date = date_string
-#     box.vTeam_id = Team.find_by(abbrevationJSON: game["vTeam"]["triCode"]).id
-#     box.vTeamScore = game["vTeam"]["score"]
-#     box.hTeam_id = Team.find_by(abbrevation: game["hTeam"]["triCode"]).id
-#     box.hTeamScore = game["hTeam"]["score"]
-#     box.save
-#   end
-# end
