@@ -1,6 +1,11 @@
 class GamesController < ApplicationController
   def index
     @games = policy_scope(Game).order(date: :desc)
+    today = Date.today
+    @today_game = Game.all.where(date: today)
+    yesterday = Date.yesterday
+    @yesterday_game = Game.all.where(date: yesterday)
+    @this_week = Game.all.where(date: today.cweek)
   end
 
   def show
