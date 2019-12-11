@@ -3,7 +3,7 @@
     <div class="col-2 vc-wrapper">
       <div class="scores-container">
         <% @arr.each do |date| %>
-          <h5><%= date[0] %></h5>
+          <h5 class="homepage-date"><%= date[0] %></h5>
           <% @games.all.where(date_time: date[0]).each do |game| %>
             <div class="col-12">
               <div class="navbar-score-card">
