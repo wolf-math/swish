@@ -2,7 +2,6 @@
   <div class='page-title'>
     <h1 class='text-center logo-img-top nba-logo mb-5' id="logo-img-top"><%= image_tag "nba-logo.png", alt: "NBA-logo"%> Select Players To Follow </h1>
   </div>
-
   <%= simple_form_for(:thing, url: player_follows_path) do |f| %>
     <div class='button-wrapper mb-5'>
       <input type="text" maxlength= "8" id="player-follow-filter" placeholder="Search..." class="searchbar">
