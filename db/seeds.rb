@@ -331,8 +331,8 @@ def get_season_score
   end
 end
 
-get_season_score
-# get_days_scores_api(date_to_string(Date.yesterday))
+# get_season_score
+get_days_scores_api(date_to_string(Date.yesterday))
 
 puts "done"
 
