@@ -4,30 +4,30 @@
   </div>
 
   <%= simple_form_for(:thing, url: player_follows_path) do |f| %>
-  <div class='button-wrapper mb-5'>
-    <input type="text" maxlength= "8" id="player-follow-filter" placeholder="Search..." class="searchbar">
-    <button class="teams-submit">
-      <%= f.button :submit, 'Submit Players' %>
-    </button>
-  </div>
-  <div class="row">
-    <input type="hidden" name="follow[person_ids][]" value="">
-    <% @people.each do |person| %>
-    <div class="col-lg-2 col-md-4 col-sm-12"
-         data-person-first-name="<%= person.first_name %>"
-         data-person-last-name="<%= person.last_name %>">
-      <input type="checkbox" class="d-none" value="<%= person.id %>" name="follow[person_ids][]" id="follow_person_ids_<%= person.id %>">
-      <label for="follow_person_ids_<%= person.id %>" class="follow-label <%= 'active-person-choice' if current_user.following?(person) %>">
-        <div class="mb-3 followable-index-card flexcontainer">
-          <%= cl_image_tag(person.photo, class: "player-image", :quality=>"auto", fetch_format: :auto) %>
-          <span class="player-name"><%= person.full_name %></span>
-        </div>
-      </label>
+    <div class='button-wrapper mb-5'>
+      <input type="text" maxlength= "8" id="player-follow-filter" placeholder="Search..." class="searchbar">
+      <button class="teams-submit">
+        <%= f.button :submit, 'Submit Players' %>
+      </button>
     </div>
-    <% end  %>
-  </div>
+    <div class="row">
+      <input type="hidden" name="follow[person_ids][]" value="">
+      <% @people.each do |person| %>
+        <div class="col-lg-2 col-md-4 col-sm-12"
+             data-person-first-name="<%= person.first_name %>"
+             data-person-last-name="<%= person.last_name %>">
+          <input type="checkbox" class="d-none" value="<%= person.id %>" name="follow[person_ids][]" id="follow_person_ids_<%= person.id %>">
+          <label for="follow_person_ids_<%= person.id %>" class="follow-label <%= 'active-person-choice' if current_user.following?(person) %>">
+            <div class="mb-3 followable-index-card flexcontainer">
+              <%= cl_image_tag(person.photo, class: "player-image", :quality=>"auto", fetch_format: :auto) %>
+              <span class="player-name"><%= person.full_name %></span>
+            </div>
+          </label>
+        </div>
+      <% end  %>
+    </div>
+  <% end %>
 </div>
-<% end %>
 <%= content_for(:after_js) do %>
-<%= javascript_pack_tag('team_follow_choice') %>
+  <%= javascript_pack_tag('team_follow_choice') %>
 <% end %>

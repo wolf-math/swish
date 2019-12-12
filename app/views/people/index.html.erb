@@ -2,12 +2,12 @@
   <div class="people-header">
     <h3>All Players</h3>
   </div>
-   <% @people.each do |person| %>
-   <div class="row justify-content-center">
-<div class="col-md-3 col-sm-12">
-  <img src="https://nba-players.herokuapp.com/curry/stephen">
-<p><%= person.first_name %> <%= person.last_name %></p>
-</div>
-<% end %>
-</div>
+  <% @people.each do |person| %>
+    <div class="row justify-content-center">
+      <div class="col-md-3 col-sm-12">
+        <img src="https://nba-players.herokuapp.com/curry/stephen">
+        <p><%= person.first_name %> <%= person.last_name %></p>
+      </div>
+  <% end %>
+  </div>
 </div>
