@@ -21,8 +21,7 @@
             <td>W</td>
             <td>L</td>
             <td>Win %</td>
-            <td>10wins</td>
-            <td>10loss</td>
+            <td>L10</td>
             <td>streak</td>
           </tr>
           <% @east.each do |team| %>
@@ -36,8 +35,7 @@
               <td><%= team.wins %></td>
               <td><%= team.losses %></td>
               <td><%= team.win_percent %></td>
-              <td><%= team.last10wins %></td>
-              <td><%= team.last10loss %></td>
+              <td><%= team.last10wins %>-<%= team.last10loss %></td>
               <% if team.streak_wins == true %>
                 <td><%= team.streak %>W</td>
               <% else %>
@@ -56,8 +54,7 @@
             <td>W</td>
             <td>L</td>
             <td>Win %</td>
-            <td>10wins</td>
-            <td>10loss</td>
+            <td>L10</td>
             <td>Streak</td>
           </tr>
           <% @west.each do |team| %>
@@ -71,8 +68,7 @@
               <td><%= team.wins %></td>
               <td><%= team.losses %></td>
               <td><%= team.win_percent %></td>
-              <td><%= team.last10wins %></td>
-              <td><%= team.last10loss %></td>
+              <td><%= team.last10wins %>-<%= team.last10loss %></td>
               <% if team.streak_wins == true %>
                 <td><%= team.streak %>W</td>
               <% else %>
