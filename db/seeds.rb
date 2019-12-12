@@ -94,13 +94,13 @@ player_data['league']['standard'].each do |person|
 
   player = Person.create(first_name: first_name, last_name: last_name, jersey_number: jersey, position: position, height: height, team_id: api_team, player_id: player_id)
 
-  player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
-  response = Net::HTTP.get_response(URI.parse(player_photo_url))
-  if response.code == "200"
-    player.remote_photo_url = player_photo_url
-  else
-    player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
-  end
+  # player_photo_url = "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/#{player.team_id}/2019/260x190/#{player.player_id}.png"
+  # response = Net::HTTP.get_response(URI.parse(player_photo_url))
+  # if response.code == "200"
+  #   player.remote_photo_url = player_photo_url
+  # else
+  #   player.remote_photo_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh49ijhQi31DXh6lbhU4EQdivzB42Gdgwgd704DhfFXwdaZHLO&s"
+  # end
   player.team = team
   player.save
 end
@@ -121,71 +121,16 @@ puts "creating sample team followers"
 end
 
 puts "creating sample player followers"
-60.times do
+30.times do
   user_list.sample.follow(Person.all.sample)
 end
 
-# a.follow(Person.find(241))
 
-# puts "creating 5 comments"
-
- user_id: User.first.id,
- text: "he’s not nearly as good as charles. He’s really talented. But, listen, I love the kid,
- I wish him nothing but the best but it’s disrespectful",
- likes: nil,
- commentable_id: Post.,
- created_at: DateTime.parse("Tue, 10 Dec 2019 15:16:07 UTC +00:00"),
- updated_at: DateTime.parse("Tue, 10 Dec 2019 15:16:07 UTC +00:00"),
- commentable_type: "Post"
-  )
-Comment.create!( id: 2,
- user_id: 1,
- text: "Zion will destroy barkley in his prime in a one on one game",
- likes: nil,
- commentable_id: 1,
- created_at: DateTime.parse("Tue, 10 Dec 2019 15:30:25 UTC +00:00"),
- updated_at: DateTime.parse("Tue, 10 Dec 2019 15:30:25 UTC +00:00"),
- commentable_type: "Comment"
-  )
-  Comment.create!( id: 3,
- user_id: 1,
- text: "Huge mistake by Atlanta for trading him.",
- likes: nil,
- commentable_id: 3,
-
- created_at: DateTime.parse("Tue, 10 Dec 2019 15:56:45 UTC +00:00"),
- updated_at: DateTime.parse("Tue, 10 Dec 2019 15:56:45 UTC +00:00"),
- commentable_type: "Post"
-  )
-  Comment.create!( id: 4,
- user_id: 1,
- text: "I can say he passed Kobe on the Goat chase but not Jordan",
- likes: nil,
- commentable_id: 1,
- created_at: DateTime.parse("Tue, 10 Dec 2019 16:05:06 UTC +00:00"),
- updated_at: DateTime.parse("Tue, 10 Dec 2019 16:05:06 UTC +00:00"),
- commentable_type: "Post"
- )
-  Comment.create!( id: 5,
-   user_id: 1,
-   text: "Jordan was an amazing player. He couldn't be any closer to the greatest ever.
-
-     He's not overrated. Others are just underrated. Jordan is overated in
-
-     my opinion Kareemis the goat, along with his great individual accomplishments,
-     was a winner. He took the Bucks, a 27 win team, and made them into NBA champions in two years.",
-   likes: nil,
-   commentable_id: 2,
-
-   created_at: DateTime.parse("Tue, 10 Dec 2019 16:24:38 UTC +00:00"),
-   updated_at: DateTime.parse("Tue, 10 Dec 2019 16:24:38 UTC +00:00"),
-   commentable_type: "Post"
-
-   )
 
 
 
 puts "creating 5 posts"
+
 Post.create!(user_id: 1, title: "LeBron is the GOAT", user_generated: true, likes: 10008, content: "Lebron
 James is the greatest basketball player of all time.
 
@@ -270,15 +215,65 @@ Zion's all-world athleticism often allows him to explode through contact at the 
   This allows him to be an elite grab & go
   threat, especially with his great rebounding ability", category: "Person", people_id: 491)
 
-Post.create!(user_id: User.all.sample.id, Title: "Women should be allowed to play", user_generated: true, likes: 40,
+Post.create!(user_id: User.all.sample.id, title: "Women should be allowed to play", user_generated: true, likes: 40,
   content: "The WNBA should be disbanded and women should be able to play in the NBA. I think that it wouldn't be received well
-  at first, but attitudes will change when people see how good women can be.", team_id: 4
-  )
+  at first, but attitudes will change when people see how good women can be.", team_id: 4)
 
-Post.create!(user_id: User.all.sample.id, Title: "CLE to LA", user_generated: true, likes: 80000,
-  content: "Comparing CLE to LA when they got Dwight is insane imo. Lebron literally turns any team in the East into a playoff team overnight and they also have KLove (the best or second best PF in the league depending on who you talk to), Kyrie (a number 1 pick who has lived up to expectations) and a bunch of good role players). LA was a bunch of old guys and an injured Dwight who had maybe the worst season of his career."
+Post.create!(user_id: User.all.sample.id, title: "CLE to LA", user_generated: true, likes: 80000,
+  content: "Comparing CLE to LA when they got Dwight is insane imo. Lebron literally turns any team in the East into a playoff team overnight and they also have KLove (the best or second best PF in the league depending on who you talk to), Kyrie (a number 1 pick who has lived up to expectations) and a bunch of good role players). LA was a bunch of old guys and an injured Dwight who had maybe the worst season of his career.",
   team_id: 6, people_id: 241)
 
+puts "creating 5 comments"
+
+Comment.create!(user_id: 1,
+ text: "he’s not nearly as good as charles. He’s really talented. But, listen, I love the kid,
+ I wish him nothing but the best but it’s disrespectful",
+ likes: 10,
+ commentable_id: 1,
+ created_at: DateTime.parse("Tue, 10 Dec 2019 15:16:07 UTC +00:00"),
+ updated_at: DateTime.parse("Tue, 10 Dec 2019 15:16:07 UTC +00:00"),
+ commentable_type: "Post"
+  )
+Comment.create!( user_id: 1,
+ text: "Zion will destroy barkley in his prime in a one on one game",
+ likes: 3,
+ commentable_id: 1,
+ created_at: DateTime.parse("Tue, 10 Dec 2019 15:30:25 UTC +00:00"),
+ updated_at: DateTime.parse("Tue, 10 Dec 2019 15:30:25 UTC +00:00"),
+ commentable_type: "Comment"
+  )
+  Comment.create!( user_id: 1,
+ text: "Huge mistake by Atlanta for trading him.",
+ likes: 32,
+ commentable_id: 3,
+
+ created_at: DateTime.parse("Tue, 10 Dec 2019 15:56:45 UTC +00:00"),
+ updated_at: DateTime.parse("Tue, 10 Dec 2019 15:56:45 UTC +00:00"),
+ commentable_type: "Post"
+  )
+  Comment.create!( user_id: 1,
+ text: "I can say he passed Kobe on the Goat chase but not Jordan",
+ likes: 48,
+ commentable_id: 1,
+ created_at: DateTime.parse("Tue, 10 Dec 2019 16:05:06 UTC +00:00"),
+ updated_at: DateTime.parse("Tue, 10 Dec 2019 16:05:06 UTC +00:00"),
+ commentable_type: "Post"
+ )
+  Comment.create!( user_id: 1,
+   text: "Jordan was an amazing player. He couldn't be any closer to the greatest ever.
+
+     He's not overrated. Others are just underrated. Jordan is overated in
+
+     my opinion Kareemis the goat, along with his great individual accomplishments,
+     was a winner. He took the Bucks, a 27 win team, and made them into NBA champions in two years.",
+   likes: 50,
+   commentable_id: 2,
+
+   created_at: DateTime.parse("Tue, 10 Dec 2019 16:24:38 UTC +00:00"),
+   updated_at: DateTime.parse("Tue, 10 Dec 2019 16:24:38 UTC +00:00"),
+   commentable_type: "Post"
+
+   )
 puts "getting all game score data"
 puts "this may take some time...."
 
