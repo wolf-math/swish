@@ -23,15 +23,15 @@ class PagesController < ApplicationController
     end
   end
 
-  VIDEOS =  [[{ id: "AYJQ6YiyzC0", title: "Los Angeles Lakers vs Utah Jazz Full Game Highlights | December 4, 2019-20 NBA Season" }],
-             [{ id: "IPdYZyNZNJM", title: "Dallas Mavericks vs Minnesota Timberwolves Full Game Highlights | December 4, 2019-20 NBA Season" }],
-             [{ id: "twlEFbo-9U8", title: "James Harden Dunk Not Counted | Rockets vs Spurs" }],
-             [{ id: "VXxjBGkefZ0", title: "Bill Simmons on the Polarizing Rockets. Plus, CFB With Bruce Feldman. | The Ryen Russillo Podcast" }],
-             [{ id: "htI2fa4oWLU&t=5s", title: "MYSTERY VIDEO - CLICK IF YOU DARE" }],
-             [{ id: "1-_31YF3PE8", title: "LeBron James Full Highlights 2019.12.04 Lakers vs Jazz - 20 Pts, 12 Asts! | FreeDawkins" }],
-             [{ id: "_VjX2bXn0S8", title: "Luka Doncic Full Highlights 2019.12.04 Mavs vs TWolves - 22 Pts, 7 Rebs, 6 Asts! | FreeDawkins" }],
-             [{ id: "3Tdm-gVioWI&t=431s", title: "This PROVES Luka Doncic is BETTER than Lebron James at 20 Years Old" }],
-             [{ id: "HSOtMJbP7k4", title: "Los Angeles Lakers vs Washington Wizards Full Game Highlights | November 29, 2019-20 NBA Season" }]]
+  VIDEOS =  [[{ id: "3Tdm-gVioWI", title: "This PROVES Luka Doncic is BETTER than Lebron James at 20 Years Old" }],
+             [{ id: "WzOVcr12eps", title: "Los Angeles Lakers vs Orlando Magic Full Game Highlights | December 11, 2019-20 NBA Season" }],
+             [{ id: "Ocjn3lIhfhQ", title: "Houston Rockets vs Cleveland Cavaliers Full Game Highlights | December 11, 2019-20 NBA Season" }],
+             [{ id: "7JouapsFycA", title: "James Harden Drops 55 Pts, 10 Threes vs Cavs | Dec 11, 2019 | FreeDawkins" }],
+             [{ id: "t6FaWgH4iUQ", title: "Luka Doncic Breaks MJ Reord 2019.12.08 Mavs vs Kings - 27 Pts, 8 Asts, 7 Rebs | FreeDawkins" }],
+             [{ id: "ADLyNFJ4FQk", title: "The Best NBA Game Marc Stein Ever Covered | Bill Simmons’s Book of Basketball 2.0 | The Ringer" }],
+             [{ id: "cipiNODn5FU", title: "LeBron James Triple-Double 2019.12.11 Lakers vs Magic - 25 Pts, 11 Rebs, 10 Asts! | FreeDawkins" }],
+             [{ id: "_IUe_VNdERA", title: "LeBron James postgame interview | Lakers vs Magic" }],
+             ]
 
   TWEETS = [[{ text: "Wow!! Ball game. What A Game! Best game of the year thus far! #49ersvsSaints",
                name: "LeBron James",
