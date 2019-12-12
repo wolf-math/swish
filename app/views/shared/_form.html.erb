@@ -1,24 +1,22 @@
 <div class="new-post">
   <div class="">
     <%= simple_form_for (@post) do |f| %>
-
-    <h6>Topic Title</h6>
-    <%= f.input :title, label: false %>
-    <h6>Description</h6>
-    <%= f.input :content, label: false, placeholder: "Talk about something.." %>
-    <%= f.association :team, collection:  current_user.following_by_type('Team') %>
-    <%= f.association :person, collection:  current_user.following_by_type('Person').map { |person| [ person.full_name, person.id,] } %>
-    <label class="btn add-image-btn">
-      <i class="fas fa-image"></i>
-      <span style="display:none;">
-        <%= f.input :photo, as: :file %>
-        <%= f.input :photo_cache, :as => :hidden %>
-      </span>
-    </label>
+      <h6>Topic Title</h6>
+        <%= f.input :title, label: false %>
+      <h6>Description</h6>
+      <%= f.input :content, label: false, placeholder: "Talk about something.." %>
+      <%= f.association :team, collection:  current_user.following_by_type('Team') %>
+      <%= f.association :person, collection:  current_user.following_by_type('Person').map { |person| [ person.full_name, person.id,] } %>
+      <label class="btn add-image-btn">
+        <i class="fas fa-image"></i>
+        <span style="display:none;">
+          <%= f.input :photo, as: :file %>
+          <%= f.input :photo_cache, :as => :hidden %>
+        </span>
+      </label>
       <%= image_tag(@post.photo.url ||'blankpng.png',  class: 'post_photo_preview', height: 100, width: 100) %>
-
-    <%= f.input :user_generated, as: :hidden, value: true %>
-    <%= f.button :submit, "Shoot!", label: false, class: 'new-post-btn' %>
+      <%= f.input :user_generated, as: :hidden, value: true %>
+      <%= f.button :submit, "Shoot!", label: false, class: 'new-post-btn' %>
     <% end %>
   </div>
 </div>
