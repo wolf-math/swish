@@ -19,11 +19,10 @@
       </li>
       <% end %>
       <li  class="nav-item">
-        <a class="nav-link" id="newpost-tab" data-toggle="tab" href="#newpost" role="tab" aria-controls="newpost" aria-selected="false">Create <i class="fas fa-plus-circle"></i></a>
+        <a class="nav-link" id="newpost-tab" data-toggle="tab" href="#newpost" role="tab" aria-controls="newpost" aria-selected="false" style="background-color: #91bd3a">Create</a>
       </li>
     </ul>
   </div>
-</div>
   <div class="tab-content">
     <% if user_signed_in? %>
     <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
@@ -31,7 +30,7 @@
         <div class="favorites-post-container">
           <% if @professionals_posts.size >= 1 %>
           <% @professionals_posts.each do |favorite| %>
-          <div class="col-10">
+          <div class="col-12 justify-content-center d-flex">
             <%= link_to post_path(favorite.id) do %>
             <div class="posts-card stretched-link card-body">
               <div class="card-body-preview">
@@ -56,7 +55,7 @@
       <div class="posts-container">
         <div class="all-posts-container">
           <% @posts.each do |post| %>
-          <div class="col-10">
+          <div class="col-12 justify-content-center d-flex">
             <%= link_to post_path(post) do %>
             <div class="posts-card">
               <div class="post-card-body card-body">
@@ -87,29 +86,29 @@
       </div>
     </div>
     <% if user_signed_in? %>
-    <div class="tab-pane" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
-      <div class="posts-container">
-        <div class="my-posts-container">
-          <% @myposts.each do |post| %>
-          <div class="col-10">
-            <%= link_to post_path(post) do %>
-          <div class="posts-card stretched-link card-body">
-              <div class="card-body-preview">
-                  <div class="card-preview-text">
-                  <h5 class="card-title"><%= post.title %></h5>
-                  <p class="card-text"><%= post.content[0...150] %></p>
+      <div class="tab-pane" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
+        <div class="posts-container">
+          <div class="my-posts-container">
+            <% @myposts.each do |post| %>
+            <div class="col-12 justify-content-center d-flex">
+              <%= link_to post_path(post) do %>
+            <div class="posts-card stretched-link card-body">
+                <div class="card-body-preview">
+                    <div class="card-preview-text">
+                    <h5 class="card-title"><%= post.title %></h5>
+                    <p class="card-text"><%= post.content[0...150] %></p>
+                  </div>
+                  <%   unless post.photo.blank?  %>
+                    <%= cl_image_tag post.photo, width: 100, class: "post_image_preview"%>
+                    <% end %>
                 </div>
-                <%   unless post.photo.blank?  %>
-                  <%= cl_image_tag post.photo, width: 100, class: "post_image_preview"%>
-                  <% end %>
               </div>
+              <% end %>
             </div>
             <% end %>
           </div>
-          <% end %>
         </div>
       </div>
-    </div>
     <% end %>
   </div>
 </div>

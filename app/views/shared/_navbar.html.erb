@@ -3,7 +3,7 @@
   <%= link_to root_path, class: "navbar-brand" do %>
   <div class="d-flex align-items-end">
     <%= cl_image_tag "https://res.cloudinary.com/dg6wajgky/image/upload/v1575541123/basketballlogoblank_js4fxo.png"%>
-    <h1 class="logo-text">Swish</h1>
+    <h3 class="logo-text">Swish</h3>
   </div>
     <% end %>
 
@@ -52,7 +52,7 @@
   <div class="nav-item dropdown btn">
     <% if user_signed_in? %>
       <% if current_user.photo.file.nil? %>
-        <%= cl_image_tag "user_avatar_uwwwti", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <%= cl_image_tag "default-profile-picture1_gxixjx", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% else %>
         <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <% end %>
