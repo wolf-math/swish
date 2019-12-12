@@ -63,6 +63,9 @@
                         <h5 class="card-title"><%= post.title %></h5>
                         <p class="card-text"><%= post.content[0...150] %>...</p>
                       </div>
+                      <% unless post.photo.blank?  %>
+                        <%= cl_image_tag post.photo, width: 100, class: "post_image_preview" %>
+                      <% end %>
                     </div>
                   </div>
                 </div>
