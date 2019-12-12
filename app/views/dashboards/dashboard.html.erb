@@ -26,16 +26,19 @@
     <% if user_signed_in? %>
       <div class="tab-pane active" id="myposts" role="tabpanel" aria-labelledby="myposts-tab">
         <div class="posts-container">
-          <div class="my-posts-container">
+          <div class="favorites-post-container">
             <% @myposts.each do |post| %>
-              <div class="col-10">
+              <div class="col-12 justify-content-center d-flex">
                 <%= link_to post_path(post) do %>
-                  <div class="posts-card">
-                    <div class="card">
-                      <div class="card-body">
+                  <div class="posts-card stretched-link card-body">
+                    <div class="card-body-preview">
+                      <div class="card-preview-text">
                         <h5 class="card-title"><%= post.title %></h5>
                         <p class="card-text"><%= post.content[0...150] %></p>
                       </div>
+                        <% unless post.photo.blank?  %>
+                        <%= cl_image_tag post.photo, width: 100, class: "post_image_preview"%>
+                        <% end %>
                     </div>
                   </div>
                 <% end %>
@@ -48,9 +51,9 @@
 
     <div class="tab-pane" id="comments" role="tabpanel" aria-labelledby="my-comments">
       <div class="posts-container">
-        <div class="my-posts-container">
+        <div class="favorites-post-container">
           <% @comments.each do |comment| %>
-            <div class="col-10">
+            <div class="col-12 justify-content-center d-flex">
               <%= link_to post_path(comment.commentable) do %>
                 <div class="posts-card">
                   <div class="card">
@@ -65,7 +68,6 @@
         </div>
       </div>
     </div>
-
     <div class="tab-pane" id="players" role="tabpanel" aria-labelledby="my-players">
       <div class="container index-container">
         <div class="container player-team-container">
