@@ -1,11 +1,10 @@
-
-      <% if user_signed_in? %>
-<div class="d-flex flex-row navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to root_path, class: "navbar-brand" do %>
-  <div class="d-flex align-items-end">
-    <%= cl_image_tag "https://res.cloudinary.com/dg6wajgky/image/upload/v1575541123/basketballlogoblank_js4fxo.png"%>
-    <h3 class="logo-text">Swish</h3>
-  </div>
+<% if user_signed_in? %>
+  <div class="d-flex flex-row navbar navbar-expand-sm navbar-light navbar-lewagon">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <div class="d-flex align-items-end">
+        <%= cl_image_tag "https://res.cloudinary.com/dg6wajgky/image/upload/v1575541123/basketballlogoblank_js4fxo.png"%>
+        <h3 class="logo-text">Swish</h3>
+      </div>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,13 +55,13 @@
       <% end %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <div class="btn-nav nav-link">
-          <%= current_user.email %>
-            </div>
-            <%= link_to "Dashboard", dashboard_path, class: "dropdown-item btn-nav nav-link" %>
-            <%= link_to "Update Teams", new_follow_path, class: "dropdown-item btn-nav nav-link" %>
-            <%= link_to "Update Players", new_player_follow_path, class: "dropdown-item btn-nav nav-link" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item btn-nav nav-link" %>
+            <%= current_user.email %>
           </div>
+          <%= link_to "Dashboard", dashboard_path, class: "dropdown-item btn-nav nav-link" %>
+          <%= link_to "Update Teams", new_follow_path, class: "dropdown-item btn-nav nav-link" %>
+          <%= link_to "Update Players", new_player_follow_path, class: "dropdown-item btn-nav nav-link" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item btn-nav nav-link" %>
+        </div>
       <% end  %>
     </div>
   </div>

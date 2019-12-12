@@ -24,22 +24,25 @@
   </div>
   <div class="tab-content">
     <% if user_signed_in? %>
-    <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
-      <div class="posts-container">
-        <div class="favorites-post-container">
-          <% if @professionals_posts.size >= 1 %>
-          <% @professionals_posts.each do |favorite| %>
-          <div class="col-12 justify-content-center d-flex">
-            <%= link_to post_path(favorite.id) do %>
-            <div class="posts-card stretched-link card-body">
-              <div class="card-body-preview">
-                <div class="card-preview-text">
-                  <h5 class="card-title"><%= favorite.title %></h5>
-                  <p class="card-text"><%= favorite.content[0...150] %></p>
-                </div>
-                <%   unless favorite.photo.blank?  %>
-                  <%= cl_image_tag favorite.photo, width: 100, class: "post_image_preview"%>
-                <% end %>
+      <div class="tab-pane active" id="favorite" role="tabpanel" aria-labelledby="favorite-tab">
+        <div class="posts-container">
+          <div class="favorites-post-container">
+            <% if @professionals_posts.size >= 1 %>
+              <% @professionals_posts.each do |favorite| %>
+                <div class="col-12 justify-content-center d-flex">
+                  <%= link_to post_path(favorite.id) do %>
+                    <div class="posts-card stretched-link card-body">
+                      <div class="card-body-preview">
+                        <div class="card-preview-text">
+                          <h5 class="card-title"><%= favorite.title %></h5>
+                          <p class="card-text"><%= favorite.content[0...150] %></p>
+                        </div>
+                        <% unless favorite.photo.blank?  %>
+                          <%= cl_image_tag favorite.photo, width: 100, class: "post_image_preview"%>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               <% end %>
             <% end %>
@@ -51,15 +54,16 @@
       <div class="posts-container">
         <div class="all-posts-container">
           <% @posts.each do |post| %>
-          <div class="col-12 justify-content-center d-flex">
-            <%= link_to post_path(post) do %>
-            <div class="posts-card">
-              <div class="post-card-body card-body">
-                <div class="card-body-preview">
-                  <div class="card-preview-text">
-                    <h5 class="card-title"><%= post.title %></h5>
-                    <p class="card-text"><%= post.content[0...150] %>...</p>
-
+            <div class="col-12 justify-content-center d-flex">
+              <%= link_to post_path(post) do %>
+                <div class="posts-card">
+                  <div class="post-card-body card-body">
+                    <div class="card-body-preview">
+                      <div class="card-preview-text">
+                        <h5 class="card-title"><%= post.title %></h5>
+                        <p class="card-text"><%= post.content[0...150] %>...</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               <% end %>
@@ -82,21 +86,21 @@
         <div class="posts-container">
           <div class="my-posts-container">
             <% @myposts.each do |post| %>
-            <div class="col-12 justify-content-center d-flex">
-              <%= link_to post_path(post) do %>
-            <div class="posts-card stretched-link card-body">
-                <div class="card-body-preview">
-                    <div class="card-preview-text">
-                    <h5 class="card-title"><%= post.title %></h5>
-                    <p class="card-text"><%= post.content[0...150] %></p>
+              <div class="col-12 justify-content-center d-flex">
+                <%= link_to post_path(post) do %>
+                  <div class="posts-card stretched-link card-body">
+                    <div class="card-body-preview">
+                      <div class="card-preview-text">
+                        <h5 class="card-title"><%= post.title %></h5>
+                        <p class="card-text"><%= post.content[0...150] %></p>
+                      </div>
+                      <% unless post.photo.blank?  %>
+                        <%= cl_image_tag post.photo, width: 100, class: "post_image_preview"%>
+                      <% end %>
+                    </div>
                   </div>
-                  <%   unless post.photo.blank?  %>
-                    <%= cl_image_tag post.photo, width: 100, class: "post_image_preview"%>
-                    <% end %>
-                </div>
+                <% end %>
               </div>
-              <% end %>
-            </div>
             <% end %>
           </div>
         </div>
