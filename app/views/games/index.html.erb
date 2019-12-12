@@ -22,7 +22,10 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row"><%= game.vTeam.abbrevation %></th>
+                <th scope="row">
+                  <%= image_tag "#{game.vTeam.name} #{game.vTeam.nickname}.png", class: "team-avatar-icon", alt:"team-image" %>
+                  <%= game.vTeam.abbrevation %>
+                </th>
                 <td><%= game.vteam_q1 %></td>
                 <td><%= game.vteam_q2 %></td>
                 <td><%= game.vteam_q3 %></td>
@@ -30,7 +33,10 @@
                 <td><%= game.vTeamScore %></td>
               </tr>
               <tr>
-                <th scope="row"><%= game.hTeam.abbrevation %></th>
+                <th scope="row">
+                  <%= image_tag "#{game.hTeam.name} #{game.hTeam.nickname}.png", class: "team-avatar-icon", alt:"team-image" %>
+                  <%= game.hTeam.abbrevation %>
+                  </th>
                 <td><%= game.hteam_q1 %></td>
                 <td><%= game.hteam_q2 %></td>
                 <td><%= game.hteam_q3 %></td>
