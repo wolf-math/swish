@@ -13,28 +13,29 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="eastern" role="tabpanel" aria-labelledby="eastern-tab">
-        <table class="standings-table">
-          <tr class="head-row">
+        <table class="table table-hover table-striped">
+          <tr class="head-row bg-warning">
             <td>Rank</td>
             <td>Team</td>
             <td>GB</td>
             <td>W</td>
             <td>L</td>
             <td>Win %</td>
-            <td>10wins</td>
-            <td>10loss</td>
+            <td>L10</td>
             <td>streak</td>
           </tr>
           <% @east.each do |team| %>
             <tr>
               <td><%= team.standing %></td>
-              <td><%= link_to team.nickname, team_path(team.id) %></td>
+              <td>
+                <%= image_tag "#{team.name} #{team.nickname}.png", class: "team-avatar-icon", alt:"team-image" %>
+                <%= link_to team.nickname, team_path(team.id) %>
+              </td>
               <td><%= team.games_behind %></td>
               <td><%= team.wins %></td>
               <td><%= team.losses %></td>
               <td><%= team.win_percent %></td>
-              <td><%= team.last10wins %></td>
-              <td><%= team.last10loss %></td>
+              <td><%= team.last10wins %>-<%= team.last10loss %></td>
               <% if team.streak_wins == true %>
                 <td><%= team.streak %>W</td>
               <% else %>
@@ -45,28 +46,29 @@
         </table>
       </div>
       <div class="tab-pane" id="western" role="tabpanel" aria-labelledby="western-tab">
-        <table class="standings-table">
-          <tr class="head-row">
+        <table class="table table-hover table-striped">
+          <tr class="head-row bg-warning">
             <td>Rank</td>
             <td>Team</td>
             <td>GB</td>
             <td>W</td>
             <td>L</td>
             <td>Win %</td>
-            <td>10wins</td>
-            <td>10loss</td>
+            <td>L10</td>
             <td>Streak</td>
           </tr>
           <% @west.each do |team| %>
             <tr>
               <td><%= team.standing %></td>
-              <td><%= link_to team.nickname, team_path(team.id) %></td>
+              <td>
+                <%= image_tag "#{team.name} #{team.nickname}.png", class: "team-avatar-icon", alt:"team-image" %>
+                <%= link_to team.nickname, team_path(team.id) %>
+              </td>
               <td><%= team.games_behind %></td>
               <td><%= team.wins %></td>
               <td><%= team.losses %></td>
               <td><%= team.win_percent %></td>
-              <td><%= team.last10wins %></td>
-              <td><%= team.last10loss %></td>
+              <td><%= team.last10wins %>-<%= team.last10loss %></td>
               <% if team.streak_wins == true %>
                 <td><%= team.streak %>W</td>
               <% else %>

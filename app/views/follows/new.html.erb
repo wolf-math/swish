@@ -1,31 +1,28 @@
 <div class="container team-index-container">
-
-    <div class='page-title'>
-      <h1 class='text-center logo-img-top nba-logo mb-5' id="logo-img-top"><%= image_tag "nba-logo.png", alt: "NBA-logo"%> Select Teams To Follow </h1>
-    </div>
-
+  <div class='page-title'>
+    <h1 class='text-center logo-img-top nba-logo mb-5' id="logo-img-top"><%= image_tag "nba-logo.png", alt: "NBA-logo"%> Select Teams To Follow </h1>
+  </div>
     <%= simple_form_for(@follow) do |f| %>
     <div class='button-wrapper mb-5'>
       <button class="teams-submit">
         <%= f.button :submit, 'Submit Teams' %>
       </button>
     </div>
-
-  <div class="row">
-    <input type="hidden" name="follow[team_ids][]" value="">
-    <% @teams.each do |team| %>
-    <div class="col-lg-2 col-md-4 col-sm-12">
-      <input type="checkbox" class="d-none" value="<%= team.id %>" name="follow[team_ids][]" id="follow_team_ids_<%= team.id %>">
-      <label for="follow_team_ids_<%= team.id %>" class="follow-label <%= 'active-team-choice' if current_user.following?(team) %>">
-        <div class="mb-3 followable-index-card">
-          <span class="team-name"><%= image_tag "#{team.name} #{team.nickname}.png", class: "card-img", alt:"team-image", :quality=>"auto", fetch_format: :auto %></span>
+    <div class="row">
+      <input type="hidden" name="follow[team_ids][]" value="">
+      <% @teams.each do |team| %>
+        <div class="col-lg-2 col-md-4 col-sm-12">
+          <input type="checkbox" class="d-none" value="<%= team.id %>" name="follow[team_ids][]" id="follow_team_ids_<%= team.id %>">
+          <label for="follow_team_ids_<%= team.id %>" class="follow-label <%= 'active-team-choice' if current_user.following?(team) %>">
+            <div class="mb-3 followable-index-card">
+              <span class="team-name"><%= image_tag "#{team.name} #{team.nickname}.png", class: "card-img", alt:"team-image", :quality=>"auto", fetch_format: :auto %></span>
+            </div>
+          </label>
         </div>
-      </label>
+      <% end  %>
     </div>
-    <% end  %>
-  </div>
+  <% end %>
 </div>
-<% end %>
 
 <%= content_for(:after_js) do %>
 <%= javascript_pack_tag('team_follow_choice') %>
