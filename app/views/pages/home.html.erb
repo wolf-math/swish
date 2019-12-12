@@ -91,25 +91,25 @@
         <% end %>
       </div>
     </div>
-    <% else %>
-      <div class="landing_container crossfade">
-        <img id="f3" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1556168505-d00e911d52eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80">
-        <img id="f2" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1550171362-62bca9e5ad4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
-        <img id="f1" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1533923156502-be31530547c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
-        <div class="landing_title">
-          <h1 class="centered">Your Home For NBA Updates & Details</h1>
-          <div class="unsigned_buttons">
-            <button class="btn-log-in">
-              <%= link_to "Login", new_user_session_path %>
-            </button>
-            <button class="btn-sign-up">
-              <%= link_to "Sign-up", new_user_registration_path %>
-            </button>
-          </div>
+  <% else %>
+    <div class="landing_container crossfade">
+      <img id="f3" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1556168505-d00e911d52eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80">
+      <img id="f2" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1550171362-62bca9e5ad4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
+      <img id="f1" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))" src="https://images.unsplash.com/photo-1533923156502-be31530547c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80">
+      <div class="landing_title">
+        <h1 class="centered">Your Home For NBA Updates & Details</h1>
+        <div class="unsigned_buttons">
+          <button class="btn-log-in">
+            <%= link_to "Login", new_user_session_path %>
+          </button>
+          <button class="btn-sign-up">
+            <%= link_to "Sign-up", new_user_registration_path %>
+          </button>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
-  <%= content_for :after_js do %>
+<% end %>
+<%= content_for :after_js do %>
   <%= javascript_pack_tag "youtube_embed" %>
 <% end %>
