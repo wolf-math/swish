@@ -4,6 +4,7 @@
       <div class="col-3 vc-wrapper">
         <div class="scores-container">
           <h4>Recent Scores</h4>
+          <hr>
           <% @arr.each do |date| %>
             <h5 class="homepage-date"><%= date[0] %></h5>
             <% @games.all.where(date_time: date[0]).each do |game| %>
